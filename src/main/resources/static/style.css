@@ -1,0 +1,540 @@
+/*import Fonts from google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+
+html,body {
+    font-family:'poppins';
+    font-size:  20px; ;
+    line-height:1.5 ;
+    box-sizing:border-box ;
+    margin:0 ;
+    top: 0;
+    left:0 ;
+    overflow-x: hidden;
+
+
+}
+a {
+    text-decoration:none ;
+    color: rgba(34, 54, 69, 7);
+    font-weight:500;
+
+}
+a:hover {
+  color: brown;
+}
+ul {
+    list-style-type: none;
+  
+
+}
+
+/*Edited after Comment on Carousel Slider Using Bootstrap 5 Alpha - Carousel Slider Tutorial video(Navigation bar error for small mobile devices */
+.navbar {
+    padding : 1rem 2rem;
+    background: #4c5a7d;
+  
+  
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+      padding: 1.6rem 1.2rem;
+     
+  }
+
+/* up to this */
+
+.navbar .navbar-brand{
+    padding: 1rem;
+    display: block;
+    text-decoration: none;
+
+   
+
+}
+.navbar-brand {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    font-size: 30px;
+   
+}
+
+
+.navbar-toggler span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border: 1px;
+    background: black;
+    margin-left: 4px;
+
+}
+.navbar-toggler span + span {
+    margin-top: 4px;
+    width: 22px;
+    margin-left: 4px;
+  
+}
+.navbar-toggler span + span + span {
+    width: 22px;
+    margin-left: 4px;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    padding: 2rem 1.2rem;
+    font-size: 1.4rem;
+    position: relative;
+}
+.navbar-expand-lg .navbar-nav .nav-link:hover{
+    border-top: 4px solid #e74c3c;
+}
+.navbar-expand-lg .navbar-nav .nav-link.active {
+    border-top: 4px solid #e74c3c;
+    color: #e74c3c;
+
+}
+.navbar-nav button{
+padding: 1.2rem;
+
+}
+.navbar-nav .btn {
+    background-color: gold;
+    color: black;
+    border-radius: 0;
+    padding: 1re, 1.5rem;
+    font-size: 1.2rem;
+    margin-top: 1px;
+    font-weight: 1000;
+
+}
+.navbar-nav .btn:hover{
+    background-color: #0a3d62;
+    font-weight: 1000;
+    background-color: silver;
+}
+
+
+
+
+
+/* Slider part (carousel)*/
+.carousel-item {
+    height: 90vh;
+    min-height: 300px;
+    background: no-repeat scroll center scroll;
+    -webkit-background-size : cover;
+    background-size: cover;
+}
+
+.carousel-item::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.5;
+
+
+}
+.carousel-caption {
+    bottom: 180px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.carousel-caption h5{
+    font-size: 100px;
+    font-weight: 700;
+}
+.carousel-caption p{
+    font-size: 18px;
+    top: 2rem;
+
+}
+.slider-btn{
+    margin-top: 30px;
+}
+.slider-btn .btn-1{
+    background-color: gold;
+    color: black;
+    font-weight: 1000;
+ /*   border-radius: 0;
+    padding: 1.5rem 2rem;
+    font-size: 1rem;
+    margin-right: 15px;
+    */
+    
+}
+.slider-btn .btn-2{
+    color: black;
+    background-color: gold;
+    font-weight: 1000;
+
+}
+.slider-btn .btn-3{
+    color: black;
+    background-color: gold;
+    font-weight: 1000;
+
+}
+
+/*Iadddeadditionaly*/
+ .btn-1:hover{
+    color: red;
+    background-color: white;
+}
+.btn-2:hover{
+    color: red;
+    background-color: white;
+}
+.btn-3:hover{
+    color: red;
+    background-color: white;
+}
+
+
+
+
+
+
+
+/*About us*/
+#overvivews h3{
+    color: red;
+
+    padding: 30px 10px;
+    font-weight: bold;
+
+}
+.message-box h4 {
+    color: red;
+}
+.message-box h2,h3 {
+    margin-top: 15px;
+    font-weight: bold;
+}
+#para1{
+    text-indent: 50px;
+    text-align: justify;
+}
+#para2,#para3,#para3,#para4{
+    
+    text-align: justify;
+}
+
+
+
+
+/*Testaminal
+.testanimal{
+    position: relative;
+    margin-top: 1%;
+    height: 100vh;
+    background: #ffdfb8;
+    font-family: "Roboto",sans-serif;
+}
+.section-header {
+    position: relative;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+Not working
+.section-header ::after {
+    content: "";
+    height: 4px;
+    width: 100px;
+    position: absolute;
+    bottom: 0;
+    left:calc(50%-50px);
+    background: red;
+
+}
+.testanimal-view {
+    max-width: 900px;
+    padding: 0 15px 50px;
+    margin: 0 auto 70px auto;
+    border-radius: 3px;
+
+
+}
+.block {
+    background: #fff;
+    color: #333;
+    padding: 60px 15px 15px;
+    margin: 50px 50px;
+    box-shadow:0 5px 30px -5px rgba(0, 0, 0, 0.15) ;
+    -webkit-box-shadow :0 5px 30px -5px rgba(0, 0, 0, 0.15);
+}
+.block .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    place-items:normal ;
+
+
+
+ 
+}
+
+.user {
+    margin-bottom: 30px;
+    text-align: center;
+
+
+
+}
+.image {
+    position: relative;
+    margin: 0 15px 30px 15px;
+
+}
+.image img {
+    height: 200px;
+    width: 170px;
+    border: 7px solid#ffdfb8;
+    border: radius 170px; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow :0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.user-name {
+    font-weight: bold;
+    margin-bottom:10px ;
+    text-align: center;
+    padding-bottom: 10px;
+    position: relative;
+}
+*/
+
+/*Not working
+.user-name ::after {
+
+    content: "";
+    height: 4px;
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 25px);
+    background: #fca737;
+
+}
+.content {
+    text-align:center ;
+    font-size: 18px;
+
+}
+.carousel-control-prev{
+    left: -50px;
+
+}
+.carousel-control-next {
+    right: -50px;
+
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 40px; ;
+    height: 40px; ;
+}
+*/
+
+
+/*Popup css
+.popup {
+    position:absolute;
+    top: 150px;
+    left: 50px;
+    
+    transform:translate(-50%,-50%);
+    width: 300px;
+    padding: 20px 30px;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+
+}
+
+.popup .close-btn{
+    position: absolute;
+    top:10px;
+    right:10px;
+    height: 15px;
+    background: #fca737;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+
+
+}
+.popup .form h2{
+    text-align:center ;
+}
+*/
+
+
+
+
+
+/*Mora Logo demo
+
+.row-logos {
+    background: coral;
+    padding: 0px;
+    
+}
+.img-repsonsive {
+    
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+*/
+
+/*mora logo*/
+
+.mora-logo {
+    background-color:rgb(255, 206, 0);
+
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 30px 0;
+    position: relative;
+    width: 100%;
+}
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+
+
+
+
+
+
+
+/*Footer Section */
+.site-footer {
+   padding: 5em 0;
+   font-size: 18px;
+   color: white;
+   background:black ; 
+}
+.site-footer p:last-child {
+    margin-bottom: 0;
+
+}
+.site-footer a{
+    color: white;
+    font-weight: bold;
+    border-bottom: 1px solid transparent;
+
+}
+.site-footer a:hover{
+    color:#fff;
+    border-bottom:1px solid rgba(255, 255, 255, 0.2h) ;
+}
+.site-footer h2 {
+    font-size: 22px;
+    font-weight: 1000;
+    margin-bottom: 28px;
+    letter-spacing:  0.05em;
+}
+.site-footer .footer-link li{
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+.footer-social a{
+    color: white;
+    line-height: 0;
+    border-radius: 50%;
+    margin: 0 5px 5px 0;
+    border:1px solid rgba(255, 255, 255, 0.1h) ;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    display: inline-block;
+
+
+}
+.footer-social a:hover {
+    background: #fff;
+    border-color: #fff;
+    color:#000;
+}
+.footer-social .fa{
+    margin-top: 8px;
+}
+
+/*Added additionaly */
+.copyrights {
+    border-top: 1px solid black;
+    background-color: black;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+    overflow: hidden;
+    color: white;
+  
+}
+.copyright {
+    color: gold;
+}
+
+
+
+
+
+/*Course catogeries*/
+    .course-item{
+    	background:#eee;
+    }
+    .course-item{}
+    .course-title > h2 {
+        font-size:20px;
+        margin: 15px 0;
+        padding: 0px;
+    }
+    .course-title a {
+        font-size: 30px;
+        line-height: 25px;
+        font-weight: 500;
+        color: #333333;
+        text-transform: capitalize;
+    }
+    .course-item:hover .course-title a {
+    	color: red;
+    }
+    .course-br{
+    	border: 1px solid #4babb1;
+    	padding: 15px;
+    }
+    .course-meta-bot{
+    	border: 1px solid #4babb1;
+    	border-top: 0px;
+    	padding: 15px;
+    }
+    .course-meta-bot ul{
+    	padding: 0px;
+    	margin: 0px;
+    	display: block;
+    	text-align: center;
+    }
+    .course-meta-bot ul li{
+    	display: inline-block;
+    	list-style: none;
+    	padding: 0px 5px;
+    	color: #212121;
+    	font-size: 11px;
+    }
+    .course-meta-bot ul li:hover{
+    	color: green;
+    }
