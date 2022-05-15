@@ -15,7 +15,8 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(User user) {
         this.user = user;
     }
-//Rolebased authorization givven here
+
+    //Rolebased authorization givven here
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

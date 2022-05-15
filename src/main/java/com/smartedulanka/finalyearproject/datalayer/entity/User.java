@@ -2,6 +2,9 @@ package com.smartedulanka.finalyearproject.datalayer.entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,6 +26,48 @@ public class User {
 
     @Column(name = "role", nullable = false, length = 20)
     private String role;
+
+
+
+    @Column(name = "fullName", nullable = false, length = 20)
+    private String fullName;
+
+    @Column(nullable = true, unique = false, length = 100)
+    private String registeredTime;
+
+    public String getRegisteredTime() {
+        return registeredTime;
+    }
+
+    public void setRegisteredTime(String registeredTime) {
+        this.registeredTime = registeredTime;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn( name = "question_authorID", referencedColumnName = "id")
+    List<Question> questions = new ArrayList<>();
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+/*@OneToMany(targetEntity = Question.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "-fk",referencedColumnName = "id")
+    private List<Question> question;
+*/
+
 
 
 

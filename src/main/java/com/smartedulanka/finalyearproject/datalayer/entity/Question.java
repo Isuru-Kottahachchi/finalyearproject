@@ -1,0 +1,105 @@
+package com.smartedulanka.finalyearproject.datalayer.entity;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "questions")
+public class Question {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long question_id;
+
+    @Column(nullable = false, unique = false, length = 100)
+    private String question_subjectArea;
+
+    @Column(nullable = false, unique = false, length = 1000)
+    private String questionNote;
+
+    @Column(nullable = false, unique = false, length = 1000)
+    private String  fullQuestion;
+
+    @Column(nullable = true, unique = false, length = 100)
+    private Boolean questionStatus;
+
+    @Column(nullable = true, unique = false, length = 100)
+    private String questionSubmittedTime;
+
+
+    @Column(nullable = true, unique = false, length = 1000)
+    private String UploadedImageName;
+
+    @Column(nullable = true, unique = false, length = 1000)
+    private String imageURL;
+
+
+
+
+    public String getUploadedImageName() {
+        return UploadedImageName;
+    }
+
+    public void setUploadedImageName(String uploadedImageName) {
+        UploadedImageName = uploadedImageName;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public Long getQuestion_id() {
+        return question_id;
+    }
+
+    public void setQuestion_id(Long question_id) {
+        this.question_id = question_id;
+    }
+
+
+    public String getQuestion_subjectArea() {
+        return question_subjectArea;
+    }
+
+    public void setQuestion_subjectArea(String question_subjectArea) {
+        this.question_subjectArea = question_subjectArea;
+    }
+
+    public String getQuestionNote() {
+        return questionNote;
+    }
+
+    public void setQuestionNote(String questionNote) {
+        this.questionNote = questionNote;
+    }
+
+
+    public String getFullQuestion() {
+        return fullQuestion;
+    }
+
+    public void setFullQuestion(String fullQuestion) {
+        this.fullQuestion = fullQuestion;
+    }
+
+    public Boolean getQuestionstatus() {
+        return questionStatus;
+    }
+
+    public void setQuestionstatus(Boolean questionstatus) {
+        this.questionStatus = questionstatus;
+    }
+
+    public String getQuestionSubmittedTime() {
+        return questionSubmittedTime;
+    }
+
+    public void setQuestionSubmittedTime(String questionSubmittedTime) {
+        this.questionSubmittedTime = questionSubmittedTime;
+    }
+}

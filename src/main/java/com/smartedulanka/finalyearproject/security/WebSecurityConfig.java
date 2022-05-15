@@ -41,9 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/users","/forum.html","/advancedlevelenglish.html").authenticated()
+                .antMatchers("/users","/forum.html").authenticated()
                 .antMatchers("/admin.html").hasAuthority("ADMIN")
 
                 .antMatchers("/index.html").hasAnyAuthority("ADMIN","USER")
@@ -52,50 +52,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 . permitAll()
                 .loginPage("/login")
                 .usernameParameter("email")
-        .and()
-        .logout().permitAll()
-        .and()
-        .exceptionHandling().accessDeniedPage("/403");
+            .and()
+            .logout().permitAll()
+            .and()
+            .exceptionHandling().accessDeniedPage("/403");
 
 
 
-      /*  http.
-                .authorizeRequests()
-                .antMatchers("/users","/forum.html","/blog.html").authenticated()
-                .antMatchers("/admin.html").hasAuthority("ADMIN")
-
-                .antMatchers("/index.html").hasAnyAuthority("ADMIN","USER")
-                .antMatchers("/").permitAll()
-                .and().formLogin()
-                . permitAll()
-                .loginPage("/login")
-                .usernameParameter("email")
-                .and()
-                .logout().permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403");
-*/
-
-
-
-
-
-
-
-
-
-                /*antMatchers("/admin.html").hasRole("ADMIN")
-                .antMatchers("/indexnew.html").hasAnyRole("ADMIN", "USER")
-
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .usernameParameter("email")
-
-                .defaultSuccessUrl("/indexnew.html")
-                .permitAll()
-                .and()
-                .logout().logoutSuccessUrl("/").permitAll();*/
         }
 
 

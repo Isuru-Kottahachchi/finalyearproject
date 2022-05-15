@@ -6,15 +6,39 @@
     <title>SMART Edu Lanka Login</title>
     <link rel= "icon" href = "images/elearnerlogo.PNG"/>
 
+
     <! ––Bootstrap CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous" />
+
+    <!--Boostrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+    <!--Linking CSS File-->
+   <!-- <link rel ="stylesheet" href="style.css"/>-->
+
+    <!--Font awesome-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+            .fa{
+               margin-left:120px;
+            }
+            .eye{
+                 position:absolute;
+            }
+            #hide1{
+                 display:none;
+            }
+   </style>
+
 </head>
 <body>
 <div class="container-fluid text-center">
     <div>
-        <img class="img-fluid" th:src="@{/images/Mora_logo.png}" />
+        <img class="img-fluid" width="275" height="275" th:src="@{/images/Mora_logo.png}" />
     </div>
     <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
 
@@ -32,10 +56,14 @@
                 <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus/>
             </p>
             <p>
-                <input type="password" name="password" class="form-control" placeholder="Password" required />
+                <input type="password" id="myInput" name="password" class="form-control" placeholder="Password" required  />
+                  <span class="eye" onclick="hideUnhideFunction()">
+                      <i id="hide1" class="fa fa-eye"></i>
+                      <i id="hide2" class="fa fa-eye-slash"></i>
+                  </span>
+
             </p>
-            <p>
-                <input type="checkbox" name="remember-me" form-check-input/>&nbsp;Remember Me
+            <p><input type="checkbox" name="remember-me" form-check-input/>&nbsp;Remember Me
             </p>
             <p>
                 <input type="submit" value="Login" class="btn btn-primary btn-lg btn-block" />
@@ -50,7 +78,14 @@
             </p>
 
         </div>
+
     </form>
 </div>
+
+<script src="script.js"></script>
+
+
+
 </body>
+
 </html>

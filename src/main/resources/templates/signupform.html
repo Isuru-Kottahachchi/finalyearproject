@@ -17,65 +17,154 @@
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
+
+
+    <!--Font awesome-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
-        .container {
-        padding:150px 10px 150px 10px;
-        background-color:#A9A9A9;
+        .divider:after,
+       .divider:before {
+                        content: "";
+                        flex: 1;
+                        height: 1px;
+                        background: #eee;
+       }
+       .h-custom {
+                  height: calc(100% - 73px);
+       }
+       @media (max-width: 450px) {
+        .h-custom {
+           height: 100%;
         }
+        }
+
+
+
+        .fa{
+               margin-left:500px;
+            }
+            .eye{
+                 position:absolute;
+            }
+            #hide1{
+                 display:none;
+            }
     </style>
 
 </head>
 <body>
-<div class="container text-center">
-        <div>
-            <span><i class="fa fa-user-plus fa-5x"></i> </span>
-            <p style="font-size:60px">User Registration EduLanka</p><br>
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img width="600" height="500" th:src="@{/images/Mora_logo.png}"
+                     class="img-fluid" alt="Sample image">
+
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form th:action="@{/process_register}" th:object="${user}"
+                      method="post">
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0" style="font-size: 25px; font-weight: bold">SMART Edu Lanka Sign Up</p>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">First Name</label>
+                        <input type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter your first name" th:field="*{firstName}" required/>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">Last Name</label>
+                        <input type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter your last name" th:field="*{lastName}" required />
+
+                    </div>
+
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="form3Example4">Email</label>
+                        <input type="email" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter your email" th:field="*{email}" required/>
+
+                    </div>
+                    <div class="form-outline mb-3">
+                        <label class="form-label" for="form3Example4">Password</label>
+                        <input type="password" id="myInput" class="form-control form-control-lg"
+                               placeholder="Enter password"  th:field="*{password}" required/>
+                        <span class="eye" onclick="hideUnhideFunction()">
+                      <i id="hide1" class="fa fa-eye"></i>
+                      <i id="hide2" class="fa fa-eye-slash"></i>
+                  </span>
+
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-success btn-lg btn-block"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+
+                       <!-- <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Home</button>-->
+
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="login.html"
+                                                                                          class="link-danger">Log In </a></p>
+
+                        <a class="btn btn-primary"style="padding-left: 2.5rem; padding-right: 2.5rem;" href="indexnew.html" role="button">Home</a>
+
+
+                    </div>
+                    <!--<div class="d-flex justify-content-between align-items-center">
+                        &lt;!&ndash; Checkbox &ndash;&gt;
+                        <div class="form-check mb-0">
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="login.html"
+                                                                                              class="link-danger">Log In </a></p>
+                        </div>
+                        <a href="#!" class="text-body">Forgot password?</a>
+                    </div>-->
+
+
+
+
+
+
+                </form>
+            </div>
         </div>
-        <form th:action="@{/process_register}" th:object="${user}"
-            method="post" style="max-width: 600px; margin: 0 auto;">
-           <div class="m-3">
-              <div class="form-group row">
-                <label class="col-4 col-form-label"style="font-size:20px">E-mail: </label>
-                <div class="col-8">
-                    <input type="email" th:field="*{email}" class="form-control" required />
-                </div>
-              </div>
+    </div>
+    <div
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+            Powered by University of Moratuwa
+        </div>
+        <!-- Copyright -->
 
-            <div class="form-group row">
-                <label class="col-4 col-form-label"style="font-size:20px">Password: </label>
-                <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                            required minlength="6" maxlength="10"/>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-4 col-form-label"style="font-size:20px">First Name: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{firstName}" class="form-control"
-                            required minlength="2" maxlength="20"/>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-4 col-form-label"style="font-size:20px">Last Name: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{lastName}" class="form-control"
-                            required minlength="2" maxlength="20" />
-                </div>
-            </div>
-
-             <div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block"style="font-size:20px">Sign Up</button>
-             </div>
-               <br>
-             <div>
-                <a class="btn btn-success" href="indexnew.html" role="button">Home</a>
-             </div>
-
-           </div>
-        </form>
-</div>
-
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</section>
+<script src="script.js"></script>
 </body>
 </html>
