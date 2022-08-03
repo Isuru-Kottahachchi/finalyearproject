@@ -1,7 +1,9 @@
 package com.smartedulanka.finalyearproject.service;
 
-import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecord;
+import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecords;
+import com.smartedulanka.finalyearproject.datalayer.entity.User;
 import com.smartedulanka.finalyearproject.repository.UploadRepository;
+import com.smartedulanka.finalyearproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,26 +15,36 @@ public class SearchService {
     @Autowired
     private UploadRepository uploadRepo;
 
-    public List<UploadRecord> listAll(String keyword) {
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<UploadRecords> listAllSearchedPendingFiles(String keyword) {
         if (keyword != null) {
-            return uploadRepo.search(keyword);
+            return uploadRepo.searchRelevantPendingFiles(keyword);
         }
         return uploadRepo.findAll();
     }
 
 
-    public List<UploadRecord> listSubmittedFilesRecords(String keyword) {
+    public List<UploadRecords> listAllSearchedApprovedFilesRecords(String keyword) {
         if (keyword != null) {
-            return uploadRepo.retrieveApprovedFiles(keyword);
+            return uploadRepo.searchRelevantApprovedFiles(keyword);
         }
         return uploadRepo.findAll();
     }
 
-    public List<UploadRecord> listRejectedFilesRecords(String keyword) {
+    public List<UploadRecords> listAllSearchedRejectedFilesRecords(String keyword) {
         if (keyword != null) {
-            return uploadRepo. searchRejectedFiles(keyword);
+            return uploadRepo.searchRelevantRejectedFiles(keyword);
         }
         return uploadRepo.findAll();
+    }
+
+    public List<User> listAllSearchedUsers(String keyword) {
+        if (keyword != null) {
+            return userRepository.searchRelevantUsers(keyword);
+        }
+        return userRepository.findAll();
     }
 
 

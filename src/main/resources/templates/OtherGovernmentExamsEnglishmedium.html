@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinhala Medium</title>
+
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+
+    <!--Linking Boostrap CSS to the project(Linking Boostrap to the project/without this boostrap is not working. boostrap.min.css vs boostrap.css/can use CDN also)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--Linking CSS File-->
+    <link rel ="stylesheet" href="style.css"/>
+
+    <!--Font Awsome plugin--> <!--Social media buttons and other icons-->
+    <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+
+<body>
+<header class = "header">
+
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
+
+
+            <!--Toggle button for mobile versions-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span ></span>
+                <span ></span>
+                <span ></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+
+                </ul>
+                <ul>
+                    <form th:action="@{/logout}" method="post">
+
+                        <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
+                    </form>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+<div id="overviews" class="section wb">
+    <div class="container">
+        <div class="section-title">
+            <div class="col-md-8 offset-md-2">
+                <p class="lead" style="text-align:center;font-weight: bold;"> Welcome to ENGLISH medium Olympiad section!</p>
+            </div>
+        </div><!-- end title -->
+
+        <hr class="invis">
+        <div id="overviews1" class="section wb">
+            <div class="container">
+                <div class="section-title">
+                    <div class="col-md-8 offset-md-2">
+
+                    </div>
+                </div><!-- end title -->
+            </div>
+        </div>
+
+
+        <div class="container">
+            <p class="lead" style="text-align:left;font-weight:bold;color:red">Olympiad Biology past paper section!</p>
+            <p class="align-center" style="color:black"> <b>You can download Biology Olympiad past papers or relevant model papers by using following links</b></p>
+            <p align="center">
+
+                <input class="btn btn-warning"  type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper section"></input>
+            </p>
+
+            <!--Inside the collapse-->
+
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapse1">
+                        <div class="card card-body">
+
+
+                            <div class="card-body p-2 p-sm-3">
+                                <div class="media forum-item"  >
+                                    <div style="background-color:yellow;">
+
+                                        <a href="#" data-toggle="collapse" data-target=".forum-content"> </a>
+                                    </div><br>
+
+                                    <div class="mb-3">
+                                        <p class="align-self-center" style="color:black"> </p>
+                                        <div align="center">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Biology Olympiad 2008 Part I/II 2010 </a> </li></ul>
+                                        </div>
+                                        <div align="center" th:each="eMOlympiadBioRecord: ${eMOlympiadBioRecords}">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadBioRecord.UploadedFileName}" th:text="${eMOlympiadBioRecord.fileName}"target="_blank"> </a> </li></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div align="center">
+             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Biology Olympiad 2008 Part I/II 2010 </a> </li></ul>
+         </div>
+         <div align="center" th:each="eMOlympiadBioRecord: ${eMOlympiadBioRecords}">
+             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadBioRecord.UploadedFileName}" th:text="${eMOlympiadBioRecord.fileName}"target="_blank"> </a> </li></ul>
+         </div>
+     </div>-->
+
+
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <p class="align-center" style="color:black"> <b>You can add Biology Olympiad past papers or relevant model papers to the system</b></p>
+                    <p>If you have relevant Biology Olympiad model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Biology_Olympiad_English_Medium_PartI/II_2022)</b></p>
+
+                    <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                        <p>
+                            <input type="file" name="file" required accept="application/pdf,application"/>
+                            <input  name="userfileupload" type="hidden" value="OlympiadBioEnglishMedium" />
+                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                        </p>
+
+                        <p>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </p>
+                    </form>
+                </div>
+            </div><!-- end title -->
+            <br><br>
+        </div>
+        <div id="overviews2" class="section wb">
+            <div class="container">
+                <div class="section-title">
+                    <div class="col-md-8 offset-md-2">
+                        <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                    </div>
+                </div><!-- end title -->
+            </div>
+        </div>
+
+
+        <div class="container">
+            <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>
+            <p class="align-center" style="color:black"> <b>You can download Chemistry Olympiad past papers or relevant model papers by using following links</b></p>
+            <p align="center">
+
+                <input class="btn btn-warning"  type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper sections"></input>
+            </p>
+
+            <!--Inside the collapse-->
+
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapse1">
+                        <div class="card card-body"  >
+
+
+                            <div class="card-body p-2 p-sm-3">
+                                <div class="media forum-item"  >
+                                    <div style="background-color:yellow;">
+
+                                        <a href="#" data-toggle="collapse" data-target=".forum-content"> </a>
+                                    </div><br>
+
+                                    <div class="media-body">
+
+                                        <div align="center">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Chemistry Olympiad 2008 Part I/II 2010  </a> </li></ul>
+                                        </div>
+                                        <div align="center" th:each="eMOlympiadChemistryRecord: ${eMOlympiadChemistryRecords}">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadChemistryRecord.UploadedFileName}" th:text="${eMOlympiadChemistryRecord.fileName}"target="_blank"> </a> </li></ul>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <p class="align-center" style="color:black"> <b>You can add Chemistry Olympiad past papers or relevant model papers to the system</b></p>
+                    <p>If you have relevant Chemistry Olympiad model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: English_Medium_Chemistry Olympiad_PartI/II_2022)</b></p>
+
+                    <form action="upload" method="post" enctype="multipart/form-data">
+                        <p>
+                            <input type="file" name="file" required accept="application/pdf,application"/>
+                            <input  name="userfileupload" type="hidden" value="OlympiadChemistryEnglishMedium" />
+                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                        </p>
+                        <p>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </p>
+                    </form>
+                </div>
+            </div><!-- end title -->
+            <br><br>
+        </div>
+        <div id="overviews3" class="section wb">
+            <div class="container">
+                <div class="section-title">
+                    <div class="col-md-8 offset-md-2">
+                        <!--<p class="lead" style="text-align:left;font-weight: bold;color: red">Olympiad Physics past paper section!</p>-->
+                    </div>
+                </div><!-- end title -->
+            </div>
+        </div>
+
+
+        <div class="container">
+            <p class="lead" style="text-align:left;font-weight:bold;color:red">Olympiad Physics past paper section!</p>
+            <p class="align-center" style="color:black"> <b>You can download Physics Olympiad past papers or relevant model papers by using following links</b></p>
+            <p align="center">
+
+                <input class="btn btn-warning" onclick="changeCommentSectionButtonText()" type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper sections"></input>
+            </p>
+
+            <!--Inside the collapse-->
+
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapse1">
+                        <div class="card card-body"  >
+
+
+                            <div class="card-body p-2 p-sm-3">
+                                <div class="media forum-item"  >
+                                    <div style="background-color:yellow;">
+
+                                        <a href="#" data-toggle="collapse" data-target=".forum-content"> </a>
+                                    </div><br>
+
+                                    <div class="media-body">
+
+                                        <div align="center">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Physics Olympiad 2008 Part I/II 2010 </a> </li></ul>
+                                        </div>
+                                        <div align="center" th:each="eMOlympiadPhysicsRecord: ${eMOlympiadPhysicsRecords}">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadPhysicsRecord.UploadedFileName}" th:text="${eMOlympiadPhysicsRecord.fileName}"target="_blank"> </a> </li></ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <p class="align-center" style="color:black"> <b>You can add Physics Olympiad past papers or relevant model papers to the system</b></p>
+                    <p>If you have relevant Combined maths model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Olympiad_English_Medium_Physics_PartI/II_2022)</b></p>
+
+                    <form action="upload" method="post" enctype="multipart/form-data">
+                        <p>
+                            <input type="file" name="file" required accept="application/pdf,application"/>
+                            <input  name="userfileupload" type="hidden" value="OlympiadPhysicsEnglishMedium" />
+                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                        </p>
+
+                        <p>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </p>
+                    </form>
+                </div>
+            </div><!-- end title -->
+            <hr><br>
+        </div>
+    </div><br>
+
+
+
+
+
+
+
+
+
+    <!--   <p align="center">
+
+           <input class="btn btn-warning" onclick="changeCommentSectionButtonText()" type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show comment sections"></input>
+       </p>
+
+       &lt;!&ndash;Inside the collapse&ndash;&gt;
+
+       <div class="row">
+           <div class="col">
+               <div class="collapse multi-collapse" id="multiCollapse1">
+                   <div class="card card-body"  >
+
+
+                       <div class="card-body p-2 p-sm-3">
+                           <div class="media forum-item"  >
+                               <div style="background-color:yellow;">
+
+                                   <a href="#" data-toggle="collapse" data-target=".forum-content"> </a>
+                               </div><br>
+
+                               <div class="media-body">
+
+                                   <div class="mb-3">
+                                       <p class="align-self-center" style="color:black"> <b>Rate this answer</b></p>
+                                   </div>
+
+                                   <hr style="color:black;border:2px solid black;">
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>-->
+
+
+
+
+
+    <!--Footer section-->
+    <footer class ="site-footer">
+        <div class = "container" >
+            <div class = "row mb-5">
+                <div class = "col-md-3 mb-5">
+                    <h2>About us</h2>
+                    <p>Our main goal is to improve knowledge of knowledge seekers</p>
+
+
+                </div>
+                <div class = "col-md-3 mb-5">
+                    <h2>Contact &amp; Address</h2>
+                    <ul class ="list-unstyled footer-link">
+                        <li class ="d-flex">
+                            <span class="fa fa-map-marker"> :<span class="text-white" > Horalage watta,Kommala,Bentota,Sri Lanka</span></span>
+                        </li><br>
+                        <li class ="d-flex">
+                            <span class="fa fa-phone"> :<span class="text-white"> +94 077 89 39 339</span></span>
+                        </li><br>
+                        <li class ="d-flex">
+                            <span class="fa fa-envelope"> :<span class="text-white"> <a href ="">info@smartedulanka.com</a></span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class = "col-md-3 mb-5">
+                    <h2>Quick Links</h2>
+                    <ul class ="list-unstyled footer-link">
+                        <li><a href="#overviews">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Forum</a></li>
+                        <li><a href="#">Contact us</a></li>
+
+                    </ul>
+
+
+                </div>
+                <div class="col-md-3">
+                    <h2>Our social media</h2>
+                    <ul class ="list-unstyled footer-link d-flex footer-social">
+                        <li><a href=""><span class="fa fa-facebook"></span></a></li>
+                        <li><a href=""><span class="fa fa-instagram"></span></a></li>
+                        <li><a href=""><span class="fa fa-twitter"></span></a></li>
+                        <li><a href=""><span class="fa fa-youtube"></span></a></li>
+                        <li><a href=""><span class="fa fa-github"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--Copyrights-->
+            <div class="copyrights">
+                <div class="container">
+                    <div class="footer-distributed">
+                        <div class="footer-center">
+                            <p class="footer-company-name">All Rights Reserved. &copy; 2022 <a href="#"><Span class="copyright">SmartEduLanka
+
+                            </Span></a> Developed By : <a href="#/"><Span class="copyright">Isuru Kottahachchi
+
+                            </Span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Bootstrap JavaScript file linking-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>

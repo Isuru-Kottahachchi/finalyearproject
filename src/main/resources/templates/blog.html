@@ -1,86 +1,276 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart EduLanka</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart EduLanka Home</title>
 
     <!--Title Icon-->
     <link rel= "icon" href = "images/elearnerlogo.PNG"/>
-    
+
     <!--Linking Boostrap CSS to the project(Linking Boostrap to the project/without this boostrap is not working. boostrap.min.css vs boostrap.css/can use CDn also)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
+
     <!--Linking CSS File-->
     <link rel ="stylesheet" href="style.css"/>
+
+    <!--Font Awesome--> <!--Social media buttons-->
+    <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
+
+
+
+
 </head>
+
 <body>
-    <header class = "header">
+<header class = "header">
 
-        <!--Navigation Bar-->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka</a>
-          
-
-          <!--Toogle button for mobile versions-->
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span ></span>
-            <span ></span>
-            <span ></span>
-          </button>
+            <a class="navbar-brand" href="#">
+                <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
 
 
-          <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="indexnew.html">Home</a>
-              </li>
+            <!--Toggle button for mobile versions-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span ></span>
+                <span ></span>
+                <span ></span>
+            </button>
 
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Courses
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
-                 
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  href="forum.html" id ="forum">Forum</a>
+                    </li>
+
+
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active " href="#">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="forum.html">Forum</a>
-              </li>
-            
-            </ul>
+                <ul>
 
-            <ul>
-              <li class="nav-item">
-                  <a class="nav-link " href="#">Profile</a>
-              </li>
-          </ul>
-           
-          </div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <button class="btn" onclick="window.location.href = 'signupform.html';">
+                        Register Now</button>
+                </ul>
+                <!-- <ul class="nav navbar-nav navbar-right">
+                     <li><a class="hover-btn-new log orange" href="signupform.html" data-toggle="modal" data-target="#login"><span>Join Now</span></a></li>
+                 </ul>-->
+
+            </div>
         </div>
-      </nav>
-    </header>
+    </nav>
+</header>
+
+<div id="overviews" class="section wb">
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <h3>Blog area</h3>
+                    <p class="lead">You can read blogs and post your blogs here</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="message-box">
+                        <h2>Study Smarter Not Harder</h2>
+                        <p id="para1">The Study Cycle, developed by Frank Christ, breaks down the different parts of studying: previewing, attending class, reviewing, studying, and checking your understanding. Although each step may seem obvious at a glance, all too often students try to take shortcuts and miss opportunities for good learning. For example, you may skip a reading before class because the professor covers the same material in class; doing so misses a key opportunity to learn in different modes (reading and listening) and to benefit from the repetition and distributed practice </p>
+
+                        <p id="para2"> One of the most impactful learning strategies is “distributed practice”—spacing out your studying over several short periods of time over several days and weeks </p>
+
+
+                    </div>
+                </div><!-- end col -->
+
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="post-media wow fadeIn">
+                        <img src="images/blogimage.jpg" alt="" class="img-fluid img-rounded">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+            </div>
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="post-media wow fadeIn">
+                        <img src="images/Untitled-design-14.jpg" alt="" class="img-fluid img-rounded">
+                    </div><!-- end media -->
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="message-box">
+                        <h2>Problems are your friend</h2>
+                        <p id="para_3">Working and re-working problems is important for technical courses (e.g., math, economics). Be able to explain the steps of the problems and why they work.
+
+                            In technical courses, it is usually more important to work problems than read the text . In class, write down in detail the practice problems demonstrated by the professor. Annotate each step and ask questions if you are confused. At the very least, record the question and the answer</p>
+
+                        <p id="para_4"> Students can save thier valubale time using this system. </p>
+
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <h3>Blog area</h3>
+                <p class="lead">You can read blogs and post your blogs here</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="message-box">
+                    <h2>Advantages And Disadvantages Of Online Learning</h2>
+                    <p id="para5">One of the most oft-used terms after the pandemic is the term “new normal.” The new normal in education is the increased use of online learning tools. The COVID-19 pandemic has triggered new ways of learning. All around the world, educational institutions are looking toward online learning platforms to continue with the process of educating students. The new normal now is a transformed concept of education with online learning at the core of this transformation. </p>
+
+                    <p id="para6">Today, digital learning has emerged as a necessary resource for students and schools all over the world. For many educational institutes, this is an entirely new way of education that they have had to adopt. Online learning is now applicable not just to learn academics but it also extends to learning extracurricular activities for students as well. In recent months, the demand for online learning has risen significantly, and it will continue doing so in the future </p>
+
+
+                </div>
+            </div><!-- end col -->
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="post-media wow fadeIn">
+                    <img src="images/Online_learning.jpg" alt="" class="img-fluid img-rounded">
+                </div><!-- end media -->
+            </div><!-- end col -->
+        </div>
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="post-media wow fadeIn">
+                    <img src="images/image_67b8fa708c.jpg" alt="" class="img-fluid img-rounded">
+                </div><!-- end media -->
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <div class="message-box">
+                    <h2>All contents are easy to understand and easy to read</h2>
+                    <p id="para3">We are always considering the quality of the content, and we always expect your opinions and suggestions. This system allows you to upload new valuable educational content. Our qualified and friendly admins will review and add your content to the system and students can save their valuable time using this system.</p>
+
+                    <p id="para4"> Students can save thier valubale time using this system. </p>
+
+                </div><!-- end messagebox -->
+            </div><!-- end col -->
+
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end section -->
+
+</div><!-- end section -->
 
 
 
 
+<!--Footer section-->
+
+<footer class ="site-footer">
+    <div class = "container" >
+        <div class = "row mb-5">
+            <div class = "col-md-3 mb-5">
+                <h2>About us</h2>
+                <p>Our main goal is to improve knowledge of knowledge seekers</p>
+                <a href="#overviews">Click here for more details</a>
+
+            </div>
+            <div class = "col-md-3 mb-5">
+                <h2>Contact &amp; Address</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li class ="d-flex">
+                        <span class="fa fa-map-marker"> :<span class="text-white" > Horalage watta,Kommala,Bentota,Sri Lanka</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-phone"> :<span class="text-white"> +94 077 89 39 339</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-envelope"> :<span class="text-white"> <a href ="mailto:smartedulankainfogmail.com">info@smartedulanka.com</a></span></span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class = "col-md-3 mb-5">
+                <h2>Quick Links</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+                    <li><a href="mailto:smartedulankainfogmail.com">Contact us</a></li>
+                </ul>
 
 
-    
+            </div>
+            <div class="col-md-3">
+                <h2>Our social media</h2>
+                <ul class ="list-unstyled footer-link d-flex footer-social">
+                    <li><a href=""><span class="fa fa-facebook"></span></a></li>
+                    <li><a href=""><span class="fa fa-instagram"></span></a></li>
+                    <li><a href=""><span class="fa fa-twitter"></span></a></li>
+                    <li><a href=""><span class="fa fa-youtube"></span></a></li>
+                    <li><a href=""><span class="fa fa-github"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
 
 
-    <!--Boostrap JavaSript file linking-->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <!--Coprights-->
+        <div class="copyrights">
+            <div class="container">
+                <div class="footer-distributed">
+                    <div class="footer-center">
+                        <p class="footer-company-name">All Rights Reserved. &copy; 2022 <a href="#"><Span class="copyright">SmartEduLanka
+
+                            </Span></a> Developed By : <a href="#/"><Span class="copyright">Isuru Kottahachchi
+
+                            </Span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</footer>
+
+
+
+
+<!--Boostrap JavaSript file linking-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!--Javacript file -->
+<script src="script.js"></script>
+
+
+
+
 </body>
+
+
 </html>

@@ -1,7 +1,6 @@
 package com.smartedulanka.finalyearproject.datalayer.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,27 +21,116 @@ public class Question {
     private String  fullQuestion;
 
     @Column(nullable = true, unique = false, length = 100)
-    private Boolean questionStatus;
+    private String questionStatus;
 
     @Column(nullable = true, unique = false, length = 100)
     private String questionSubmittedTime;
 
-
     @Column(nullable = true, unique = false, length = 1000)
-    private String UploadedImageName;
+    private String uploadedImageName;
 
     @Column(nullable = true, unique = false, length = 1000)
     private String imageURL;
 
+    @Column(nullable = false, unique = false, length = 1000)
+    private String questionAuthorName;
 
+    @Column(nullable = false, unique = false, length = 1000)
+    private String questionAuthorEmail;
+
+    public String getQuestionStatus() {
+        return questionStatus;
+    }
+
+    public void setQuestionStatus(String questionStatus) {
+        this.questionStatus = questionStatus;
+    }
+
+
+
+    /* Many to One mapping with users*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+
+
+
+    /*One to many mapping with answer*/
+    @OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<Answer> answer;
+
+    public List<Answer> getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(List<Answer> answer) {
+        this.answer = answer;
+    }
+
+
+
+
+    /*One to many mapping with Notifications*/
+    @OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<Notifications> notifications;
+
+    public List<Notifications> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notifications> notifications) {
+        this.notifications = notifications;
+    }
+
+
+    /*One to many mapping with Report questions*/
+    @OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<ReportedQuestions> reportedQuestions;
+
+    public List<ReportedQuestions> getReportedQuestions() {
+        return reportedQuestions;
+    }
+
+    public void setReportedQuestions(List<ReportedQuestions> reportedQuestions) {
+        this.reportedQuestions = reportedQuestions;
+    }
+
+
+
+
+
+    @OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<Ratings> ratings;
+
+    public List<Ratings> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Ratings> ratings) {
+        this.ratings = ratings;
+    }
 
 
     public String getUploadedImageName() {
-        return UploadedImageName;
+        return uploadedImageName;
     }
 
     public void setUploadedImageName(String uploadedImageName) {
-        UploadedImageName = uploadedImageName;
+        this.uploadedImageName = uploadedImageName;
     }
 
     public String getImageURL() {
@@ -87,11 +175,11 @@ public class Question {
         this.fullQuestion = fullQuestion;
     }
 
-    public Boolean getQuestionstatus() {
+    public String getQuestionstatus() {
         return questionStatus;
     }
 
-    public void setQuestionstatus(Boolean questionstatus) {
+    public void setQuestionstatus(String questionstatus) {
         this.questionStatus = questionstatus;
     }
 
@@ -101,5 +189,21 @@ public class Question {
 
     public void setQuestionSubmittedTime(String questionSubmittedTime) {
         this.questionSubmittedTime = questionSubmittedTime;
+    }
+
+    public String getQuestionAuthorName() {
+        return questionAuthorName;
+    }
+
+    public void setQuestionAuthorName(String questionAuthorName) {
+        this.questionAuthorName = questionAuthorName;
+    }
+
+    public String getQuestionAuthorEmail() {
+        return questionAuthorEmail;
+    }
+
+    public void setQuestionAuthorEmail(String questionAuthorEmail) {
+        this.questionAuthorEmail = questionAuthorEmail;
     }
 }

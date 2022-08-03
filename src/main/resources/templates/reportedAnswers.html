@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Reported Answers</title>
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input class="btn btn-danger" type="submit" value="Sign Out ">
+        </form>
+
+    </div><br>
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+    <div>
+        <h1>Reported Answers</h1>
+    </div>
+    <div class="row justify-content-center">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Reported Answer ID</th>
+                <th>Reported_time</th>
+                <th>Answer Author's Name</th>
+                <th>Answer Author's Email</th>
+                <th>Reporter name</th>
+                <th>View</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reportedAnswer: ${reportedAnswersList}">
+
+                <td th:text="${reportedAnswer.id_answer}"></td>
+                <td th:text="${reportedAnswer.reported_time}"></td>
+                <td th:text="${reportedAnswer.answer_author_name}"></td>
+                <td th:text="${reportedAnswer.answer_author_email}"></td>
+                <td th:text="${reportedAnswer.reporter_Name}"></td>
+                <td><a  th:href="@{/showReportedAnswer(reportedAnswersQuestionId=${reportedAnswer.reportedAnswersQuestionId})}" class="btn btn-success ml-2">Show Answer</a></td>
+                <td><a th:href="@{/deleteAnswerFromAdminPanel(answerId=${reportedAnswer.id_answer})}" onclick="deleteAnswer()" class="btn btn-danger ml-2">Delete Answer</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

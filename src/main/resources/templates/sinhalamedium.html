@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,14 +15,20 @@
     <!--Linking CSS File-->
     <link rel ="stylesheet" href="style.css"/>
 
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!--Font Awesome plugin--> <!--Social media buttons and other icons-->
     <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
+
+    <!--Axios CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
 
 
-<body>
+<body onload="loadSinhalaMedium()">
 <header class = "header">
 
     <!--Navigation Bar-->
@@ -32,7 +38,7 @@
                 <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
 
 
-            <!--Toogle button for mobile versions-->
+            <!--Toggle button for mobile versions-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span ></span>
                 <span ></span>
@@ -43,7 +49,7 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="indexnew.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -55,6 +61,7 @@
 
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
                         </ul>
@@ -68,8 +75,15 @@
 
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <button class="btn" onclick="window.location.href = 'signupform.html';">
+                    <button class="btn" id="signUpBtn" onclick="window.location.href = 'signupform.html';">
                         Register Now</button>
+                </ul>
+
+                <ul>
+                    <form th:action="@{/logout}" method="post">
+
+                        <input type="submit" hidden="hidden" id="logOutBtn"class="btn btn-danger btn-lg" value="Sign Out" />
+                    </form>
                 </ul>
 
             </div>
@@ -85,24 +99,24 @@
     <div class="container">
         <div class="section-title">
             <div class="col-md-8 offset-md-2">
-                <p class="lead" style="text-align:center;font-weight: bold;">සිංහල මාධ්‍ය පාඨමාලා අංශයට සාදරයෙන් පිළිගනිමු!!</p>
+                <p class="lead" style="text-align:center;font-weight: bold;">සිංහල මාධ්‍ය අංශයට සාදරයෙන් පිළිගනිමු!!</p>
             </div>
         </div><!-- end title -->
 
         <hr class="invis">
 
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/primarysec.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="course-br">
                         <div class="course-title">
-                            <h2><a href="gradeonescience.html" title="Click here to navigate Primary section" style="font-size: 20px;font-weight: bold;">ප්‍රාථමික අංශය</a></h2>
+                            <h2><a href="PrimarySectionSinhalaMedium.html" title="Click here to navigate Primary section" style="font-size: 20px;font-weight: bold;">ප්‍රාථමික අංශය</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>You can read and download primary section learning materials. If you have new relevant things you can add to the system. </p>
+                            <p>ඔබට අවශ්‍ය ප්‍රාථමික අංශයේ සටහන් download කරගන්න.</p>
                         </div>
 
                     </div>
@@ -118,17 +132,17 @@
 
 
 
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 ">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/ordinarysec.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="course-br">
                         <div class="course-title">
-                            <h2><a href="#" title="click here to navigate Ordiinary level section"style="font-size: 20px;font-weight: bold;">අ.පො.ස සාමාන්‍ය පෙල</a></h2>
+                            <h2><a href="ordinarylevelsinhalamediam.html" title="click here to navigate Ordinary level section"style="font-size: 20px;font-weight: bold;">අ.පො.ස සාමාන්‍ය පෙල</a></h2>
                         </div>
                         <div class="blog-desc">
-                            <p>You can read and download ordinary section learning materials. If you have new relevant things you can add to the system. </p>
+                            <p>ඔබට අවශ්‍ය අ.පො.ස සාමාන්‍ය පෙල සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න. </p>
                         </div>
 
                     </div>
@@ -136,13 +150,12 @@
                         <ul>
                             <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
                             <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadble</li>
-
                         </ul>
                     </div>
                 </div>
             </div><!-- end col -->
 
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/sdgsg.jpg"   alt="" class="img-fluid" >
@@ -152,7 +165,7 @@
                             <h2><a href="advancedLevelSinhalaStreams.html" title="Click here to navigate GCE Advanced level materials" style="font-size: 20px;font-weight: bold;">අ.පො.ස උසස් පෙල</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>You can read and download ordinary section learning materials. If you have new relevant things you can add to the system. </p>
+                            <p>ඔබට අවශ්‍ය අ.පො.ස උසස් පෙල සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න. </p>
                         </div>
 
                     </div>
@@ -164,22 +177,23 @@
                     </div>
                 </div>
             </div><!-- end col -->
-        </div><!-- end row -->
+     <!--   </div>&lt;!&ndash; end row &ndash;&gt;
 
         <hr class="hr3">
 
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
+        <div class="row">-->
+            <div class="col-sm-12 col-md-6 col-lg-4  mb-3">
                 <div class="course-item">
                     <div class="image-blog">
-                        <img src="images/Sri-Lankan-Biology-Olympiad-Team-at-Switzerland.webp" alt="" class="img-fluid">
+                        <img src="images/Sri-Lankan-team-with-Bronze-medalist-Dilshan-R.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="course-br">
                         <div class="course-title">
-                            <h2><a href="#" title="Click here to navigate Olympiyad section"style="font-size: 20px;font-weight: bold;">Olympiyad Section</a></h2>
+                            <h2><a href="olympiadSinhalaMedium.html" title="Click here to navigate Olympiyad section"style="font-size: 20px;font-weight: bold;">
+                                ඔලිම්පියාඩ් අංශය</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>You can read and download Olympiyad exam materials. If you have new relevant things you can add to the system. </p>
+                            <p>ඔබට අවශ්‍ය  ඔලිම්පියාඩ් අංශ සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න. </p>
                         </div>
 
                     </div>
@@ -187,13 +201,12 @@
                         <ul>
                             <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
                             <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadable</li>
-
                         </ul>
                     </div>
                 </div>
             </div><!-- end col -->
 
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/Presentation.jpg" alt="" class="img-fluid">
@@ -203,7 +216,7 @@
                             <h2><a href="#" title="Click here to navigate Olympiyad section"style="font-size: 20px;font-weight: bold;">London Ordinary level</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>You can read and download London ordinary section learning materials. If you have new relevant things you can add to the system. </p>
+                            <p> ඔබට අවශ්‍ය London Ordinary level සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න. </p>
                         </div>
 
                     </div>
@@ -211,14 +224,12 @@
                         <ul>
                             <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
                             <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadble</li>
-
-
                         </ul>
                     </div>
                 </div>
             </div><!-- end col -->
 
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/Friendship.jpg" alt="" class="img-fluid">
@@ -228,7 +239,7 @@
                             <h2><a href="#" title=""style="font-size: 20px;font-weight: bold;">London Advanced Level</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
+                            <p>ඔබට අවශ්‍ය London Advanced Level සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න. </p>
                         </div>
 
                     </div>
@@ -236,29 +247,28 @@
                         <ul>
                             <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
                             <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadable</li>
-
                         </ul>
                     </div>
                 </div>
             </div><!-- end col -->
-        </div><!-- end row -->
+      <!--  </div>&lt;!&ndash; end row &ndash;&gt;
 
 
 
         <hr class="invis">
 
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
+        <div class="row">-->
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-3 ">
                 <div class="course-item">
                     <div class="image-blog">
                         <img src="images/754099-law-students.jpg" alt="" class="img-fluid">
                     </div>
                     <div class="course-br">
                         <div class="course-title">
-                            <h2><a href="#" title=""style="font-size: 20px;font-weight: bold;">වෙනත් රජයේ විභාග</a></h2>
+                            <h2><a href="OtherGovernmentExamsSinhalamedium.html" title="වෙනත් රජයේ විභාග"style="font-size: 20px;font-weight: bold;">වෙනත් රජයේ විභාග</a></h2>
                         </div>
                         <div class="course-desc">
-                            <p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
+                            <p>ඔබට අවශ්‍ය වෙනත් රජයේ විභාග සටහන්,පසුගිය හා ආදර්ශ විභාග ප්‍රශ්න පත්‍ර download කරගන්න. ඔබ සතුව ඇති අදාල ආදර්ශ ප්‍රශ්න පත්‍ර upload කරන්න.</p>
                         </div>
 
                     </div>
@@ -266,58 +276,12 @@
                         <ul>
                             <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
                             <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadable</li>
-
                         </ul>
                     </div>
                 </div>
             </div><!-- end col -->
 
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="course-item">
-                    <div class="image-blog">
-                        <img src="images/01-Pre.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="course-br">
-                        <div class="course-title">
-                            <h2><a href="#" title=""style="font-size: 20px;font-weight: bold;">පෙර පාසල් අංශය</a></h2>
-                        </div>
-                        <div class="course-desc">
-                            <p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-                        </div>
-
-                    </div>
-                    <div class="course-meta-bot">
-                        <ul>
-                            <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
-                            <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadable</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- end col -->
-
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="course-item">
-                    <div class="image-blog">
-                        <img src="images/University.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="course-br">
-                        <div class="course-title">
-                            <h2><a href="#" title=""style="font-size: 20px;font-weight: bold;">University semester exams</a></h2>
-                        </div>
-                        <div class="course-desc">
-                            <p>Lorem ipsum door sit amet, fugiat deicata avise id cum, no quo maiorum intel ogrets geuiat operts elicata libere avisse id cumlegebat, liber regione eu sit.... </p>
-                        </div>
-
-                    </div>
-                    <div class="course-meta-bot">
-                        <ul>
-                            <li><i class="fas fa-book-reader" aria-hidden="true"></i> Readable</li>
-                            <li><i class="fas fa-file-pdf" aria-hidden="true"></i> Downloadable</li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- end container -->
+          <!-- end container -->
         </div><!-- end section -->
     </div>
 </div>
@@ -329,9 +293,8 @@
             <div class = "col-md-3 mb-5">
                 <h2>About us</h2>
                 <p>Our main goal is to improve knowledge of knowledge seekers</p>
-                <a href="#overviews">Click here for more details</a>
-
             </div>
+
             <div class = "col-md-3 mb-5">
                 <h2>Contact &amp; Address</h2>
                 <ul class ="list-unstyled footer-link">
@@ -344,19 +307,15 @@
                     <li class ="d-flex">
                         <span class="fa fa-envelope"> :<span class="text-white"> <a href ="">info@smartedulanka.com</a></span></span>
                     </li>
-
-
                 </ul>
-
-
             </div>
             <div class = "col-md-3 mb-5">
                 <h2>Quick Links</h2>
                 <ul class ="list-unstyled footer-link">
-                    <li><a href="#overviews">About us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Forum</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="index.new.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+
 
                 </ul>
 
@@ -373,7 +332,8 @@
                 </ul>
             </div>
         </div>
-        <!--Coprights-->
+
+        <!--Copyrights-->
         <div class="copyrights">
             <div class="container">
                 <div class="footer-distributed">
@@ -393,66 +353,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </footer>
 
-<!--Boostrap JavaSript file linking-->
+<!--Bootstrap JavaScript file linking-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 
 
 </body>

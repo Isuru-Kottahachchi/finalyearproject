@@ -15,49 +15,54 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
-    }
+        @Bean
+        public UserDetailsService userDetailsService() {
+            return new CustomUserDetailsService();
+        }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Bean
+        public BCryptPasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
 
-        return authProvider;
-    }
+            DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+            authProvider.setUserDetailsService(userDetailsService());
+            authProvider.setPasswordEncoder(passwordEncoder());
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
+            return authProvider;
+        }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-         http.csrf().disable()
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+            auth.authenticationProvider(authenticationProvider());
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+
+
+                 http.csrf().disable()
+
                 .authorizeRequests()
-                .antMatchers("/users","/forum.html").authenticated()
+                .antMatchers("/users","/forum.html","/advancedlevelScienceEnglish.html","/advancedlevelScienceSinhala.html","/advancedlevelScienceTamil.html","/olympiadEnglishMedium.html","/olympiadSinhalaMedium.html","/olympiadTamilMedium.html","/advancedlevelCommerceEnglish","/advancedlevelCommerceSinhala","/advancedlevelCommerceTamil","/advancedLevelEnglishStreams.html","/advancedLevelSinhalaStreams.html").authenticated()
                 .antMatchers("/admin.html").hasAuthority("ADMIN")
 
-                .antMatchers("/index.html").hasAnyAuthority("ADMIN","USER")
+                .antMatchers("/forum.html").hasAnyAuthority("ADMIN","USER")
                 .antMatchers("/","/uploadFile").permitAll()
                 .and().formLogin()
                 . permitAll()
+
                 .loginPage("/login")
                 .usernameParameter("email")
+
             .and()
             .logout().permitAll()
             .and()
             .exceptionHandling().accessDeniedPage("/403");
-
-
 
         }
 

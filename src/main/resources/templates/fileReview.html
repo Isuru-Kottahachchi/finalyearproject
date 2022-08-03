@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>File review</title>
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input class="btn btn-danger" type="submit" value="Sign Out ">
+        </form>
+    </div><br>
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+    <div>
+        <h1>Pending Files</h1>
+    </div>
+
+    <form th:action="@{/searchPendingRecords}">
+        Search your subject area: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input class="btn btn-primary" type="submit" value="Search" />
+        &nbsp;
+        <!--<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />-->
+        <a class="btn btn-primary" href="fileReview.html" role="button">Clear</a>
+    </form><br>
+
+    <div class="row justify-content-center">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+
+                <th>Upload ID</th>
+                <th>Upload email</th>
+                <th>Upload time</th>
+                <th>File Name</th>
+                <th>File Link</th>
+                <th>Subject Area</th>
+                <th>Approval</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pendingFileRecord: ${pendingFileRecords}">
+                <td th:text="${pendingFileRecord.uploadRecordId}">User ID</td>
+                <td th:text="${pendingFileRecord.uploaderEmail}">User email</td>
+                <td th:text="${pendingFileRecord.fileSubmittedTime}"></td>
+                <td th:text="${pendingFileRecord.fileName}">File Name</td>
+                <td> <a th:href="${pendingFileRecord.UploadedFileName}" th:text ="${pendingFileRecord.UploadedFileName}"target="_blank"/></td>
+                <td th:text="${pendingFileRecord.subjectArea}">Subject Area</td>
+                <td><a th:href="@{/updateFileRecord(recordId=${pendingFileRecord.uploadRecordId})}" onclick="approveChecker()" class="btn btn-success ml-2">Approve</a><a th:href="@{/deleteFileRecord(recordId=${pendingFileRecord.uploadRecordId})}" onclick="rejectChecker()" class="btn btn-danger ml-2">Reject</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,52 +1,48 @@
 package com.smartedulanka.finalyearproject.repository;
 
-import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecord;
+import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecords;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UploadRepository extends JpaRepository<UploadRecord, Long> {
+public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
 
 
 
-  /*Retrieve pending files which is review_status = 0 */
-  @Query("SELECT u FROM UploadRecord u WHERE u.reviewStatus='PENDING'")
-  public List<UploadRecord> retrievePendingFiles(String keyword);
+  /*Retrieve all pending files which is review_status = PENDING */
+  @Query("SELECT u FROM UploadRecords u WHERE u.reviewStatus='PENDING'")
+  public List<UploadRecords> retrieveAllPendingFiles();
 
-  /*Retrieve all ApprovedFiles which is review_status = 1 */
-  @Query("SELECT u FROM UploadRecord u WHERE u.reviewStatus='ACCEPTED'")
-  public List<UploadRecord> retrieveAllApprovedFiles(String keyword);
+  /*Retrieve all ApprovedFiles which is review_status = ACCEPTED*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveAllApprovedFiles();
 
-  /*Retrieve all RejectedFiles which is review_status = 1 */
-  @Query("SELECT u FROM UploadRecord u WHERE u.reviewStatus='Rejected'")
-  public List<UploadRecord> retrieveAllRejectedFiles(String keyword);
-
-
-
-
-
-
-  /*Search upload pending  records*/
-    @Query("SELECT u FROM UploadRecord u WHERE CONCAT(u.UploadedFileName, u.subjectArea, u.fileName) LIKE %?1% AND u.reviewStatus='PENDING'")
-    public List<UploadRecord> search(String keyword);
-
-  /*Retrieve AcceptedFiles*/
-  @Query("SELECT u FROM UploadRecord u WHERE CONCAT(u.UploadedFileName, u.subjectArea, u.fileName) LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-  public List<UploadRecord> retrieveApprovedFiles(String keyword);
+  /*Retrieve all RejectedFiles which is review_status = REJECTED */
+  @Query("SELECT u FROM UploadRecords u WHERE u.reviewStatus='Rejected'")
+  public List<UploadRecords> retrieveAllRejectedFiles();
 
 
 
 
+  @Query("SELECT COUNT(*) FROM UploadRecords u WHERE u.reviewStatus='PENDING'")
+  public Long getPendingFilesCount();
 
 
-  /*Search Rejected  records*/
-  @Query("SELECT u FROM UploadRecord u WHERE CONCAT(u.UploadedFileName, u.subjectArea, u.fileName) LIKE %?1% AND u.reviewStatus='REJECTED'")
-  public List<UploadRecord> searchRejectedFiles(String keyword);
+/*
+  @Query("SELECT u FROM UploadRecord u WHERE CONCAT(u.UploadedFileName, u.subjectArea, u.fileName) LIKE %?1% AND u.reviewStatus='PENDING'")*/
 
-/*  *//*Retrieve RejectedFiles*//*
-  @Query("SELECT u FROM UploadRecord u WHERE CONCAT(u.UploadedFileName, u.subjectArea, u.fileName) LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-  public List<UploadRecord> retrieveRejectedFiles(String keyword);*/
+  /* Search upload pending  records in file review.html searchBar*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='PENDING'")
+  public List<UploadRecords> searchRelevantPendingFiles(String keyword);
+
+  /*Search AcceptedFiles records approvedFiles.html searchBar*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> searchRelevantApprovedFiles(String keyword);
+
+  /*Search Rejected files records rejectedFiles.html searchBar*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='REJECTED'")
+  public List<UploadRecords> searchRelevantRejectedFiles(String keyword);
 
 
 
@@ -55,25 +51,140 @@ public interface UploadRepository extends JpaRepository<UploadRecord, Long> {
 
 
 
-    /*Retrieve only combined maths files*/
-    @Query("SELECT u FROM UploadRecord u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-    public List<UploadRecord> searchCombinedMaths(String keyword);
 
-    /*Retrieve only Biology files*/
-    @Query("SELECT u FROM UploadRecord u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'" )
-    public List<UploadRecord> searchBiology(String keyword);
+    /*Retrieve only combined maths files to the combined maths to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveCombinedMaths(String keyword);
 
-    /*Retrieve only Chemistry files*/
-    @Query("SELECT u FROM UploadRecord u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-    public List<UploadRecord> searchChemistry(String keyword);
+    /*Retrieve only Biology files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'" )
+    public List<UploadRecords> retrieveBiology(String keyword);
 
-    /*Retrieve only Physics files*/
-    @Query("SELECT u FROM UploadRecord u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-    public List<UploadRecord> searchPhysics(String keyword);
+    /*Retrieve only Chemistry files to past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveChemistry(String keyword);
 
-    /*Retrieve only InformationTechnology files*/
-    @Query("SELECT u FROM UploadRecord u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-    public List<UploadRecord> searchInformationTechnology(String keyword);
+    /*Retrieve only Physics files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrievePhysics(String keyword);
+
+    /*Retrieve only InformationTechnology files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveInformationTechnology(String keyword);
+
+
+
+  /*Retrieve only combined maths files to the Sinhala medium combined maths to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveSMCombinedMaths(String keyword);
+
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'" )
+    public List<UploadRecords> retrieveSMBiology(String keyword);
+
+    /*Retrieve only Chemistry files to past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveSMChemistry(String keyword);
+
+    /*Retrieve only Physics files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveSMPhysics(String keyword);
+
+    /*Retrieve only InformationTechnology files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveSMInformationTechnology(String keyword);
+
+
+
+  /*Retrieve only combined maths files to the Tamil medium combined maths to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveTMCombinedMaths(String keyword);
+
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'" )
+    public List<UploadRecords> retrieveTMBiology(String keyword);
+
+    /*Retrieve only Chemistry files to past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveTMChemistry(String keyword);
+
+    /*Retrieve only Physics files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveTMPhysics(String keyword);
+
+    /*Retrieve only InformationTechnology files to  past paper section*/
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords> retrieveTMInformationTechnology(String keyword);
+
+
+
+  /*Retrieve only English medium Bio Olympiad past paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmBioOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmChemistryOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmPhysicsOlympiad(String keyword);
+
+
+
+  /*Retrieve only Sinhala medium Bio Olympiad past paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmBioOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmChemistryOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmPhysicsOlympiad(String keyword);
+
+
+
+  /*Retrieve only Tamil medium Bio Olympiad past paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmBioOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmChemistryOlympiad(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmPhysicsOlympiad(String keyword);
+
+
+
+  /*Retrieve only SINHALA medium Ordinary LEVEL paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmOrdinaryLevelMaths(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmOrdinaryLevelScience(String keyword);
+
+
+  /*Retrieve only English medium Ordinary LEVEL paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmOrdinaryLevelMaths(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmOrdinaryLevelScience(String keyword);
+
+
+  /*Retrieve only Tamil medium Ordinary LEVEL paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmOrdinaryLevelMaths(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmOrdinaryLevelScience(String keyword);
+
+
+  /*Retrieve only English medium Advanced LEVEL commerce paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmBStudiesAdvancedLevel(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmAccountingAdvancedLevel(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmEconAdvancedLevel(String keyword);
 
 
 

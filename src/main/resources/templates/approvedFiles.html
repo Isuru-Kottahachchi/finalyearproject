@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>List Users</title>
+    <title>Approved Files</title>
     <!--Title Icon-->
     <link rel= "icon" href = "images/elearnerlogo.PNG"/>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
@@ -26,7 +26,7 @@
         <h1>Approved Files</h1>
     </div>
 
-    <form th:action="@{/searchSubmittedFilesRecords}">
+    <form th:action="@{/searchApprovedFilesRecords}">
         Search your subject area: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
         &nbsp;
         <input class="btn btn-primary" type="submit" value="Search" />
@@ -46,19 +46,19 @@
                 <th>File Name</th>
                 <th>File Link</th>
                 <th>Subject Area</th>
-                <th>Approval</th>
+              <!--  <th>Approval</th>-->
 
             </tr>
             </thead>
             <tbody>
-            <tr th:each="records: ${records}">
-                <td th:text="${records.id}">User ID</td>
-                <td th:text="${records.fileSubmittedTime}"></td>
-                <td th:text="${records.fileReviewedTime}"></td>
-                <td th:text="${records.fileName}">File Name</td>
-                <td> <a th:href="${records.UploadedFileName}" th:text ="${records.UploadedFileName}"target="_blank"/></td>
-                <td th:text="${records.subjectArea}">Subject Area</td>
-                <td><button type="submit" class="btn btn-success" onclick="Function3()" >Approve</button> <button type="submit" class="btn btn-danger" onclick="Function4()" >Reject</button></td>
+            <tr th:each="approvedFilesRecord: ${approvedFilesRecords}">
+                <td th:text="${approvedFilesRecord.uploadRecordId}">User ID</td>
+                <td th:text="${approvedFilesRecord.fileSubmittedTime}"></td>
+                <td th:text="${approvedFilesRecord.fileReviewedTime}"></td>
+                <td th:text="${approvedFilesRecord.fileName}">File Name</td>
+                <td> <a th:href="${approvedFilesRecord.UploadedFileName}" th:text ="${approvedFilesRecord.UploadedFileName}"target="_blank"></a></td>
+                <td th:text="${approvedFilesRecord.subjectArea}">Subject Area</td>
+              <!--  <td><button type="submit" class="btn btn-success" onclick="Function3()" >Approve</button> <button type="submit" class="btn btn-danger" onclick="Function4()" >Reject</button></td>-->
 
             </tr>
             </tbody>

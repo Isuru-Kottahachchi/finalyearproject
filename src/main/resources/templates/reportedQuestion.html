@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Reported Questions</title>
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <p>
+                Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+            </p>
+            <input class="btn btn-danger" type="submit" value="Sign Out ">
+        </form>
+    </div><br>
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+    <div>
+        <h1>Reported Questions</h1>
+    </div>
+    <div class="row justify-content-center">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Reported Question ID</th>
+                <th>Reported_time</th>
+                <th>Question Author's Name</th>
+                <th>Question Author's Email</th>
+                <th>Reporter name</th>
+                <th>View</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reportedQuestion: ${reportedQuestionsList}">
+
+                <td th:text="${reportedQuestion.id_question}"></td>
+                <td th:text="${reportedQuestion.reported_time}"></td>
+                <td th:text="${reportedQuestion.question_author_name}"></td>
+                <td th:text="${reportedQuestion.question_author_email}"></td>
+                <td th:text="${reportedQuestion.reporter_Name}"></td>
+                <td><a th:href="@{/showReportedQuestion(question_id=${reportedQuestion.id_question})}" class="btn btn-success ml-2">Show Question</a></td>
+                <td><a th:href="@{/deleteQuestionFromAdminPanel(questionId=${reportedQuestion.id_question})}" onclick="deleteQuestion()" class="btn btn-danger ml-2">Delete Question</a></td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>

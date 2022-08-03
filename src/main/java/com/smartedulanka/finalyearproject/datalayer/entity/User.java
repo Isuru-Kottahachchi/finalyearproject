@@ -2,7 +2,6 @@ package com.smartedulanka.finalyearproject.datalayer.entity;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,7 +9,8 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name= "userId")
+    private Long userId;
 
     @Column(nullable = false, unique = true, length = 45)
     private String email;
@@ -27,33 +27,38 @@ public class User {
     @Column(name = "role", nullable = false, length = 20)
     private String role;
 
-
-
     @Column(name = "fullName", nullable = false, length = 20)
     private String fullName;
 
     @Column(nullable = true, unique = false, length = 100)
     private String registeredTime;
 
-    public String getRegisteredTime() {
-        return registeredTime;
+    @Column(nullable = true,name = "reset_password_token")
+    private String resetPasswordToken;
+
+    @Column(nullable = true, unique = false, length = 100)
+    private String recentNotificationsCheckedTime;
+
+
+    /* One to many mapping with uploadRecords*/
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<UploadRecords> uploadRecords;
+
+    public List<UploadRecords> getUploadRecords() {
+        return uploadRecords;
     }
 
-    public void setRegisteredTime(String registeredTime) {
-        this.registeredTime = registeredTime;
+    public void setUploadRecords(List<UploadRecords> uploadRecords) {
+        this.uploadRecords = uploadRecords;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn( name = "question_authorID", referencedColumnName = "id")
-    List<Question> questions = new ArrayList<>();
+    /* One to Many mapping with Question*/
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<Question> questions;
 
     public List<Question> getQuestions() {
         return questions;
@@ -63,22 +68,47 @@ public class User {
         this.questions = questions;
     }
 
-/*@OneToMany(targetEntity = Question.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "-fk",referencedColumnName = "id")
-    private List<Question> question;
-*/
 
 
+    /* One to Many mapping with Answer*/
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH,CascadeType.REMOVE })
+    private List<Answer> answers;
 
-
-
-
-    public Long getId() {
-        return id;
+    public List<Answer> getAnswers() {
+        return answers;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
+
+
+    /* One to Many mapping with reportQuestion*/
+    /* One to Many mapping with Rating*/
+    @OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
+            CascadeType.REFRESH })
+    private List<Ratings> ratings;
+    public List<Ratings> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Ratings> ratings) {
+        this.ratings = ratings;
+    }
+
+
+
+
+
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -121,5 +151,35 @@ public class User {
         this.role = role;
     }
 
+    public String getRegisteredTime() {
+        return registeredTime;
+    }
 
+    public void setRegisteredTime(String registeredTime) {
+        this.registeredTime = registeredTime;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public String getRecentNotificationsCheckedTime() {
+        return recentNotificationsCheckedTime;
+    }
+
+    public void setRecentNotificationsCheckedTime(String recentNotificationsCheckedTime) {
+        this.recentNotificationsCheckedTime = recentNotificationsCheckedTime;
+    }
 }

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced level English Medium</title>
+
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+
+    <!--Linking Bootstrap CSS to the project(Linking Boostrap to the project/without this bootstrap is not working. boostrap.min.css vs boostrap.css/can use CDN also)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--Linking CSS File-->
+    <link rel ="stylesheet" href="style.css"/>
+
+    <!--Font Awesome plugin--> <!--Social media buttons and other icons-->
+    <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
+
+    <!--Ajax CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+
+</head>
+
+
+
+<body>
+<header class = "header">
+
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
+
+
+            <!--Toggle button for mobile versions-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span ></span>
+                <span ></span>
+                <span ></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+
+
+                </ul>
+                <ul>
+                    <li class="nav-item">
+                        <p>
+                            Welcome <br><b>[[${#request.userPrincipal.principal.fullName}]]</b>
+                        </p>
+                    </li>
+                </ul>
+                <ul>
+                    <form th:action="@{/logout}" method="post">
+
+                        <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
+                    </form>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<div class="container">
+
+
+    <div class="section-title">
+        <div class="col-md-8 offset-md-2">
+            <h2 align="center">Welcome to ENGLISH medium Advanced level Science(Grade 12/13)section!</h2>
+        </div>
+    </div><!-- end title -->
+
+    <hr class="invis">
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Combined mathematics section</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> Trigonometry </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Straight Line </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> Differentiation </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Integration</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1"> limits </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Probability </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> Matrices</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1"> Complex Numbers </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Series </a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=QlgaCN7vGfw&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> පැළෑටි හා ගස්වැල් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=j-tjyo2HcKE&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh" download="Export_Lesson_1"> පරිසරය ආශ්‍රිත ක්‍රියාකරකම් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%B8%E0%B7%92%E0%B6%B1%E0%B7%92%E0%B7%83%E0%B7%8F+%E0%B7%83%E0%B7%84+%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%AD%E0%B7%94%E0%B6%BB%E0%B7%94.pdf"> මිනිසා සහ තොරතුරු pdf</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=v60H-V7IFcM&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> වැඩ පහසු කිරීමේ මං</a> </li></ul>
+                </div>
+            </div><!-- end title -->
+        </div><!-- end row -->
+
+        <p class="align-center" style="color:black"> <b>You can download Combined mathematics past papers or relevant model papers by using following links</b></p>
+        <p align="center">
+
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+        </p>
+
+        <!--Inside the collapse-->
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Combined_mathematics Part I/II 2015  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Combined_mathematics Part I/II 2016  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Combined_mathematics Part I/II 2017  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Combined_mathematics Part I/II 2018  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Combined_mathematics Part I/II 2019  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1653106388022-GCE(AL)_-_2020_August_(New)_-_Biology(E)Englishmedium.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2020  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2021  </a> </li></ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body" >
+
+                        <div th:each="eMCombinedMathsRecord: ${eMCombinedMathsRecords}">
+                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMCombinedMathsRecord.UploadedFileName}" th:text="${eMCombinedMathsRecord.fileName}"target="_blank"> </a> </li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!
+
+
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <p class="align-center" style="color:black"> <b>You can add Combined mathematics past papers or relevant model papers to the system</b></p>
+                <p>If you have relevant Combined mathematics model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Combined_mathematics_English_Medium_PartI/II_2022)</b></p>
+
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="AdvancedLevelCMathsEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="advancedLevelScienceEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div><!-- end title -->
+        <br><br>
+    </div>
+    <div id="overviews2" class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+
+
+    <hr>
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Biology section</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Trigonometry </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Straight Line </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Differentiation </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Integration</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> limits </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Probability </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Matrices</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Complex Numbers </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Series </a> </li></ul>
+                    <ul><li><i class="fab fa-youtube "  aria-hidden="true" target="_blank"></i><a     href="https://www.youtube.com/watch?v=QlgaCN7vGfw&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> පැළෑටි හා ගස්වැල් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=j-tjyo2HcKE&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh" download="Export_Lesson_1"> පරිසරය ආශ්‍රිත ක්‍රියාකරකම් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%B8%E0%B7%92%E0%B6%B1%E0%B7%92%E0%B7%83%E0%B7%8F+%E0%B7%83%E0%B7%84+%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%AD%E0%B7%94%E0%B6%BB%E0%B7%94.pdf"> මිනිසා සහ තොරතුරු pdf</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube "  aria-hidden="true" target="_blank"></i><a     href="https://www.youtube.com/watch?v=v60H-V7IFcM&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> වැඩ පහසු කිරීමේ මං</a> </li></ul>
+                </div>
+            </div><!-- end title -->
+        </div><!-- end row -->
+        <p class="align-center" style="color:black"> <b>You can download Biology past papers or relevant model papers by using following links</b></p>
+        <p align="center">
+
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+        </p>
+
+        <!--Inside the collapse-->
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2017  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2018  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2019  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1653106388022-GCE(AL)_-_2020_August_(New)_-_Biology(E)Englishmedium.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2020  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2021  </a> </li></ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body" >
+
+                        <div th:each="eMBiologyRecord: ${eMBiologyRecords}">
+                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMBiologyRecord.UploadedFileName}" th:text="${eMBiologyRecord.fileName}"target="_blank"> </a> </li></ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <p class="align-center" style="color:black"> <b>You can add Biology past papers or relevant model papers to the system</b></p>
+                <p>If you have relevant Biology  model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Biology_English_Medium_PartI/II_2022)</b></p>
+
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="AdvancedLevelBioEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="advancedLevelScienceEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div><!-- end title -->
+        <br><br>
+    </div>
+    <div id="overviews2" class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+
+
+    <hr>
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Chemistry section</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/1.+Atomic+Structure.pdf" download="Export_Lesson_1"> Atomic structure Short  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/4._States_of_matter.pdf" download="Export_Lesson_1"> Gaseous state of matter </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/5.+Energetics+Enthalpy.pdf" download="Export_Lesson_1"> Energetics Enthalpy </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/6.1.+Inorganic+chemistry+S+block.pdf" download="Export_Lesson_1"> Inorganic Chemistry S block </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/6.2.+Inorganic+chemistry+P+block.pdf" download="Export_Lesson_1"> Inorganic Chemistry P block </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/6.3.+Inorganic+chemistry+D+block.pdf" download="Export_Lesson_1"> Inorganic Chemistry D block Colours of complex compounds  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/7.2+Organic+Reactions.pdf" download="Export_Lesson_1"> Introduction to organic chemistry </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/8.+Hydrocarbons(alkanes%2Calkenes%2Calkynes).pdf" download="Export_Lesson_1"> Hydrocarbons(alkanes,alkenes,alkynes)</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/8.3+Benzene+and+Derivatives.pdf" download="Export_Lesson_1"> Benzene and Derivatives </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/8.6.+Alkyl+Halides%2CGrinard+reagents%2CAlcohols.pdf" download="Export_Lesson_1"> Alkyl Halides,Grinard reagents,Alcohols </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/11.Reaction+kinetics.pdf" download="Export_Lesson_1"> Reaction kinetics </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/12.+Chemical+Equilibrium.pdf" download="Export_Lesson_1"> Chemical Equilibrium </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/13.+Electro+Chemistry.pdf" download="Export_Lesson_1"> Electro Chemistry </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/14.+Environmental+Chemistry.pdf" download="Export_Lesson_1"> Environmental Chemistry </a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=QlgaCN7vGfw&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> පැළෑටි හා ගස්වැල් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=j-tjyo2HcKE&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh" download="Export_Lesson_1"> පරිසරය ආශ්‍රිත ක්‍රියාකරකම් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%B8%E0%B7%92%E0%B6%B1%E0%B7%92%E0%B7%83%E0%B7%8F+%E0%B7%83%E0%B7%84+%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%AD%E0%B7%94%E0%B6%BB%E0%B7%94.pdf"> මිනිසා සහ තොරතුරු pdf</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=v60H-V7IFcM&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> වැඩ පහසු කිරීමේ මං</a> </li></ul>
+                </div>
+            </div><!-- end title -->
+        </div><!-- end row -->
+        <p class="align-center" style="color:black"> <b>You can download Chemistry past papers or relevant model papers by using following links</b></p>
+        <p align="center">
+
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+        </p>
+
+        <!--Inside the collapse-->
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2015  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2016  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2017  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2018  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2019  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/PastPapers/1653102982888-GCE(AL)_-_2020_August_(New)_-_Chemistry(E)_1623612495784.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2020  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2021  </a> </li></ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body" >
+
+                        <div th:each="eMChemistryRecord: ${eMChemistryRecords}">
+                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMChemistryRecord.UploadedFileName}" th:text="${eMChemistryRecord.fileName}"target="_blank"> </a> </li></ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div align="center">
+         <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Biology Olympiad 2008 Part I/II 2010 </a> </li></ul>
+     </div>
+     <div align="center" th:each="eMOlympiadBioRecord: ${eMOlympiadBioRecords}">
+         <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadBioRecord.UploadedFileName}" th:text="${eMOlympiadBioRecord.fileName}"target="_blank"> </a> </li></ul>
+     </div>
+ </div>-->
+
+
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <p class="align-center" style="color:black"> <b>You can add Chemistry past papers or relevant model papers to the system</b></p>
+                <p>If you have relevant Chemistry model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Chemistry_English_Medium_PartI/II_2022)</b></p>
+
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="AdvancedLevelChemistryEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="advancedLevelScienceEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div><!-- end title -->
+        <br><br>
+    </div>
+    <div id="overviews2" class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr>
+
+
+
+
+
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Physics section</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Measurement </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Mechanics 1 </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Simple Harmonic Oscillations and Waves </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PHY+-+(%E0%B6%AD%E0%B7%8F%E0%B6%B4%E0%B6%BA)+Heat.pdf" download="Export_Lesson_1"> Heat</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Electricity </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Properties of Matter </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Matter Radiation</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PHY+-+(%E0%B7%80%E0%B7%92%E0%B6%AF%E0%B7%8A_%E0%B6%BA%E0%B7%94%E0%B6%AD%E0%B7%8A+%E0%B6%9A%E0%B7%8A%E0%B7%82%E0%B7%9A%E0%B6%AD%E0%B7%8A_%E0%B6%BB)+Electric+Fields.pdf" download="Export_Lesson_1"> Electric Fields </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Magnetic and Gravitational Fields </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PHY+-+(%E0%B6%89%E0%B6%BD%E0%B7%99%E0%B6%9A%E0%B7%8A%E0%B6%A7%E0%B7%8A_%E0%B6%BB%E0%B7%9C%E0%B6%B1%E0%B7%92%E0%B6%9A+%E0%B7%80%E0%B7%92%E0%B6%AF%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%80)+Electronics.pdf" download="Export_Lesson_1"> Electronics </a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=QlgaCN7vGfw&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> පැළෑටි හා ගස්වැල් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=j-tjyo2HcKE&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh" download="Export_Lesson_1"> පරිසරය ආශ්‍රිත ක්‍රියාකරකම් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%B8%E0%B7%92%E0%B6%B1%E0%B7%92%E0%B7%83%E0%B7%8F+%E0%B7%83%E0%B7%84+%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%AD%E0%B7%94%E0%B6%BB%E0%B7%94.pdf"> මිනිසා සහ තොරතුරු pdf</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=v60H-V7IFcM&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> වැඩ පහසු කිරීමේ මං</a> </li></ul>
+                </div>
+            </div><!-- end title -->
+        </div><!-- end row -->
+        <p class="align-center" style="color:black"> <b>You can download Physics past papers or relevant model papers by using following links</b></p>
+        <p align="center">
+
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+        </p>
+
+        <!--Inside the collapse-->
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2015  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2016  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2017  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2018  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2019  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1653106388022-GCE(AL)_-_2020_August_(New)_-_Biology(E)Englishmedium.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2020  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Physics Part I/II 2021  </a> </li></ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body" >
+
+                        <div th:each="eMPhysicsRecord: ${eMPhysicsRecords}">
+                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMPhysicsRecord.UploadedFileName}" th:text="${eMPhysicsRecord.fileName}"target="_blank"> </a> </li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <p class="align-center" style="color:black"> <b>You can add Physics past papers or relevant model papers to the system</b></p>
+                <p>If you have relevant Physics model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Physics_English_Medium_PartI/II_2022)</b></p>
+
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="AdvancedLevelPhysicsEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="advancedLevelScienceEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div><!-- end title -->
+        <br><br>
+    </div>
+    <div id="overviews2" class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Information Technology section</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.1.pdf" download="Export_Lesson_1">  Basic Building Blocks of Information</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.2.pdf" download="Export_Lesson_1"> The need of technology to create, disseminate and manage data and information </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.3.pdf" download="Export_Lesson_1"> Abstract Model of Information  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.4.pdf" download="Export_Lesson_1"> Basic Components of a Computer System</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.5.pdf" download="Export_Lesson_1"> Data Processing Life Cycle </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+1.6.pdf" download="Export_Lesson_1"> Investigates the use of ICT in different field of applications in organizations </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+4.1.pdf" download="Export_Lesson_1"> Basic Digital Logic Gates in terms of Their Unique Functionalities</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+4.2.pdf" download="Export_Lesson_1"> Simplify Boolean Expressions Using Karnaugh Maps </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+6.1.pdf" download="Export_Lesson_1"> The Computer Operating System Defines its need for a Computer System </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+6.2.pdf" download="Export_Lesson_1"> File Systems </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+6.3.pdf" download="Export_Lesson_1"> Operating Systems and processes</a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+7.1.pdf" download="Export_Lesson_1"> Problem Solving Process </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+8.14.pdf" download="Export_Lesson_1">  Common Vulnerabilities </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Lesson+11.2.pdf" download="Export_Lesson_1">  Information Systems</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=QlgaCN7vGfw&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> පැළෑටි හා ගස්වැල් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=j-tjyo2HcKE&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh" download="Export_Lesson_1"> පරිසරය ආශ්‍රිත ක්‍රියාකරකම් </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%B8%E0%B7%92%E0%B6%B1%E0%B7%92%E0%B7%83%E0%B7%8F+%E0%B7%83%E0%B7%84+%E0%B6%AD%E0%B7%9C%E0%B6%BB%E0%B6%AD%E0%B7%94%E0%B6%BB%E0%B7%94.pdf"> මිනිසා සහ තොරතුරු pdf</a> </li></ul>
+                    <ul><li><i class="fab fa-youtube " aria-hidden="true" target="_blank"></i><a    href="https://www.youtube.com/watch?v=v60H-V7IFcM&list=PLlyv4_Vxwl-z93wvujk58bFjp9-c73sJh"> වැඩ පහසු කිරීමේ මං</a> </li></ul>
+                </div>
+            </div><!-- end title -->
+        </div><!-- end row -->
+        <p class="align-center" style="color:black"> <b>You can download Information Technology past papers or relevant model papers by using following links</b></p>
+        <p align="center">
+
+            <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+            <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+        </p>
+
+        <!--Inside the collapse-->
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse1">
+                    <div class="card card-body">
+
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2015  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2016  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2017  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2018  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2019  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1653106388022-GCE(AL)_-_2020_August_(New)_-_Biology(E)Englishmedium.pdf" download="Export_Lesson_1"> GCE Advanced Level Biology Part I/II 2020  </a> </li></ul>
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Information Technology Part I/II 2021  </a> </li></ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapse2">
+                    <div class="card card-body" >
+
+                        <div th:each="eMInformationTechnologyRecord: ${eMInformationTechnologyRecords}">
+                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMInformationTechnologyRecord.UploadedFileName}" th:text="${eMInformationTechnologyRecord.fileName}"target="_blank"> </a> </li></ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 offset-md-2">
+                <p class="align-center" style="color:black"> <b>You can add Information Technology past papers or relevant model papers to the system</b></p>
+                <p>If you have relevant Information Technology model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Information_Technology_English_Medium_PartI/II_2022)</b></p>
+
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="AdvancedLevelITEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="advancedLevelScienceEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div><!-- end title -->
+        <br><br>
+    </div>
+    <div id="overviews2" class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <!--  <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>-->
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+
+
+    <hr>
+
+
+
+
+</div><!--Main div of container/-->
+
+
+
+
+
+
+
+
+
+
+
+<!--Footer section-->
+<footer class ="site-footer">
+    <div class = "container" >
+        <div class = "row mb-5">
+            <div class = "col-md-3 mb-5">
+                <h2>About us</h2>
+                <p>Our main goal is to improve knowledge of knowledge seekers</p>
+                <a href="#overviews">Click here for more details</a>
+
+            </div>
+            <div class = "col-md-3 mb-5">
+                <h2>Contact &amp; Address</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li class ="d-flex">
+                        <span class="fa fa-map-marker"> :<span class="text-white" > Horalage watta,Kommala,Bentota,Sri Lanka</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-phone"> :<span class="text-white"> +94 077 89 39 339</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-envelope"> :<span class="text-white"> <a href ="">info@smartedulanka.com</a></span></span>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+            <div class = "col-md-3 mb-5">
+                <h2>Quick Links</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li><a href="#overviews">About us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Contact us</a></li>
+
+                </ul>
+
+
+            </div>
+            <div class="col-md-3">
+                <h2>Our social media</h2>
+                <ul class ="list-unstyled footer-link d-flex footer-social">
+                    <li><a href=""><span class="fa fa-facebook"></span></a></li>
+                    <li><a href=""><span class="fa fa-instagram"></span></a></li>
+                    <li><a href=""><span class="fa fa-twitter"></span></a></li>
+                    <li><a href=""><span class="fa fa-youtube"></span></a></li>
+                    <li><a href=""><span class="fa fa-github"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!--Copyrights-->
+        <div class="copyrights">
+            <div class="container">
+                <div class="footer-distributed">
+                    <div class="footer-center">
+                        <p class="footer-company-name">All Rights Reserved. &copy; 2022 <a href="#"><Span class="copyright">SmartEduLanka
+
+                            </Span></a> Developed By : <a href="#/"><Span class="copyright">Isuru Kottahachchi
+
+                            </Span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+<!--Bootstrap JavaScript file linking-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

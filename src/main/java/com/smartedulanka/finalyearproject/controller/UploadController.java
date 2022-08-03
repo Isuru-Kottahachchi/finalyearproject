@@ -1,6 +1,6 @@
 package com.smartedulanka.finalyearproject.controller;
 
-import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecord;
+import com.smartedulanka.finalyearproject.datalayer.entity.UploadRecords;
 import com.smartedulanka.finalyearproject.repository.UploadRepository;
 import com.smartedulanka.finalyearproject.service.AmazonClient;
 import com.smartedulanka.finalyearproject.service.FileUploadRecord;
@@ -25,18 +25,19 @@ public class UploadController {
     UploadController(AmazonClient amazonClient) {
         this.amazonClient = amazonClient;
     }
-    @Autowired
-   public FileUploadRecord fileuploadrecord;
 
-/* Getting hidden inputs using hidden input fields(requestparam)*/
+    @Autowired
+    public FileUploadRecord fileuploadrecord;
+
+    /* Getting hidden inputs using hidden input fields(requestParam)*/
     @PostMapping("/upload")
-    public String uploadFile(@RequestPart(value = "file") MultipartFile file,@RequestParam(value = "userfileupload",required = true)String subjectAreaSelect) {
+    public String uploadFile(@RequestPart(value = "file") MultipartFile file,@RequestParam(value = "userfileupload",required = true)String subjectAreaSelect,@RequestParam(value = "fileCategory",required = true)String fileCategory) {
 
         try{
+
             fileuploadrecord.saveUploadRecord(amazonClient.uploadFile(file),subjectAreaSelect,file.getOriginalFilename());
 
-
-            return "uploadStatus";
+            return fileCategory + "UploadStatus";
 
         }catch(Exception e){
 
@@ -44,30 +45,19 @@ public class UploadController {
 
         }
 
-
-        //return this.amazonClient.uploadFile(file);
-
     }
 
-   /* @PostMapping ("/test")
-        public  String testMethod(@RequestPart(value = "text") String text){
-            return text;
-
-        }*/
 
 
-    @DeleteMapping("/deleteFile")
+
+   /* @DeleteMapping("/deleteFile")
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
-    }
+    }*/
 
 
 
-
-
-
-
-/*Question review delete record*/
+    /*Question review delete record*/
     @Autowired
     private UploadRepository uploadRepo;
 
@@ -77,11 +67,12 @@ public class UploadController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-        UploadRecord uploadRecord = uploadRepo.getById(recordId);
-        uploadRecord.setReviewStatus("ACCEPTED");
-        uploadRecord.setFileReviewedTime(dtf.format(now));
-        uploadRepo.save(uploadRecord);
-        return "recordDeleteConfirmation.html";
+        UploadRecords uploadRecords = uploadRepo.getById(recordId);
+        uploadRecords.setReviewStatus("ACCEPTED");
+        uploadRecords.setFileReviewedTime(dtf.format(now));
+        uploadRepo.save(uploadRecords);
+
+        return "recordUpdateConfirmation.html";
     }
 
     @GetMapping("/deleteFileRecord")
@@ -90,24 +81,12 @@ public class UploadController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-        UploadRecord uploadRecord = uploadRepo.getById(recordId);
-        uploadRecord.setReviewStatus("REJECTED");
-        uploadRecord.setFileReviewedTime(dtf.format(now));
+        UploadRecords uploadRecords = uploadRepo.getById(recordId);
+        uploadRecords.setReviewStatus("REJECTED");
+        uploadRecords.setFileReviewedTime(dtf.format(now));
 
-        uploadRepo.save(uploadRecord);
+        uploadRepo.save(uploadRecords);
         return "recordDeleteConfirmation.html";
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

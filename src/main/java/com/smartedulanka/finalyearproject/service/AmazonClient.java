@@ -20,7 +20,6 @@ import java.util.Date;
 @Service
 public class AmazonClient {
 
-
     private AmazonS3 s3client;
 
     @Value("${amazonProperties.endpointUrl}")
@@ -39,6 +38,7 @@ public class AmazonClient {
     }
 
     public String uploadFile(MultipartFile multipartFile) {
+
         String fileUrl = "";
         try {
             File file = convertMultiPartToFile(multipartFile);
@@ -66,19 +66,23 @@ public class AmazonClient {
     }
 
     private String generateFileName(MultipartFile multiPart) {
-        return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+
+        return multiPart.getOriginalFilename().replace(" ", "_");
+        /*return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");*/
     }
 
     private void uploadFileTos3bucket(String fileName, File file) {
+
         s3client.putObject(new PutObjectRequest(bucketName, fileName, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
 
-    public String deleteFileFromS3Bucket(String fileUrl) {
+    /*public String deleteFileFromS3Bucket(String fileUrl) {
+
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
         return "Successfully deleted";
-    }
+    }*/
 
 
 
@@ -120,7 +124,9 @@ public class AmazonClient {
     }
 
     private String generateImageName(MultipartFile multiPart) {
-        return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
+       /* return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");*/
+
+        return multiPart.getOriginalFilename().replace(" ", "_");
     }
 
     private void uploadImageTos3bucket(String fileName, File file) {
@@ -128,9 +134,9 @@ public class AmazonClient {
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
 
-    public String deleteImageFromS3Bucket(String fileUrl) {
+   /* public String deleteImageFromS3Bucket(String fileUrl) {
         String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
         s3client.deleteObject(new DeleteObjectRequest(bucketName, fileName));
         return "Successfully deleted";
-    }
+    }*/
 }

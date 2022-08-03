@@ -2,196 +2,184 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 
 
-html,body {
-    font-family:'poppins';
-    font-size:  20px; ;
-    line-height:1.5 ;
-    box-sizing:border-box ;
-    margin:0 ;
-    top: 0;
-    left:0 ;
-    overflow-x: hidden;
+    html,body {
+        font-family:'poppins';
+        font-size:  20px; ;
+        line-height:1.5 ;
+        box-sizing:border-box ;
+        margin:0 ;
+        top: 0;
+        left:0 ;
+        overflow-x: hidden;
+    }
+    a {
+        text-decoration:none ;
+        color: rgba(34, 54, 69, 7);
+        font-weight:500;
 
-
-}
-a {
-    text-decoration:none ;
-    color: rgba(34, 54, 69, 7);
-    font-weight:500;
-
-}
-a:hover {
-  color: brown;
-}
-ul {
-    list-style-type: none;
-  
-
-}
+    }
+    a:hover {
+      color: brown;
+    }
+    ul {
+        list-style-type: none;
+    }
 
 /*Edited after Comment on Carousel Slider Using Bootstrap 5 Alpha - Carousel Slider Tutorial video(Navigation bar error for small mobile devices */
-.navbar {
-    padding : 1rem 2rem;
-    background: #4c5a7d;
+    .navbar {
+        padding : 1rem 2rem;
+        background: #4c5a7d;
 
-  
-  
-}
-.navbar-expand-lg .navbar-nav .nav-link {
-      padding: 1.6rem 1.2rem;
-     
-  }
+
+
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+          padding: 1.6rem 1.2rem;
+
+      }
 
 /* up to this */
 
-.navbar .navbar-brand{
-    padding: 1rem;
-    display: block;
-    text-decoration: none;
+    .navbar .navbar-brand{
+        padding: 1rem;
+        display: block;
+        text-decoration: none;
 
-   
-
-}
-.navbar-brand {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: red;
-    font-size: 30px;
-   
-}
+    }
+    .navbar-brand {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: red;
+        font-size: 30px;
+    }
 
 
-.navbar-toggler span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    border: 1px;
-    background: black;
-    margin-left: 4px;
+    .navbar-toggler span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        border: 1px;
+        background: black;
+        margin-left: 4px;
 
-}
-.navbar-toggler span + span {
-    margin-top: 4px;
-    width: 22px;
-    margin-left: 4px;
-  
-}
-.navbar-toggler span + span + span {
-    width: 22px;
-    margin-left: 4px;
-}
-.navbar-expand-lg .navbar-nav .nav-link{
-    padding: 2rem 1.2rem;
-    font-size: 1.4rem;
-    position: relative;
-}
-.navbar-expand-lg .navbar-nav .nav-link:hover{
-    border-top: 4px solid #e74c3c;
-}
-.navbar-expand-lg .navbar-nav .nav-link.active {
-    border-top: 4px solid #e74c3c;
-    color: #e74c3c;
+    }
+    .navbar-toggler span + span {
+        margin-top: 4px;
+        width: 22px;
+        margin-left: 4px;
 
-}
-.navbar-nav button{
-padding: 1.2rem;
+    }
+    .navbar-toggler span + span + span {
+        width: 22px;
+        margin-left: 4px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link{
+        padding: 2rem 1.2rem;
+        font-size: 1.4rem;
+        position: relative;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link:hover{
+        border-top: 4px solid #e74c3c;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link.active {
+        border-top: 4px solid #e74c3c;
+        color: #e74c3c;
 
-}
-.navbar-nav .btn {
-    background-color: gold;
-    color: black;
-    border-radius: 0;
-    padding: 1re, 1.5rem;
-    font-size: 1.2rem;
-    margin-top: 1px;
-    font-weight: 1000;
+    }
+    .navbar-nav button{
+    padding: 1.2rem;
 
-}
-.navbar-nav .btn:hover{
-    background-color: #0a3d62;
-    font-weight: 1000;
-    background-color: silver;
-}
+    }
+    .navbar-nav .btn {
+        background-color: gold;
+        color: black;
+        border-radius: 0;
+        padding: 1re, 1.5rem;
+        font-size: 1.2rem;
+        margin-top: 1px;
+        font-weight: 1000;
+
+    }
+    .navbar-nav .btn:hover{
+        background-color: #0a3d62;
+        font-weight: 1000;
+        background-color: silver;
+    }
 
 
 
 
 
 /* Slider part (carousel)*/
-.carousel-item {
-    height: 90vh;
-    min-height: 300px;
-    background: no-repeat scroll center scroll;
-    -webkit-background-size : cover;
-    background-size: cover;
-}
+    .carousel-item {
+        height: 90vh;
+        min-height: 300px;
+        background: no-repeat scroll center scroll;
+        -webkit-background-size : cover;
+        background-size: cover;
+    }
 
-.carousel-item::before{
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left:0;
-    bottom: 0;
-    right: 0;
-    background: #000;
-    opacity: 0.5;
-
-
-}
-.carousel-caption {
-    bottom: 180px;
-    padding-left: 100px;
-    padding-right: 100px;
-}
-.carousel-caption h5{
-    font-size: 100px;
-    font-weight: 700;
-}
-.carousel-caption p{
-    font-size: 18px;
-    top: 2rem;
-
-}
-.slider-btn{
-    margin-top: 30px;
-}
-.slider-btn .btn-1{
-    background-color: gold;
-    color: black;
-    font-weight: 1000;
+    .carousel-item::before{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left:0;
+        bottom: 0;
+        right: 0;
+        background: #000;
+        opacity: 0.5;
+    }
+    .carousel-caption {
+        bottom: 180px;
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .carousel-caption h5{
+        font-size: 100px;
+        font-weight: 700;
+    }
+    .carousel-caption p{
+        font-size: 18px;
+        top: 2rem;
+    }
+    .slider-btn{
+        margin-top: 30px;
+    }
+    .slider-btn .btn-1{
+        background-color: gold;
+        color: black;
+        font-weight: 1000;
+    }
  /*   border-radius: 0;
     padding: 1.5rem 2rem;
     font-size: 1rem;
     margin-right: 15px;
-    */
-    
-}
-.slider-btn .btn-2{
-    color: black;
-    background-color: gold;
-    font-weight: 1000;
+ */
 
-}
-.slider-btn .btn-3{
-    color: black;
-    background-color: gold;
-    font-weight: 1000;
+    .slider-btn .btn-2{
+        color: black;
+        background-color: gold;
+        font-weight: 1000;
+    }
+    .slider-btn .btn-3{
+        color: black;
+        background-color: gold;
+        font-weight: 1000;
+    }
 
-}
-
-/*Iadddeadditionaly*/
- .btn-1:hover{
-    color: red;
-    background-color: white;
-}
-.btn-2:hover{
-    color: red;
-    background-color: white;
-}
-.btn-3:hover{
-    color: red;
-    background-color: white;
-}
+/*I added additionaly*/
+     .btn-1:hover{
+        color: red;
+        background-color: white;
+    }
+    .btn-2:hover{
+        color: red;
+        background-color: white;
+    }
+    .btn-3:hover{
+        color: red;
+        background-color: white;
+    }
 
 
 
@@ -200,28 +188,27 @@ padding: 1.2rem;
 
 
 /*About us*/
-#overvivews h3{
-    color: red;
+    #overvivews h3{
+        color: red;
 
-    padding: 30px 10px;
-    font-weight: bold;
+        padding: 30px 10px;
+        font-weight: bold;
 
-}
-.message-box h4 {
-    color: red;
-}
-.message-box h2,h3 {
-    margin-top: 15px;
-    font-weight: bold;
-}
-#para1{
-    text-indent: 50px;
-    text-align: justify;
-}
-#para2,#para3,#para3,#para4{
-    
-    text-align: justify;
-}
+    }
+    .message-box h4 {
+        color: red;
+    }
+    .message-box h2,h3 {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    #para1{
+        text-indent: 50px;
+        text-align: justify;
+    }
+    #para2,#para3,#para3,#para4{
+        text-align: justify;
+    }
 
 
 
@@ -377,10 +364,6 @@ Not working
 }
 */
 
-
-
-
-
 /*Mora Logo demo
 
 .row-logos {
@@ -395,24 +378,25 @@ Not working
 }
 */
 
+
+
+
 /*mora logo*/
+    .mora-logo {
+        background-color:rgb(255, 206, 0);
 
-.mora-logo {
-    background-color:rgb(255, 206, 0);
-
-    background-attachment: fixed;
-    background-size: cover;
-    padding: 30px 0;
-    position: relative;
-    width: 100%;
-}
-.center-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 30px 0;
+        position: relative;
+        width: 100%;
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
 
 
 
@@ -422,73 +406,73 @@ Not working
 
 
 /*Footer Section */
-.site-footer {
-   padding: 5em 0;
-   font-size: 18px;
-   color: white;
-   background:black ; 
-}
-.site-footer p:last-child {
-    margin-bottom: 0;
+    .site-footer {
+       padding: 5em 0;
+       font-size: 18px;
+       color: white;
+       background:black ;
+    }
+    .site-footer p:last-child {
+        margin-bottom: 0;
 
-}
-.site-footer a{
-    color: white;
-    font-weight: bold;
-    border-bottom: 1px solid transparent;
+    }
+    .site-footer a{
+        color: white;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
 
-}
-.site-footer a:hover{
-    color:#fff;
-    border-bottom:1px solid rgba(255, 255, 255, 0.2h) ;
-}
-.site-footer h2 {
-    font-size: 22px;
-    font-weight: 1000;
-    margin-bottom: 28px;
-    letter-spacing:  0.05em;
-}
-.site-footer .footer-link li{
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-.footer-social a{
-    color: white;
-    line-height: 0;
-    border-radius: 50%;
-    margin: 0 5px 5px 0;
-    border:1px solid rgba(255, 255, 255, 0.1h) ;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    display: inline-block;
+    }
+    .site-footer a:hover{
+        color:#fff;
+        border-bottom:1px solid rgba(255, 255, 255, 0.2h) ;
+    }
+    .site-footer h2 {
+        font-size: 22px;
+        font-weight: 1000;
+        margin-bottom: 28px;
+        letter-spacing:  0.05em;
+    }
+    .site-footer .footer-link li{
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+    .footer-social a{
+        color: white;
+        line-height: 0;
+        border-radius: 50%;
+        margin: 0 5px 5px 0;
+        border:1px solid rgba(255, 255, 255, 0.1h) ;
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        display: inline-block;
 
 
-}
-.footer-social a:hover {
-    background: #fff;
-    border-color: #fff;
-    color:#000;
-}
-.footer-social .fa{
-    margin-top: 8px;
-}
+    }
+    .footer-social a:hover {
+        background: #fff;
+        border-color: #fff;
+        color:#000;
+    }
+    .footer-social .fa{
+        margin-top: 8px;
+    }
 
-/*Added additionaly */
-.copyrights {
-    border-top: 1px solid black;
-    background-color: black;
-    box-sizing: border-box;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0px;
-    overflow: hidden;
-    color: white;
-  
-}
-.copyright {
-    color: gold;
-}
+/*Added additionely */
+    .copyrights {
+        border-top: 1px solid black;
+        background-color: black;
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0px;
+        overflow: hidden;
+        color: white;
+
+    }
+    .copyright {
+        color: gold;
+    }
 
 
 

@@ -23,6 +23,15 @@
         <h1>List of Users</h1>
     </div>
 
+    <form th:action="@{/searchRegisteredUsers}">
+        Search Users Email: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+        &nbsp;
+        <input class="btn btn-primary" type="submit" value="Search" />
+        &nbsp;
+        <!--<input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />-->
+        <a class="btn btn-primary" href="users.html" role="button">Clear</a>
+    </form><br>
+
     <div>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
@@ -32,20 +41,24 @@
                 <th>E-mail</th>
                 <th>Full Name</th>
                 <th>Role</th>
+                <th>Options</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user: ${listUsers}">
-                <td th:text="${user.id}">User ID</td>
+            <tr th:each="user: ${usersList}">
+                <td th:text="${user.userId}">User ID</td>
                 <td th:text="${user.registeredTime}">User ID</td>
                 <td th:text="${user.email}">E-mail</td>
                 <td th:text="${user.fullName}">Full Name</td>
                 <td th:text="${user.role}">Role</td>
+                <td><a th:href="@{/removeUser(userId=${user.userId})}" onclick="approveDeleteUser()" class="btn btn-danger ml-2">Remove user</a></td>
             </tr>
             </tbody>
         </table>
     </div>
     <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
 </div>
+
+<script src="script.js"></script>
 </body>
 </html>

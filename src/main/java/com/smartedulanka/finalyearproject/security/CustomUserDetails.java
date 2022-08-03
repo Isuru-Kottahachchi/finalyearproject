@@ -16,18 +16,28 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-    //Rolebased authorization givven here
+    //RoleBased authorization given here
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-
-            authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
 
         return authorities;
     }
+
+
+
+
+    /*Mapping passing object*/
+    public Long getUserId(){
+        return user.getUserId();
+    }
+
+
+
 
     @Override
     public String getPassword() {

@@ -17,91 +17,633 @@
 
     <!--Forum header-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!--Axios CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!--Jquery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 
-<body>
-<header class = "header">
+<body onload="loadAdminPanel()">
+        <header class = "header">
 
-    <!--Navigation Bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
-
-
-            <!--Toogle button for mobile versions-->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span ></span>
-                <span ></span>
-                <span ></span>
-            </button>
+            <!--Navigation Bar-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
 
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="indexnew.html">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="forum.html">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="admin.html">Admin</a>
-                    </li>
-
-                </ul>
-
-                <ul>
-                    <li class="nav-item">
-                        <p>
-                            Welcome <br><b>[[${#request.userPrincipal.principal.fullName}]]</b>
-                        </p>
-                    </li>
-                </ul>
-                <ul>
-                    <form th:action="@{/logout}" method="post">
-
-                        <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
-                    </form>
-                </ul>
+                    <!--Toggle button for mobile versions-->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span ></span>
+                        <span ></span>
+                        <span ></span>
+                    </button>
 
 
-            </div>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="blog.html">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="forum.html">Forum</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="admin.html">Admin</a>
+                            </li>
+
+                        </ul>
+
+                        <ul>
+                            <li class="nav-item">
+                                <p>
+                                    Welcome <br><b>[[${#request.userPrincipal.principal.fullName}]]</b>
+                                </p>
+                            </li>
+                        </ul>
+                        <ul>
+                            <form th:action="@{/logout}" method="post">
+
+                                <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
+                            </form>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+<style>
+            * {
+              box-sizing: border-box;
+            }
+            html,
+            body {
+              color: black;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: #f5f5fa;
+              font-size: 16px;
+              line-height: 120%;
+              font-family: Open Sans, Helvetica, sans-serif;
+            }
+            .dashboard {
+              display: grid;
+              width: 100%;
+              height: 100%;
+              grid-gap: 0;
+              grid-template-columns: 300px auto;
+              grid-template-rows: 80px auto;
+              grid-template-areas: 'menu search' 'menu content';
+            }
+            .search-wrap {
+              grid-area: search;
+              background: gray;
+              border-bottom: 1px solid #ede8f0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 0 3em;
+            }
+            .search-wrap .search {
+              height: 40px;
+            }
+            .search-wrap .search label {
+              display: flex;
+              align-items: center;
+              height: 100%;
+            }
+            .search-wrap .search label svg {
+              display: block;
+            }
+            .search-wrap .search label svg path,
+            .search-wrap .search label svg circle {
+              fill: #b6bbc6;
+              transition: fill 0.15s ease;
+            }
+            .search-wrap .search label input {
+              display: block;
+              padding-left: 1em;
+              height: 100%;
+              margin: 0;
+              border: 0;
+            }
+            .search-wrap .search label input:focus {
+              background: #f5f5fa;
+            }
+            .search-wrap .search label:hover svg path,
+            .search-wrap .search label:hover svg circle {
+              fill: #2b3a60;
+            }
+            .search-wrap .user-actions button {
+              border: 0;
+              background: none;
+              width: 32px;
+              height: 32px;
+              margin: 0;
+              padding: 0;
+              margin-left: 0.5em;
+            }
+            .search-wrap .user-actions button svg {
+              position: relative;
+              top: 2px;
+            }
+            .search-wrap .user-actions button svg path,
+            .search-wrap .user-actions button svg circle {
+              fill: #b6bbc6;
+              transition: fill 0.15s ease;
+            }
+            .search-wrap .user-actions button:hover svg path,
+            .search-wrap .user-actions button:hover svg circle {
+              fill: #2b3a60;
+            }-->
+            .menu-wrap {
+              grid-area: menu;
+              padding-bottom: 3em;
+              overflow: auto;
+              background: #fff;
+              border-right: 1px solid #ede8f0;
+            }
+            .menu-wrap .user {
+              height: 80px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              margin: 0;
+              padding: 0 3em;
+            }
+            .menu-wrap .user .user-avatar {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              overflow: hidden;
+            }
+            .menu-wrap .user .user-avatar img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              -o-object-fit: cover;
+                 object-fit: cover;
+            }
+            .menu-wrap .user figcaption {
+              margin: 0;
+              padding: 0 0 0 1em;
+              color: #1b253d;
+              font-weight: 700;
+              font-size: 0.875em;
+              line-height: 100%;
+            }
+            .menu-wrap nav {
+              display: block;
+              padding: 0 3em;
+            }
+            .menu-wrap nav section {
+              display: block;
+              padding: 3em 0 0;
+            }
+            .menu-wrap nav h3 {
+              margin: 0;
+              font-size: 0.875em;
+              text-transform: uppercase;
+              color: #4b84fe;
+              font-weight: 600;
+            }
+            .menu-wrap nav ul {
+              display: block;
+              padding: 0;
+              margin: 0;
+            }
+            .menu-wrap nav li {
+              display: block;
+              padding: 0;
+              margin: 1em 0 0;
+            }
+            .menu-wrap nav li a {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              color: #99a0b0;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 0.875em;
+              transition: color 0.15s ease;
+            }
+            .menu-wrap nav li a svg {
+              display: block;
+              margin-right: 1em;
+            }
+            .menu-wrap nav li a svg path,
+            .menu-wrap nav li a svg circle {
+              fill: #b6bbc6;
+              transition: fill 0.15s ease;
+            }
+            .menu-wrap nav li a:hover {
+              color: #1b253d;
+            }
+            .menu-wrap nav li a:hover svg path,
+            .menu-wrap nav li a:hover svg circle {
+              fill: #2b3a60;
+            }
+            .menu-wrap nav li a.active {
+              color: #4b84fe;
+            }
+            .menu-wrap nav li a.active svg path,
+            .menu-wrap nav li a.active svg circle {
+              fill: #4b84fe;
+            }
+            .content-wrap {
+              grid-area: content;
+              padding: 3em;
+              overflow: auto;
+            }
+            .content-wrap .content-head {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .content-wrap .content-head h1 {
+              font-size: 1.375em;
+              line-height: 100%;
+              color: #1b253d;
+              font-weight: 500;
+              margin: 0;
+              padding: 0;
+            }
+            .content-wrap .content-head .action button {
+              border: 0;
+              background: #4b84fe;
+              color: #fff;
+              width: auto;
+              height: 3.5em;
+              padding: 0 2.25em;
+              border-radius: 3.5em;
+              font-size: 1em;
+              text-transform: uppercase;
+              font-weight: 600;
+              transition: background-color 0.15s ease;
+            }
+            .content-wrap .content-head .action button:hover {
+              background-color: #1861fe;
+            }
+            .content-wrap .content-head .action button:hover:active {
+              background-color: #0149e2;
+              transition: none;
+            }
+            .content-wrap .info-boxes {
+              padding: 3em 0 2em;
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+              grid-gap: 2em;
+            }
+            .content-wrap .info-boxes .info-box {
+              background: #fff;
+              height: 160px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 0 3em;
+              border: 2px solid #ede8f0;
+              border-radius: 5px;
+            }
+            .content-wrap .info-boxes .info-box .box-icon svg {
+              display: block;
+              width: 48px;
+              height: 48px;
+            }
+            .content-wrap .info-boxes .info-box .box-icon svg path,
+            .content-wrap .info-boxes .info-box .box-icon svg circle {
+              fill: #99a0b0;
+            }
+            .content-wrap .info-boxes .info-box .box-content {
+              padding-left: 1.25em;
+              white-space: nowrap;
+
+            }
+            .content-wrap .info-boxes .info-box .box-content .big {
+              display: block;
+              font-size: 2em;
+              line-height: 150%;
+              color: #1b253d;
+
+            }
+            .content-wrap .info-boxes .info-box.active svg circle,
+            .content-wrap .info-boxes .info-box.active svg path {
+              fill: #4b84fe;
+            }
+            .content-wrap .person-boxes {
+              padding: 0;
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+              grid-gap: 2em;
+            }
+            .content-wrap .person-boxes .person-box {
+              background: #fff;
+              height: 320px;
+              text-align: center;
+              padding: 3em;
+              border: 1px solid #ede8f0;
+              border-radius: 5px;
+            }
+            .content-wrap .person-boxes .person-box:nth-child(2n) .box-avatar .no-name {
+              background: #4b84fe;
+            }
+            .content-wrap .person-boxes .person-box:nth-child(5n) .box-avatar .no-name {
+              background: #ffbb09;
+            }
+            .content-wrap .person-boxes .person-box .box-avatar {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              margin: 0px auto;
+              overflow: hidden;
+            }
+            .content-wrap .person-boxes .person-box .box-avatar img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              -o-object-fit: cover;
+                 object-fit: cover;
+            }
+            .content-wrap .person-boxes .person-box .box-avatar .no-name {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              color: #fff;
+              font-size: 1.5em;
+              font-weight: 600;
+              text-transform: uppercase;
+              width: 100%;
+              height: 100%;
+              background: #fa5b67;
+            }
+            .content-wrap .person-boxes .person-box .box-bio {
+              white-space: no-wrap;
+            }
+            .content-wrap .person-boxes .person-box .box-bio .bio-name {
+              margin: 2em 0 0.75em;
+              <!--color: #1b253d;-->
+              color: black;
+              font-size: 1em;
+              font-weight: 700;
+              line-height: 100%;
+            }
+            .content-wrap .person-boxes .person-box .box-bio .bio-position {
+              margin: 0;
+              font-size: 0.875em;
+              line-height: 100%;
+            }
+            .content-wrap .person-boxes .person-box .box-actions {
+              margin-top: 1.25em;
+              padding-top: 1.25em;
+              width: 100%;
+              border-top: 1px solid #ede8f0;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .content-wrap .person-boxes .person-box .box-actions button {
+              border: 0;
+              background: none;
+              width: 32px;
+              height: 32px;
+              margin: 0;
+              padding: 0;
+            }
+            .content-wrap .person-boxes .person-box .box-actions button svg {
+              position: relative;
+              top: 2px;
+            }
+            .content-wrap .person-boxes .person-box .box-actions button svg path,
+            .content-wrap .person-boxes .person-box .box-actions button svg circle {
+              fill: #b6bbc6;
+              transition: fill 0.15s ease;
+            }
+            .content-wrap .person-boxes .person-box .box-actions button:hover svg path,
+            .content-wrap .person-boxes .person-box .box-actions button:hover svg circle {
+              fill: #2b3a60;
+            }
+
+</style>
+
+
+    <meta charset="UTF-8">
+    <title>Smart Edu Lanka Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+
+
+<!-- partial:index.partial.html -->
+<div class="dashboard">
+    <aside class="search-wrap">
+        <div class="search">
+            <label >
+                <h1 style="font-weight: bold;">SMART EDULANKA Admin Dashboard</h1>
+            </label>
         </div>
-    </nav>
-</header>
-<hr>
+    </aside>
+
+    <header class="menu-wrap">
+        <nav>
+            <section class="dicover">
+                <h3>Actions</h3>
+                <ul>
+                    <li >
+                        <a href="users.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3,21c0,0.553,0.448,1,1,1h16c0.553,0,1-0.447,1-1v-1c0-3.714-2.261-6.907-5.478-8.281C16.729,10.709,17.5,9.193,17.5,7.5 C17.5,4.468,15.032,2,12,2C8.967,2,6.5,4.468,6.5,7.5c0,1.693,0.771,3.209,1.978,4.219C5.261,13.093,3,16.287,3,20V21z M8.5,7.5 C8.5,5.57,10.07,4,12,4s3.5,1.57,3.5,3.5S13.93,11,12,11S8.5,9.43,8.5,7.5z M12,13c3.859,0,7,3.141,7,7H5C5,16.141,8.14,13,12,13z"/></svg>
+                            Show Registered Users
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="reportedQuestion.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                            Reported Questions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reportedAnswers.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                            </svg>
+                            Reported Answers
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="dicover">
+                <h3>Files section</h3>
+                <ul>
+                    <li>
+                        <a href="fileReview.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-fill" viewBox="0 0 16 16">
+                                <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3z"/>
+                            </svg>
+                            Pending Files
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="approvedFiles.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check-fill" viewBox="0 0 16 16">
+                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zm1.354 4.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                            </svg>
+                            Approved Files
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="rejectedFiles.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
+                                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
+                            </svg>
+                            Rejected Files
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </header>
+
+    <main class="content-wrap">
+        <header class="content-head">
+            <h1 style="font-weight: bold;">Summery</h1>
+        </header>
+
+        <div class="content">
+            <section class="info-boxes">
+                <div class="info-box active">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill" viewBox="0 0 16 16">
+                            <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.468 15.426.943 9h14.114l-1.525 6.426a.75.75 0 0 1-.729.574H3.197a.75.75 0 0 1-.73-.574z"/>
+                        </svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big" id="numberOfPendingFiles"></span>
+                        Pending Files
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-fill-exclamation" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                        </svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big" id="numberOfReportedQuestions"></span>
+                        Reported<br>Questions
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-exclamation" viewBox="0 0 16 16">
+                            <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                            <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
+                        </svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big" id="numberOfReportedAnswers"></span>
+                        Reported<br> Answers
+                    </div>
+                </div>
+            </section>
+            <section class="person-boxes">
+                <div class="person-box">
+                    <div class="box-avatar">
+                        <img src="images/Mora_logo.PNG">
+                    </div>
+
+                    <div class="box-bio">
+                        <h2 class="bio-name">Isuru Kottahachchi</h2>
+                        <p class="bio-position">Main Admin User</p>
+                    </div>
+
+                </div>
+
+                <div class="person-box">
+                    <div class="box-avatar">
+                        <img src="images/Mora_logo.PNG">
+                    </div>
+
+                    <div class="box-bio">
+                        <h2 class="bio-name">Visaka Nanayakkara</h2>
+                        <p class="bio-position">Chairman</p>
+                    </div>
 
 
-<!--<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>-->
+                </div>
 
-<div class="section-title">
-    <div class="col-md-8 offset-md-2">
-        <a class="btn btn-primary" href="users.html" role="button">Show Users</a>
-        <a class="btn btn-primary" href="filereview.html" role="button">Show Pending Files</a>
-        <a class="btn btn-primary" href="approvedFiles.html" role="button">Show Approved Files</a>
-        <a class="btn btn-primary" href="rejectedFiles.html" role="button">Show Rejected Files</a>
+                <div class="person-box">
+                    <div class="box-avatar">
+                        <span class="no-name">TS</span>
+                    </div>
 
-    </div>
+                    <div class="box-bio">
+                        <h2 class="bio-name">Dr Thushari Silva</h2>
+                        <p class="bio-position">Admin User</p>
+                    </div>
+                </div>
+            </section>
+
+                <section class="info-boxes">
+                <div class="info-box active">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3,21c0,0.553,0.448,1,1,1h16c0.553,0,1-0.447,1-1v-1c0-3.714-2.261-6.907-5.478-8.281C16.729,10.709,17.5,9.193,17.5,7.5 C17.5,4.468,15.032,2,12,2C8.967,2,6.5,4.468,6.5,7.5c0,1.693,0.771,3.209,1.978,4.219C5.261,13.093,3,16.287,3,20V21z M8.5,7.5 C8.5,5.57,10.07,4,12,4s3.5,1.57,3.5,3.5S13.93,11,12,11S8.5,9.43,8.5,7.5z M12,13c3.859,0,7,3.141,7,7H5C5,16.141,8.14,13,12,13z"/></svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big"></span>
+                        Users
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 10H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1zm-1 10H5v-8h14v8zM5 6h14v2H5zM7 2h10v2H7z"/></svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big"></span>
+                        Questions
+                    </div>
+                </div>
+
+
+
+                <div class="info-box">
+                    <div class="box-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3C6.486 3 2 6.364 2 10.5c0 2.742 1.982 5.354 5 6.678V21a.999.999 0 0 0 1.707.707l3.714-3.714C17.74 17.827 22 14.529 22 10.5 22 6.364 17.514 3 12 3zm0 13a.996.996 0 0 0-.707.293L9 18.586V16.5a1 1 0 0 0-.663-.941C5.743 14.629 4 12.596 4 10.5 4 7.468 7.589 5 12 5s8 2.468 8 5.5-3.589 5.5-8 5.5z"/></svg>
+                    </div>
+
+                    <div class="box-content">
+                        <span class="big"></span>
+                        Answers
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 </div>
-
-
-
-
-
+<!-- partial -->
+        <script src="script.js"></script>
 </body>
-
-
-
-
-
-
-
 </html>
