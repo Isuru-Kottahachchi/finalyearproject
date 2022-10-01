@@ -11,19 +11,19 @@ public class Notifications {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long notification_id;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String responseSubmittedTime;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private String respondedUserName;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private Long questionAuthorId;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private Long respondedQuestionId;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private String respondedFullQuestion;
 
 

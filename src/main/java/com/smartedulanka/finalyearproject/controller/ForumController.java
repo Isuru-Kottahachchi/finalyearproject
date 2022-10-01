@@ -5,7 +5,9 @@ import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.*;
 import com.smartedulanka.finalyearproject.PreviousQuestionSuggestion.QuestionSuggester;
 import com.smartedulanka.finalyearproject.datalayer.entity.*;
+import com.smartedulanka.finalyearproject.domain.Profile;
 import com.smartedulanka.finalyearproject.foulLangugeDetection.AnswerFoulLanguageDetect;
+import com.smartedulanka.finalyearproject.foulLangugeDetection.BadWordsAPI;
 import com.smartedulanka.finalyearproject.foulLangugeDetection.QuestionFoulLanguageDetect;
 import com.smartedulanka.finalyearproject.imageModeration.ImageModeration;
 import com.smartedulanka.finalyearproject.repository.*;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -103,15 +108,33 @@ public class ForumController {
 
         User user = userRepository.getById(userId);
 
+
+
         String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
 
-        Long countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
-
-        /*Get unchecked Notifications*/
 
 
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
 
 
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
@@ -120,18 +143,32 @@ public class ForumController {
 
         List<Long> numberOfNotificationsList = new ArrayList<>();
 
-
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
 
-            previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                 //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
 
 
+            }
+
+            //Convert int to Long
 
             int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
             Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
@@ -141,12 +178,14 @@ public class ForumController {
 
         }
 
-
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
         Long followingQuestionsNotificationsCount = 0L;
         for(Long numberOfNotifications : numberOfNotificationsList){
 
             followingQuestionsNotificationsCount += numberOfNotifications;
         }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
 
         Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
 
@@ -157,7 +196,7 @@ public class ForumController {
 
 
 
-       /*Question Id and Answer hash map mapping*/
+       /*Question Id and Answer objects hash map mapping*/
         Map<Long, List<Answer>> questionAnswerMap =
                 answerList.stream().collect(Collectors.groupingBy(answer -> answer.getQuestion().getQuestion_id()));
 
@@ -176,59 +215,70 @@ public class ForumController {
     private ImageModeration imageModeration;
 
 
+    @Autowired
+    private BadWordsAPI badWordsAPI;
+
+
         /*when image submission this will be called*/
-    @PostMapping("/questionSave")
+    @PostMapping("/saveQuestion")
     public String addQuestion(Question question,@RequestPart(value = "file") MultipartFile file) throws IOException {
-
-        //imageModeration.uploadFile(file);
-
-        String photo1 = "Image name" + file.getOriginalFilename();
 
         /*Foul language detection*/
 
-        if(questionFoulLanguageDetect.detectFoulLanguage(question).equals("Detected")){
+        if(questionFoulLanguageDetect.detectFoulLanguage(question).equals("Detected")) {
 
             return "foulLanguage.html";
 
-        }else {
+        }else if(questionFoulLanguageDetect.detectFoulLanguage(question).equals("Not Detected")){
 
-            imageModeration.uploadFile(file);
-            //amazonClient.uploadImage(file);
+            if(badWordsAPI.detectFoulLanguageWords(question).equals("Detected")){
 
-            //String photo = "input.jpg";
-            String photo = file.getOriginalFilename();
-            String bucket = "mbitfyproject";
+                return "foulLanguage.html";
+            }else{
 
-            AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+                        /*Offensive image detection*/
+                       if(file!= null && !file.isEmpty()){
 
-            DetectModerationLabelsRequest request = new DetectModerationLabelsRequest()
-                    .withImage(new Image().withS3Object(new S3Object().withName(photo).withBucket(bucket)))
-                    .withMinConfidence(60F);
-            try
-            {
-                DetectModerationLabelsResult result = rekognitionClient.detectModerationLabels(request);
-                List<ModerationLabel> labels = result.getModerationLabels();
-                System.out.println("Detected labels for " + photo);
-                for (ModerationLabel label : labels)
-                {
-                    System.out.println("Label: " + label.getName()
-                            + "\n Confidence: " + label.getConfidence().toString() + "%"
-                            + "\n Parent:" + label.getParentName());
-                }
-            }
-            catch (AmazonRekognitionException e)
-            {
-                e.printStackTrace();
-                //System.out.println(e);
+                           try {
+
+                               String result = imageModeration.ImageModerate(file);
+                               if(result.equals("Offensive")){
+
+                                   return "offensiveImage.html";
+                               }
+
+                           }catch(Exception e){
+
+                               System.out.println(e);
+                           }
+
+                       }
+
+
+                  /*  String photo = file.getOriginalFilename();
+                    String bucket = "mbitfyproject";
+
+                    AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+
+                    DetectModerationLabelsRequest request = new DetectModerationLabelsRequest()
+                            .withImage(new Image().withS3Object(new S3Object().withName(photo).withBucket(bucket)))
+                            .withMinConfidence(60F);
+                  */
             }
 
         }
 
-        /*Foul language detection*/
-
         try {
 
-            imageUploadRecord.saveImageUploadRecord(question,amazonClient.uploadImage(file),file.getOriginalFilename());
+            if(file!= null && !file.isEmpty()){
+
+                imageUploadRecord.saveImageUploadRecord(question,amazonClient.uploadImage(file),file.getOriginalFilename());
+
+            }else{
+
+                imageUploadRecord.saveWithoutImageUploadRecord(question);
+
+            }
 
         }catch(Exception e){
 
@@ -236,17 +286,6 @@ public class ForumController {
 
         }
 
-       /* question.setImageName();
-        question.setUploadedImageName();
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-
-        question.setQuestionstatus(false);
-        question.setQuestionSubmittedTime(dtf.format(now));
-       *//* question.setQuestionAuthorName();*//*
-
-        questionRepository.save(question);*/
 
         return "questionStatus.html";
     }
@@ -259,8 +298,8 @@ public class ForumController {
     @Autowired
     private AnswerFoulLanguageDetect answerFoulLanguageDetect;
 
-    @PostMapping("/answerSave")
-    public String addAnswer(Answer answer,@RequestParam(value = "questionId",required = true)Long questionId,Model model){
+    @PostMapping("/saveAnswer")
+    public String addAnswer(Answer answer,@RequestParam(value = "questionId",required = true)Long questionId,Model model) throws IOException {
 
 
         /*Foul language detection*/
@@ -268,6 +307,13 @@ public class ForumController {
         if(answerFoulLanguageDetect.detectFoulLanguageInAnswer(answer).equals("Detected")){
 
             return "foulLanguage.html";
+
+        }else if(answerFoulLanguageDetect.detectFoulLanguageInAnswer(answer).equals("Not Detected")){
+
+            if(badWordsAPI.detectFoulLanguageWordsInAnswer(answer).equals("Detected")){
+
+                return "foulLanguage.html";
+            }
 
         }
         /*Foul language detection*/
@@ -282,6 +328,7 @@ public class ForumController {
            String userName = customUserDetails.getFullName();
 
            user = userRepository.getById(userId);
+
            answer.setAnswerAuthorName(userName);
            answer.setUser(user);
            answer.setAnswerAuthorEmail(userEmail);
@@ -303,6 +350,11 @@ public class ForumController {
        answerRepository.save(answer);
 
 
+
+
+
+
+
       /*Notifications*/
 
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -321,7 +373,10 @@ public class ForumController {
 
         notificationsRepository.save(notifications);
 
-        return "redirect:/forum.html";
+        //return "redirect:/forum.html";
+
+        model.addAttribute("questionId",questionId);
+        return "answerStatus";
     }
 
 
@@ -335,7 +390,11 @@ public class ForumController {
         Long userId = customUserDetails.getUserId();
         String userName = customUserDetails.getFullName();
 
-        /*Retrieve all notification except currently logged in users answer notification in own questions*/
+
+
+
+
+        /*Retrieve all notification except currently logged in users answer notification in own questions (Notification type 1)*/
         List<Notifications> notificationsList = notificationService.findNotificationsInId(userId,userName);
 
         Collections.reverse(notificationsList);
@@ -345,24 +404,29 @@ public class ForumController {
 
 
 
-      /*Show notifications when someone answered on the question that logged user answered previously*/
+      /*Show notifications when someone answered on the question that logged in user answered previously  (Notification type 2)*/
 
-       /*Getting logged user answered questionIds*/
+       /*Getting logged user previously answered questionIds*/
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
         ArrayList<Notifications> loggedUserAnsweredQuestionNotificationList = new ArrayList<Notifications>();
 
+
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
-
+            //Getting notification ids of the question which are after first answer submit
             List<Long> notificationIdsList = notificationsRepository.getNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
 
+            //Looping notification ids
             for(Long notificationId : notificationIdsList){
 
                 Notifications notificationsObj = notificationsRepository.getNotificationsByQuestionId(userName,notificationId);
@@ -399,6 +463,28 @@ public class ForumController {
         return "redirect:/forum.html";
     }
 
+    @PostMapping("/editProfile")
+    public String editProfile(@RequestParam("firstName") String firstName,@RequestParam(value = "lastName",required = true)String lastName,@RequestParam ("email")String email){
+
+
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+
+
+        User user = userRepository.getById(userId);
+
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+
+        userRepository.save(user);
+
+
+        return "editRedirect.html";
+    }
+
+
+
 
 
     /*@PostMapping("/editQuestions")
@@ -425,6 +511,8 @@ public class ForumController {
 
         List<Question> questionsList = questionRepository.findRelevantQuestions(processedQuestionText);
 
+
+
         /*Answers objects load from database to html*/
         List<Answer> answerList = answerRepository.findAll();
 
@@ -434,13 +522,111 @@ public class ForumController {
 
         model.addAttribute("questionsList",questionsList);
 
-
         /*Question Id and Answer hash map mapping*/
         Map<Long, List<Answer>> questionAnswerMap =
                 answerList.stream().collect(Collectors.groupingBy(answer -> answer.getQuestion().getQuestion_id()));
 
 
         model.addAttribute("questionAnswerMap", questionAnswerMap);
+
+
+
+
+
+
+
+
+        /*Get unchecked Notifications count and indicate*/
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+        String userName = customUserDetails.getFullName();
+
+        User user = userRepository.getById(userId);
+
+
+
+        String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
+
+
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
+        ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
+
+
+        List<Long> previouslyAnsweredQuestionsNotificationIdsList = new ArrayList<Long>();
+
+
+        List<Long> numberOfNotificationsList = new ArrayList<>();
+
+        //Looping logged in users question ids
+        for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
+
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
+
+
+            //Getting the first answer submitted time of the question
+            String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
+
+
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+
+
+            }
+
+            //Convert int to Long
+
+            int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
+            Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
+
+
+            numberOfNotificationsList.add(previouslyAnsweredQuestionsNotificationsCount);
+
+        }
+
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
+        Long followingQuestionsNotificationsCount = 0L;
+        for(Long numberOfNotifications : numberOfNotificationsList){
+
+            followingQuestionsNotificationsCount += numberOfNotifications;
+        }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
+        Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
+
+
+        model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
+
 
 
         return "forum";
@@ -551,15 +737,38 @@ public class ForumController {
 
 
         /*Get unchecked Notifications count and indicate*/
+
         String userName = customUserDetails.getFullName();
 
         User user = userRepository.getById(userId);
 
+
+
         String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
 
-        Long countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
 
-        /*Get unchecked Notifications*/
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
@@ -568,18 +777,32 @@ public class ForumController {
 
         List<Long> numberOfNotificationsList = new ArrayList<>();
 
-
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
 
-            previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
 
 
+            }
+
+            //Convert int to Long
 
             int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
             Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
@@ -589,11 +812,14 @@ public class ForumController {
 
         }
 
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
         Long followingQuestionsNotificationsCount = 0L;
         for(Long numberOfNotifications : numberOfNotificationsList){
 
             followingQuestionsNotificationsCount += numberOfNotifications;
         }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
 
         Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
 
@@ -649,16 +875,40 @@ public class ForumController {
 
 
 
+
         /*Get unchecked Notifications count and indicate*/
+
         String userName = customUserDetails.getFullName();
 
         User user = userRepository.getById(userId);
 
+
+
         String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
 
-        Long countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
 
-        /*Get unchecked Notifications*/
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
@@ -667,18 +917,32 @@ public class ForumController {
 
         List<Long> numberOfNotificationsList = new ArrayList<>();
 
-
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
 
-            previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
 
 
+            }
+
+            //Convert int to Long
 
             int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
             Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
@@ -688,16 +952,21 @@ public class ForumController {
 
         }
 
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
         Long followingQuestionsNotificationsCount = 0L;
         for(Long numberOfNotifications : numberOfNotificationsList){
 
             followingQuestionsNotificationsCount += numberOfNotifications;
         }
 
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
         Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
 
 
         model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
+
+
 
 
 
@@ -736,15 +1005,38 @@ public class ForumController {
 
 
         /*Get unchecked Notifications count and indicate*/
+
         String userName = customUserDetails.getFullName();
 
         User user = userRepository.getById(userId);
 
+
+
         String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
 
-        Long countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
 
-        /*Get unchecked Notifications*/
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
@@ -753,18 +1045,32 @@ public class ForumController {
 
         List<Long> numberOfNotificationsList = new ArrayList<>();
 
-
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
 
-            previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
 
 
+            }
+
+            //Convert int to Long
 
             int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
             Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
@@ -774,11 +1080,14 @@ public class ForumController {
 
         }
 
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
         Long followingQuestionsNotificationsCount = 0L;
         for(Long numberOfNotifications : numberOfNotificationsList){
 
             followingQuestionsNotificationsCount += numberOfNotifications;
         }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
 
         Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
 
@@ -821,16 +1130,40 @@ public class ForumController {
 
 
 
+
         /*Get unchecked Notifications count and indicate*/
+
         String userName = customUserDetails.getFullName();
 
         User user = userRepository.getById(userId);
 
+
+
         String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
 
-        Long countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
 
-        /*Get unchecked Notifications*/
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
         ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
 
 
@@ -839,18 +1172,32 @@ public class ForumController {
 
         List<Long> numberOfNotificationsList = new ArrayList<>();
 
-
+        //Looping logged in users question ids
         for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
 
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
 
-            List<String> answerSubmittedTimeList = notificationsRepository.getFirstansweredTime(userName,loggedUserAnsweredQuestionId);
 
+            //Getting the first answer submitted time of the question
             String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
 
 
-            previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
 
 
+            }
+
+            //Convert int to Long
 
             int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
             Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
@@ -860,11 +1207,14 @@ public class ForumController {
 
         }
 
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
         Long followingQuestionsNotificationsCount = 0L;
         for(Long numberOfNotifications : numberOfNotificationsList){
 
             followingQuestionsNotificationsCount += numberOfNotifications;
         }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
 
         Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
 
@@ -909,6 +1259,102 @@ public class ForumController {
 
         model.addAttribute("questionAnswerMap", questionAnswerMap);
 
+
+
+
+        /*Get unchecked Notifications count and indicate*/
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+        String userName = customUserDetails.getFullName();
+
+        User user = userRepository.getById(userId);
+
+
+
+        String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
+
+
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
+        ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
+
+
+        List<Long> previouslyAnsweredQuestionsNotificationIdsList = new ArrayList<Long>();
+
+
+        List<Long> numberOfNotificationsList = new ArrayList<>();
+
+        //Looping logged in users question ids
+        for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
+
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
+
+
+            //Getting the first answer submitted time of the question
+            String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
+
+
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+
+
+            }
+
+            //Convert int to Long
+
+            int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
+            Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
+
+
+            numberOfNotificationsList.add(previouslyAnsweredQuestionsNotificationsCount);
+
+        }
+
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
+        Long followingQuestionsNotificationsCount = 0L;
+        for(Long numberOfNotifications : numberOfNotificationsList){
+
+            followingQuestionsNotificationsCount += numberOfNotifications;
+        }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
+        Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
+
+
+        model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
+
+
+
         return "forum.html";
 
     }
@@ -932,6 +1378,101 @@ public class ForumController {
                 answerList.stream().collect(Collectors.groupingBy(answer -> answer.getQuestion().getQuestion_id()));
 
         model.addAttribute("questionAnswerMap", questionAnswerMap);
+
+
+
+        /*Get unchecked Notifications count and indicate*/
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+        String userName = customUserDetails.getFullName();
+
+        User user = userRepository.getById(userId);
+
+
+
+        String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
+
+
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
+        ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
+
+
+        List<Long> previouslyAnsweredQuestionsNotificationIdsList = new ArrayList<Long>();
+
+
+        List<Long> numberOfNotificationsList = new ArrayList<>();
+
+        //Looping logged in users question ids
+        for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
+
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
+
+
+            //Getting the first answer submitted time of the question
+            String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
+
+
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+
+
+            }
+
+            //Convert int to Long
+
+            int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
+            Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
+
+
+            numberOfNotificationsList.add(previouslyAnsweredQuestionsNotificationsCount);
+
+        }
+
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
+        Long followingQuestionsNotificationsCount = 0L;
+        for(Long numberOfNotifications : numberOfNotificationsList){
+
+            followingQuestionsNotificationsCount += numberOfNotifications;
+        }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
+        Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
+
+
+        model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
+
+
 
 
         return "forum.html";
@@ -958,6 +1499,100 @@ public class ForumController {
 
 
         model.addAttribute("questionAnswerMap", questionAnswerMap);
+
+
+
+
+        /*Get unchecked Notifications count and indicate*/
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+        String userName = customUserDetails.getFullName();
+
+        User user = userRepository.getById(userId);
+
+
+
+        String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
+
+
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
+        ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
+
+
+        List<Long> previouslyAnsweredQuestionsNotificationIdsList = new ArrayList<Long>();
+
+
+        List<Long> numberOfNotificationsList = new ArrayList<>();
+
+        //Looping logged in users question ids
+        for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
+
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
+
+
+            //Getting the first answer submitted time of the question
+            String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
+
+
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+
+
+            }
+
+            //Convert int to Long
+
+            int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
+            Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
+
+
+            numberOfNotificationsList.add(previouslyAnsweredQuestionsNotificationsCount);
+
+        }
+
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
+        Long followingQuestionsNotificationsCount = 0L;
+        for(Long numberOfNotifications : numberOfNotificationsList){
+
+            followingQuestionsNotificationsCount += numberOfNotifications;
+        }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
+        Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
+
+
+        model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
 
 
         return "forum.html";
@@ -987,8 +1622,149 @@ public class ForumController {
         model.addAttribute("questionAnswerMap", questionAnswerMap);
 
 
+
+
+
+        /*Get unchecked Notifications count and indicate*/
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+        String userName = customUserDetails.getFullName();
+
+        User user = userRepository.getById(userId);
+
+
+
+        String recentNotificationCheckedTime = user.getRecentNotificationsCheckedTime();
+
+
+
+        //Getting unchecked notifications count for asked questions(Notification type 1)
+
+        Long countOfUncheckedNotifications = null;
+
+        if(recentNotificationCheckedTime != null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotifications(userId,recentNotificationCheckedTime,userName);
+
+        }else if(recentNotificationCheckedTime == null){
+
+            countOfUncheckedNotifications = notificationsRepository.getNumberOfUncheckedNotification(userId,userName);
+
+        }
+
+
+
+
+
+        /*Get unchecked Following question Notifications(Notifications type 2*/
+
+        //Get logged in users previously replied question Ids
+        ArrayList<Long> loggedUserAnsweredQuestionIdList = notificationsRepository.getLoggedUserAnsweredQuestionIds(userName);
+
+
+        List<Long> previouslyAnsweredQuestionsNotificationIdsList = new ArrayList<Long>();
+
+
+        List<Long> numberOfNotificationsList = new ArrayList<>();
+
+        //Looping logged in users question ids
+        for (Long loggedUserAnsweredQuestionId: loggedUserAnsweredQuestionIdList) {
+
+            //Get answers submitted time of the question
+            List<String> answerSubmittedTimeList = notificationsRepository.getAnswersSubmittedTime(userName,loggedUserAnsweredQuestionId);
+
+
+            //Getting the first answer submitted time of the question
+            String firstAnswerSubmittedTime = Collections.min(answerSubmittedTimeList);
+
+
+            if(recentNotificationCheckedTime == null){
+
+                //Getting previously answered question's notification ids(new users who have not checked notifications at least once.)
+
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIDs(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime);
+
+            }else{
+
+                //Getting previously answered question's notification ids
+                previouslyAnsweredQuestionsNotificationIdsList = notificationsRepository.getUnCheckedNotificationIds(userName,loggedUserAnsweredQuestionId,firstAnswerSubmittedTime,recentNotificationCheckedTime);
+
+
+            }
+
+            //Convert int to Long
+
+            int previouslyAnsweredQuestionsNotificationIdsListSize = previouslyAnsweredQuestionsNotificationIdsList.size();
+            Long previouslyAnsweredQuestionsNotificationsCount = new Long(previouslyAnsweredQuestionsNotificationIdsListSize);
+
+
+            numberOfNotificationsList.add(previouslyAnsweredQuestionsNotificationsCount);
+
+        }
+
+        //Getting sum of all elements of numberOfNotificationsList (each previously replied questions notifications)
+        Long followingQuestionsNotificationsCount = 0L;
+        for(Long numberOfNotifications : numberOfNotificationsList){
+
+            followingQuestionsNotificationsCount += numberOfNotifications;
+        }
+
+        //int followingQuestionsNotificationsCount = numberOfNotificationsList.size();
+
+        Long numberOfTotalUncheckedNotifications = countOfUncheckedNotifications + followingQuestionsNotificationsCount;
+
+
+        model.addAttribute("numberOfUncheckedNotifications",numberOfTotalUncheckedNotifications);
+
+
+
+
         return "forum.html";
 
+    }
+    @Autowired
+    private PreviousContributionService previousContributionService;
+
+    @GetMapping("/viewProfile")
+    public String loadProfile(Long questionId,Model model){
+
+
+        Long questionAuthorId = questionRepository.getQuestionAuthorId(questionId);
+
+        String fullName = questionRepository.getQuestionAuthorName(questionId);
+        String userEmail = questionRepository.getQuestionAuthorEmail(questionId);
+        String role = previousContributionService.retrieveRole(questionAuthorId);
+        String joinedDate = previousContributionService.retrieveJoinedDate(questionAuthorId);
+        Long numberOfQuestions = previousContributionService.retrieveNumberOfQuestions(questionAuthorId);
+        Long numberOfAnswers = previousContributionService.retrieveNumberOfAnswers(questionAuthorId);
+        Long numberOfUpVotes = previousContributionService.retrieveNumberOfUpVotes(questionAuthorId);
+        Long numberOfDownVotes = previousContributionService.retrieveNumberOfDownVotes(questionAuthorId);
+        Long numberOfAcceptedAnswers = previousContributionService.retrieveNumberOfAcceptedAnswers(questionAuthorId);
+
+        Profile profile = new Profile();
+
+        profile.setQuestionAuthorId(questionAuthorId);
+
+        profile.setFullName(fullName);
+        profile.setEmail(userEmail);
+        profile.setRole(role);
+        profile.setJoinedDateAndTime(joinedDate);
+        profile.setNumberOfAcceptedAnswers(numberOfAcceptedAnswers);
+        profile.setNumberOfQuestionAsked(numberOfQuestions);
+        profile.setNumberOfAnswersGiven(numberOfAnswers);
+        profile.setNumberOfUpVotes(numberOfUpVotes);
+        profile.setNumberOfDownVotes(numberOfDownVotes);
+
+
+        ArrayList<Profile> profileList = new ArrayList<Profile>();
+
+        profileList.add(profile);
+
+        model.addAttribute( "profileList", profileList);
+
+
+
+        return "profile.html";
     }
 
 

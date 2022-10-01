@@ -19,6 +19,8 @@
             <input class="btn btn-danger" type="submit" value="Sign Out ">
         </form>
     </div>
+    <br>
+    <a class="btn btn-primary" href="admin.html" role="button">Back to Admin</a>
     <div>
         <h1>List of Users</h1>
     </div>
@@ -51,7 +53,7 @@
                 <td th:text="${user.email}">E-mail</td>
                 <td th:text="${user.fullName}">Full Name</td>
                 <td th:text="${user.role}">Role</td>
-                <td><a th:href="@{/removeUser(userId=${user.userId})}" onclick="approveDeleteUser()" class="btn btn-danger ml-2">Remove user</a></td>
+                <td><a th:href="@{/removeUser(userId=${user.userId})}" onclick="approveDeleteUser()" class="btn btn-danger ml-2">Remove user</a> <a th:href="@{/changeRole(userId=${user.userId})}" onclick="changeRole()" class="btn btn-success ml-2">Change Role</a></td>
             </tr>
             </tbody>
         </table>

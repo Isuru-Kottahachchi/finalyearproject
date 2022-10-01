@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class ReportedAnswersRestController {
@@ -172,7 +173,7 @@ public class ReportedAnswersRestController {
 
     /*Indicate reported answers to the admin users(Indicate as users have reported this answer in forum)*/
     @PostMapping("/loadAnswerReportStatusForAdmins")
-    public AnswerReportedOrNot loadAnswerReportStatusForAdmins(@RequestParam Long[] answerIdArray){
+    public AnswerReportedOrNot loadAnswerReportStatusForAdmins(){
 
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long userId = customUserDetails.getUserId();
@@ -181,14 +182,26 @@ public class ReportedAnswersRestController {
 
         HashMap<Long,String> answerIdReportStatusMap = new HashMap<>();
 
-        for(Long answerId : answerIdArray){
+
+
+        List<Long> reportedAnswerIdList = reportedAnswersRepository.getReportAnswerIds();
+
+        for(Long reportedAnswerId : reportedAnswerIdList){
+
+            answerIdReportStatusMap.put(reportedAnswerId,"REPORTED");
+
+        }
+
+       /* for(Long answerId : answerIdArray){
+
 
             String answerReportStatus = reportedAnswersRepository.getReportStatus(answerId);
             answerIdReportStatusMap.put(answerId,answerReportStatus);
 
-        }
+        }*/
 
         AnswerReportedOrNot answerReportedOrNotObject = new AnswerReportedOrNot();
+
         answerReportedOrNotObject.setAnswerIdWithReportStatus(answerIdReportStatusMap);
         answerReportedOrNotObject.setLoggedInUsersRole(loggedInUsersRole);
 

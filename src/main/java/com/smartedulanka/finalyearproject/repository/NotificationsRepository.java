@@ -27,6 +27,10 @@ public interface NotificationsRepository extends JpaRepository<Notifications,Lon
 
 
 
+
+    @Query(value = "SELECT notification_id FROM notifications n WHERE n.responded_user_name != ?1 AND n.question_id = ?2 AND n.response_submitted_time > ?3 ",nativeQuery = true)
+    public List<Long> getUnCheckedNotificationIDs(String userName,Long loggedUserAnsweredQuestionId,String firstAnswerSubmittedTime);
+
     @Query(value = "SELECT notification_id FROM notifications n WHERE n.responded_user_name != ?1 AND n.question_id = ?2 AND n.response_submitted_time > ?3 AND n.response_submitted_time > ?4 ",nativeQuery = true)
     public List<Long> getUnCheckedNotificationIds(String userName,Long loggedUserAnsweredQuestionId,String firstAnswerSubmittedTime,String recentNotificationCheckedTime);
 
@@ -39,7 +43,7 @@ public interface NotificationsRepository extends JpaRepository<Notifications,Lon
 
 
     @Query(value = "SELECT response_submitted_time FROM notifications n WHERE n.responded_user_name = ?1 AND n.question_id = ?2 ",nativeQuery = true)
-    public List<String> getFirstansweredTime(String userName,Long loggedUserAnsweredQuestionId);
+    public List<String> getAnswersSubmittedTime(String userName,Long loggedUserAnsweredQuestionId);
 
 
 
@@ -49,6 +53,9 @@ public interface NotificationsRepository extends JpaRepository<Notifications,Lon
 
     @Query(value = "SELECT COUNT(*) FROM notifications n WHERE n.question_author_id = ?1 AND n.response_submitted_time > ?2 AND N.responded_user_name != ?3 ",nativeQuery = true)
     public Long getNumberOfUncheckedNotifications(Long userId,String recentNotificationTime,String userName);
+
+    @Query(value = "SELECT COUNT(*) FROM notifications n WHERE n.question_author_id = ?1 AND N.responded_user_name != ?2 ",nativeQuery = true)
+    public Long getNumberOfUncheckedNotification(Long userId,String userName);
 
 
 

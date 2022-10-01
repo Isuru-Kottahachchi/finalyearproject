@@ -15,22 +15,22 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answer_id;
 
-    @Column(nullable = false, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 1000)
     private String fullAnswer;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String answerSubmittedTime;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private Long answerAuthorId;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private String answerAuthorName;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private String answerAuthorEmail;
 
-    @Column(nullable = true, unique = false, length = 1000)
+    @Column(nullable = false, unique = false, length = 1000)
     private String answerStatus;
 
     public String getAnswerStatus() {

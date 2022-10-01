@@ -44,11 +44,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
 
-
                  http.csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers("/users","/forum.html","/advancedlevelScienceEnglish.html","/advancedlevelScienceSinhala.html","/advancedlevelScienceTamil.html","/olympiadEnglishMedium.html","/olympiadSinhalaMedium.html","/olympiadTamilMedium.html","/advancedlevelCommerceEnglish","/advancedlevelCommerceSinhala","/advancedlevelCommerceTamil","/advancedLevelEnglishStreams.html","/advancedLevelSinhalaStreams.html").authenticated()
+                .antMatchers("/users","/forum.html","/advancedLevelScienceEnglishMedium.html","/advancedLevelScienceSinhalaMedium.html","/advancedLevelScienceTamilMedium.html","/olympiadEnglishMedium.html","/olympiadSinhalaMedium.html","/olympiadTamilMedium.html","/advancedLevelCommerceEnglish","/advancedlevelCommerceSinhala","/advancedlevelCommerceTamil","/advancedLevelEnglishStreams.html","/advancedLevelSinhalaStreams.html","/primarySectionSinhalaMedium.html","/ordinaryLevelSinhalaMedium.html","/otherGovernmentExamsSinhalaMedium.html","/primarySectionEnglishMedium.html","/ordinaryLevelEnglishMedium.html","/otherGovernmentExamsEnglishMedium.html","/primarySectionTamilMedium.html","/ordinaryLevelTamilMedium.html","/advancedLevelTamilStreams.html","/OtherGovernmentExamsTamilMedium.html","/otherGovernmentExamsTamilMedium.html").authenticated()
                 .antMatchers("/admin.html").hasAuthority("ADMIN")
 
                 .antMatchers("/forum.html").hasAnyAuthority("ADMIN","USER")

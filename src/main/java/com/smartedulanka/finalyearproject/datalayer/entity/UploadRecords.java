@@ -34,7 +34,7 @@ public class UploadRecords {
     @Column(nullable = true, unique = false, length = 100)
     private String uploaderEmail;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String uploaderName;
 
 

@@ -118,6 +118,23 @@ public class FileRetrieve {
         return uploadRepo.findAll();
     }
 
+    public List<UploadRecords>  listEmInformationTechnology(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveEMInformationTechnology(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+    public List<UploadRecords> listTmInformationTechnology(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveTMInformationTechnology(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+
+
+
 
     /*Tamil medium science*/
     public List<UploadRecords> listTmCombinedMaths(String keyword) {
@@ -148,12 +165,7 @@ public class FileRetrieve {
         return uploadRepo.findAll();
     }
 
-    public List<UploadRecords> listTmInformationTechnology(String keyword) {
-        if (keyword != null) {
-            return uploadRepo.retrieveTMInformationTechnology(keyword);
-        }
-        return uploadRepo.findAll();
-    }
+
 
 
 
@@ -238,6 +250,30 @@ public class FileRetrieve {
         return uploadRepo.findAll();
     }
 
+    public List<UploadRecords> listSmOrdinaryLevelIT(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveSmOrdinaryLevelIt(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+    public List<UploadRecords> listSmOrdinaryLevelBusinessS(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveSmOrdinaryLevelBusinessS(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+    public List<UploadRecords> listSmOrdinaryLevelHistory(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveSmOrdinaryLevelHistory(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+
+
+
+
     /*English medium Ordinary level*/
     public List<UploadRecords> listEmOrdinaryLevelMaths(String keyword) {
         if (keyword != null) {
@@ -252,8 +288,32 @@ public class FileRetrieve {
         }
         return uploadRepo.findAll();
     }
+    public List<UploadRecords> listEmOrdinaryLevelIT(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveEmOrdinaryLevelIt(keyword);
+        }
+        return uploadRepo.findAll();
+    }
 
-    /*tAMIL medium Ordinary level*/
+    public List<UploadRecords> listEmOrdinaryLevelBusinessS(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveEmOrdinaryLevelBusinessS(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+    public List<UploadRecords> listEmOrdinaryLevelHistory(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveEmOrdinaryLevelHistory(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+
+
+
+
+
+    /*Tamil medium Ordinary level*/
     public List<UploadRecords> listTmOrdinaryLevelMaths(String keyword) {
         if (keyword != null) {
             return uploadRepo.retrieveTmOrdinaryLevelMaths(keyword);
@@ -267,6 +327,8 @@ public class FileRetrieve {
         }
         return uploadRepo.findAll();
     }
+
+
 
 
 
@@ -289,6 +351,39 @@ public class FileRetrieve {
     public List<UploadRecords> listEmEconAdvancedLevel(String keyword) {
         if (keyword != null) {
             return uploadRepo.retrieveEmEconAdvancedLevel(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+    /*Sinhala medium arts*/
+
+    public List<UploadRecords> listSmGeographyAdvancedLevel(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveSmGeographyAdvancedLevel(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+    public List<UploadRecords> listSmHomeScienceAdvancedLevel(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveSmHomeScienceAdvancedLevel(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+
+    /*Tamil medium arts*/
+
+    public List<UploadRecords> listTmGeographyAdvancedLevel(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveTmGeographyAdvancedLevel(keyword);
+        }
+        return uploadRepo.findAll();
+    }
+
+    public List<UploadRecords> listTmHomeScienceAdvancedLevel(String keyword) {
+        if (keyword != null) {
+            return uploadRepo.retrieveTmHomeScienceAdvancedLevel(keyword);
         }
         return uploadRepo.findAll();
     }
@@ -322,7 +417,7 @@ public class FileRetrieve {
 
 
     /*Tamil medium Commerce*/
-    public List<UploadRecords> listtmBStudiesAdvancedLevel(String keyword) {
+    public List<UploadRecords>   listTmBStudiesAdvancedLevel(String keyword) {
         if (keyword != null) {
             return uploadRepo.retrieveEmOrdinaryLevelMaths(keyword);
         }
@@ -336,6 +431,7 @@ public class FileRetrieve {
         }
         return uploadRepo.findAll();
     }
+
 
     public List<UploadRecords> listTmEconAdvancedLevel(String keyword) {
         if (keyword != null) {

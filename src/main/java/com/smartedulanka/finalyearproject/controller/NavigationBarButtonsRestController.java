@@ -27,9 +27,8 @@ public class NavigationBarButtonsRestController {
 
         }catch (Exception e){
 
-            System.out.println(e);
+            //System.out.println(e);
         }
-
 
         return 0L;
 
@@ -56,7 +55,7 @@ public class NavigationBarButtonsRestController {
 
         }catch (Exception e){
 
-            System.out.println(e);
+            //System.out.println(e);
         }
 
         return 0L;
@@ -82,7 +81,7 @@ public class NavigationBarButtonsRestController {
 
         }catch (Exception e){
 
-            System.out.println(e);
+            //System.out.println(e);
         }
 
         return 0L;
@@ -108,7 +107,7 @@ public class NavigationBarButtonsRestController {
 
         }catch (Exception e){
 
-            System.out.println(e);
+            //System.out.println(e);
         }
 
         return 0L;

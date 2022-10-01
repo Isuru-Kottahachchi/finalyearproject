@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +32,7 @@
                 <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
 
 
-            <!--Toogle button for mobile versions-->
+            <!--Toggle button for mobile versions-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span ></span>
                 <span ></span>
@@ -51,12 +51,12 @@
                             Courses
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+                            <li><a class="dropdown-item" href="sinhalaMedium.html">Sinhala Medium</a></li>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><a class="dropdown-item" href="englishMedium.html">English Medium</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                            <li><a class="dropdown-item" href="tamilMedium.html">Tamil Medium</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -66,8 +66,11 @@
                         <a class="nav-link" href="forum.html">Forum</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
-                    <button class="btn">Contact Us</button>
+                <ul>
+                    <form th:action="@{/logout}" method="post">
+
+                        <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
+                    </form>
                 </ul>
 
             </div>
@@ -193,8 +196,8 @@
                     <ul class ="list-unstyled footer-link">
                         <li><a href="#overviews">About us</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+
                     </ul>
                 </div>
 

@@ -9,28 +9,28 @@ public class ReportedAnswers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reported_answer_id;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String reporter_Name;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private Long id_answer;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String answer_author_name;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String answer_author_email;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String reported_time;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private Long reporter_id;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String reportedOrNot;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private Long reportedAnswersQuestionId;
 
     public Long getReportedAnswersQuestionId() {

@@ -87,7 +87,6 @@ public class ReportedQuestionsRestController {
 
             reportedQuestionsOldOb.setReported_time(dtf.format(now));
 
-
             reportedQuestionsOldOb.setId_question(questionId);
 
             reportedQuestionsRepository.save(reportedQuestionsOldOb);
@@ -142,6 +141,18 @@ public class ReportedQuestionsRestController {
 
         HashMap<Long,String> questionIdReportStatusMap = new HashMap<>();
 
+        for(Long question_id : questionIdArray){
+
+            String questionReportedOrNotVar = reportedQuestionsRepository.questionReportedOrNot(userId,question_id);
+
+            questionIdReportStatusMap.put(question_id,questionReportedOrNotVar);
+
+        }
+
+        QuestionReportedOrNot questionReportedOrNotObj = new QuestionReportedOrNot();
+
+        questionReportedOrNotObj.setQuestionIdWithReportStatus(questionIdReportStatusMap);
+
 
 
 
@@ -159,22 +170,8 @@ public class ReportedQuestionsRestController {
         String loggedInUsersRole = userRepository.getRole(userId);
 
 
-
-
-        for(Long question_id : questionIdArray){
-
-            String questionReportedOrNotVar = reportedQuestionsRepository.questionReportedOrNot(userId,question_id);
-
-            questionIdReportStatusMap.put(question_id,questionReportedOrNotVar);
-
-        }
-
-        QuestionReportedOrNot questionReportedOrNotObj = new QuestionReportedOrNot();
-
-        questionReportedOrNotObj.setQuestionIdWithReportStatus(questionIdReportStatusMap);
         questionReportedOrNotObj.setLoggedUsersQuestionIds(arr);
         questionReportedOrNotObj.setLoggedInUsersRole(loggedInUsersRole);
-
 
 
         return questionReportedOrNotObj;

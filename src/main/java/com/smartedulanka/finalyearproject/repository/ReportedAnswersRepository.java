@@ -25,6 +25,10 @@ public interface ReportedAnswersRepository extends JpaRepository<ReportedAnswers
 
 
 
+    @Query(value="SELECT  DISTINCT answer_id  FROM ReportedAnswers r WHERE r.reported_or_not = 'REPORTED'",nativeQuery = true)
+    public List<Long> getReportAnswerIds();
+
+
     @Query(value="SELECT reported_or_not FROM ReportedAnswers r WHERE r.answer_id = ?1",nativeQuery = true)
     public String getReportStatus(Long answerId);
 

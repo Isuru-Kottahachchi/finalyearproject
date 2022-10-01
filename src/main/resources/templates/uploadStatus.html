@@ -9,7 +9,13 @@
 <body>
 <div class="container text-center">
     <h3>Your file uploaded successfully! Thank you! </h3>
-    <h4><a th:href="@{/olympiadEnglishMedium.html}">Back to previous page</a></h4>
+ <!--   <h4><a th:href="@{/advancedLevelScienceEnglish.html}">Back to previous page</a></h4>-->
+
+
+    <div th:each="htmlPage: ${htmlPage}">  </div>
+
+
+    <h4><a th:href="@{'/'+ ${htmlPage} +'.html'}">Back to previous page</a></h4>
 </div>
 
 </body>

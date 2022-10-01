@@ -93,6 +93,14 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
     @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
     public List<UploadRecords> retrieveSMInformationTechnology(String keyword);
 
+    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+    public List<UploadRecords>  retrieveEMInformationTechnology(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTMInformationTechnology(String keyword);
+
+
+
 
 
   /*Retrieve only combined maths files to the Tamil medium combined maths to  past paper section*/
@@ -110,9 +118,7 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
     @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
     public List<UploadRecords> retrieveTMPhysics(String keyword);
 
-    /*Retrieve only InformationTechnology files to  past paper section*/
-    @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
-    public List<UploadRecords> retrieveTMInformationTechnology(String keyword);
+
 
 
 
@@ -159,6 +165,17 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
   public List<UploadRecords> retrieveSmOrdinaryLevelScience(String keyword);
 
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmOrdinaryLevelIt(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords>  retrieveSmOrdinaryLevelBusinessS(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmOrdinaryLevelHistory(String keyword);
+
+
+
 
   /*Retrieve only English medium Ordinary LEVEL paper section*/
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
@@ -167,6 +184,17 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
   public List<UploadRecords> retrieveEmOrdinaryLevelScience(String keyword);
 
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmOrdinaryLevelIt(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords>  retrieveEmOrdinaryLevelBusinessS(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveEmOrdinaryLevelHistory(String keyword);
+
+
+
 
   /*Retrieve only Tamil medium Ordinary LEVEL paper section*/
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
@@ -174,6 +202,8 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
 
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
   public List<UploadRecords> retrieveTmOrdinaryLevelScience(String keyword);
+
+
 
 
   /*Retrieve only English medium Advanced LEVEL commerce paper section*/
@@ -185,6 +215,24 @@ public interface UploadRepository extends JpaRepository<UploadRecords, Long> {
 
   @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
   public List<UploadRecords> retrieveEmEconAdvancedLevel(String keyword);
+
+
+
+  /*Retrieve only Sinhala medium Advanced LEVEL Art paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveSmGeographyAdvancedLevel(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords>   retrieveSmHomeScienceAdvancedLevel(String keyword);
+
+
+  /*Retrieve only Tamil medium Advanced LEVEL Art paper section*/
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords> retrieveTmGeographyAdvancedLevel(String keyword);
+
+  @Query("SELECT u FROM UploadRecords u WHERE u.subjectArea LIKE %?1% AND u.reviewStatus='ACCEPTED'")
+  public List<UploadRecords>   retrieveTmHomeScienceAdvancedLevel(String keyword);
+
 
 
 

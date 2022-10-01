@@ -42,6 +42,13 @@
               }
          }
 
+         function changeRole() {
+              var result= confirm("Are you Sure? This user's role will be changed ");
+              if(result == false){
+                 event.preventDefault();
+              }
+         }
+
 
          //Password hide and unhide
          function hideUnhideFunction(){
@@ -63,11 +70,6 @@
                  }
 
          }
-
-
-
-
-
 
 
 
@@ -133,13 +135,13 @@
 
                           if(rateValue == 1){
 
-                              $('#'+ answerId + 'answer_upVoteId').css("background-color","green");
-                              $('#'+ answerId + 'answer_downVoteId').css("background-color","");
+                                  $('#'+ answerId + 'answer_upVoteId').css("background-color","green");
+                                  $('#'+ answerId + 'answer_downVoteId').css("background-color","");
 
                           }else{
 
-                              $('#'+ answerId + 'answer_upVoteId').css("background-color","");
-                              $('#'+ answerId + 'answer_downVoteId').css("background-color","red");
+                                  $('#'+ answerId + 'answer_upVoteId').css("background-color","");
+                                  $('#'+ answerId + 'answer_downVoteId').css("background-color","red");
 
                           }
 
@@ -202,6 +204,8 @@
 
                  })
                  .then(function(response){
+
+                     //Logged in user's rating buttons colors display
 
                      const usersRatingButtonMap = new Map(Object.entries(response.data.specificUsersRatingValue));
 
@@ -313,7 +317,7 @@
 
                               const questionIdUserIdMap = new Map(Object.entries(response.data.questionIdWithUserId ));
 
-                             //Question delete button is only available for question authors and admin users
+                             //Question delete button and Edit buttons are only available for question authors and admin users
                              questionIdUserIdMap.forEach((value,key) => {
 
                                        if(response.data.currentLoggedInUserId != value && response.data.userRole == "USER" ){
@@ -400,6 +404,8 @@
 
                                            });
 
+
+
                                             /*Hide report button from logged in users own questions*/
                                             /*Convert object to array*/
                                             const loggedUsersQuestionIdsArray = Object.values(response.data.loggedUsersQuestionIds);
@@ -461,7 +467,7 @@
                     })
 
                      /*Show reported answer when admin checks reported answers*/
-                     axios.post('/loadAnswerReportStatusForAdmins?answerIdArray=' + answerIdArray , {
+                     axios.post('/loadAnswerReportStatusForAdmins' , {
 
                      })
                      .then(function(response){
@@ -614,6 +620,28 @@
                             $('#'+'numberOfReportedAnswers').html(response.data.numberOfReportedAnswers);
 
                     })
+
+          }
+          function loadProfile(viewedUserId){
+
+               axios.post('/loadProfile?viewedUserId=' + viewedUserId , {
+
+               })
+               .then(function(response){
+
+                    if(response.data == "Matched"){
+
+                         $('#' + 'profileEditButton').show();
+
+
+                    }else if(response.data == "NotMatched"){
+
+                         $('#'+ 'profileEditButton').hide();
+
+                    }
+
+
+               })
 
           }
 
@@ -893,6 +921,7 @@
          }
 
 
+
          /* var btnTest = document.getElementById("btncolor");
 
                    btnTest.addEventListener("click", function changeColorButton() {
@@ -906,6 +935,41 @@
            property.style.backgroundColor = "Pink";
           alert("Isuru Kotta");
          }*/
+
+
+
+         /*function yourJsFunction(){
+
+                alert("Working");
+         }
+*/
+         /*function answerSubmitTest(qid){
+
+              *//*alert("Answer submitted");
+               window.location.hash = $("#qid");
+               window.location.reload(true);*//*
+
+               const element = document.getElementById("qid");
+                element.scrollIntoView();
+         }*/
+
+       /*  function iKTest(str){
+
+            alert(str);
+            var id = str;
+
+          *//*  var elem = document.getElementById("str + 'questionidload");
+             elem.scrollIntoView();*//*
+
+             window.location.href = forum.html;
+
+             var myDivID = "#" + id + "questionidload";
+             window.location.hash = myDivID;
+
+
+         }*/
+
+
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Upload Status</title>
+    <title>Answer Status</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 
 </head>
@@ -10,7 +10,14 @@
 <div class="container text-center">
     <h3>Your answer submitted successfully! Thank you! </h3>
     <h4><a th:href="@{/forum.html}">Back to forum page</a></h4>
+
+    <div th:each="questionId: ${questionId}">  </div>
+    <!--<button th:attr="onclick=|iKTest('${questionId}')|">Click</button>-->
+
+    <h4><a th:href="@{'/forum.html' + '#' + ${questionId} + 'questionidload'}">Go to question</a></h4>
 </div>
 
+
+<script src="script.js"></script>
 </body>
 </html>

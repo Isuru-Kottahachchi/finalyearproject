@@ -9,13 +9,13 @@
     <!--Title Icon-->
     <link rel= "icon" href = "images/elearnerlogo.PNG"/>
 
-    <!--Linking Boostrap CSS to the project(Linking Boostrap to the project/without this boostrap is not working. boostrap.min.css vs boostrap.css/can use CDN also)-->
+    <!--Linking Bootstrap CSS to the project(Linking Boostrap to the project/without this boostrap is not working. boostrap.min.css vs boostrap.css/can use CDN also)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!--Linking CSS File-->
     <link rel ="stylesheet" href="style.css"/>
 
-    <!--Font Awsome plugin--> <!--Social media buttons and other icons-->
+    <!--Font Awesome plugin--> <!--Social media buttons and other icons-->
     <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
 
 </head>
@@ -51,12 +51,12 @@
                             Courses
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+                            <li><a class="dropdown-item" href="sinhalaMedium.html">Sinhala Medium</a></li>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><a class="dropdown-item" href="englishMedium.html">English Medium</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                            <li><a class="dropdown-item" href="tamilMedium.html">Tamil Medium</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -88,7 +88,7 @@
     <div class="container">
         <div class="section-title">
             <div class="col-md-8 offset-md-2">
-                <p class="lead" style="text-align:center;font-weight: bold;"> Welcome to ENGLISH medium Olympiad section!</p>
+                <p class="lead" style="text-align:center;font-weight: bold;"> වෙනත් රජයේ විභාග ප්‍රශ්න පත්‍</p>
             </div>
         </div><!-- end title -->
 
@@ -105,8 +105,8 @@
 
 
         <div class="container">
-            <p class="lead" style="text-align:left;font-weight:bold;color:red">Olympiad Biology past paper section!</p>
-            <p class="align-center" style="color:black"> <b>You can download Biology Olympiad past papers or relevant model papers by using following links</b></p>
+            <p class="lead" style="text-align:left;font-weight:bold;color:red">දහම් පාසල් අවසාන වසර විභාග</p>
+            <p class="align-center" style="color:black"> <b>ඔබට අවශය දහම් පාසල් අවසාන වසර විභාග පසුගිය විභාග ප්‍රශ්න පත්‍ර download කර ගන්න.</b></p>
             <p align="center">
 
                 <input class="btn btn-warning"  type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper section"></input>
@@ -143,28 +143,22 @@
                 </div>
             </div>
         </div>
-        <!-- <div align="center">
-             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Biology Olympiad 2008 Part I/II 2010 </a> </li></ul>
-         </div>
-         <div align="center" th:each="eMOlympiadBioRecord: ${eMOlympiadBioRecords}">
-             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadBioRecord.UploadedFileName}" th:text="${eMOlympiadBioRecord.fileName}"target="_blank"> </a> </li></ul>
-         </div>
-     </div>-->
+
 
 
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <p class="align-center" style="color:black"> <b>You can add Biology Olympiad past papers or relevant model papers to the system</b></p>
-                    <p>If you have relevant Biology Olympiad model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Biology_Olympiad_English_Medium_PartI/II_2022)</b></p>
+                    <p class="align-center" style="color:black"> <b>ඔබ සතුව දහම් පාසල් අවසාන වසර විභාග ප්‍රශ්න පත්‍ර තිබේ නම් upload කරන්න.</b></p>
+                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Biology_Olympiad_English_Medium_PartI/II_2022)</b></p>
 
                     <form action="upload" method="post" enctype="multipart/form-data">
 
 
                         <p>
                             <input type="file" name="file" required accept="application/pdf,application"/>
-                            <input  name="userfileupload" type="hidden" value="OlympiadBioEnglishMedium" />
-                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                            <input  name="userfileupload" type="hidden" value="DahamPasalAwasanaShreniSinhalaMedium" />
+                            <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsSinhalamedium" />
                         </p>
 
                         <p>
@@ -187,8 +181,8 @@
 
 
         <div class="container">
-            <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">Olympiad Chemistry past paper section!</p>
-            <p class="align-center" style="color:black"> <b>You can download Chemistry Olympiad past papers or relevant model papers by using following links</b></p>
+            <p class="lead" style="text-align:left;font-weight: bold;color: red;font-size: 25px">මූලික පිරිවෙන් විභාග</p>
+            <p class="align-center" style="color:black"> <b>ඔබට අවශය මූලික පිරිවෙන් විභාග පසුගිය විභාග ප්‍රශ්න පත්‍ර download කර ගන්න.</b></p>
             <p align="center">
 
                 <input class="btn btn-warning"  type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper sections"></input>
@@ -233,14 +227,14 @@
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <p class="align-center" style="color:black"> <b>You can add Chemistry Olympiad past papers or relevant model papers to the system</b></p>
-                    <p>If you have relevant Chemistry Olympiad model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: English_Medium_Chemistry Olympiad_PartI/II_2022)</b></p>
+                    <p class="align-center" style="color:black"> <b>ඔබ සතුව මූලික පිරිවෙන් විභාග ප්‍රශ්න පත්‍ර තිබේ නම් upload කරන්න.</b></p>
+                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: English_Medium_Chemistry Olympiad_PartI/II_2022)</b></p>
 
                     <form action="upload" method="post" enctype="multipart/form-data">
                         <p>
                             <input type="file" name="file" required accept="application/pdf,application"/>
                             <input  name="userfileupload" type="hidden" value="OlympiadChemistryEnglishMedium" />
-                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                            <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsEnglishMedium" />
                         </p>
                         <p>
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -262,11 +256,11 @@
 
 
         <div class="container">
-            <p class="lead" style="text-align:left;font-weight:bold;color:red">Olympiad Physics past paper section!</p>
-            <p class="align-center" style="color:black"> <b>You can download Physics Olympiad past papers or relevant model papers by using following links</b></p>
+            <p class="lead" style="text-align:left;font-weight:bold;color:red">ග්‍රාම නිලදාරී විභාග</p>
+            <p class="align-center" style="color:black"> <b>ඔබට අවශය ග්‍රාම නිලදාරී විභාග පසුගිය විභාග ප්‍රශ්න පත්‍ර download කර ගන්න.</b></p>
             <p align="center">
 
-                <input class="btn btn-warning" onclick="changeCommentSectionButtonText()" type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper sections"></input>
+                <input class="btn btn-warning"  type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show past paper sections"></input>
             </p>
 
             <!--Inside the collapse-->
@@ -289,8 +283,8 @@
                                         <div align="center">
                                             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Physics Olympiad 2008 Part I/II 2010 </a> </li></ul>
                                         </div>
-                                        <div align="center" th:each="eMOlympiadPhysicsRecord: ${eMOlympiadPhysicsRecords}">
-                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadPhysicsRecord.UploadedFileName}" th:text="${eMOlympiadPhysicsRecord.fileName}"target="_blank"> </a> </li></ul>
+                                        <div align="center" th:each="sMGramaNiladariExam: ${sMGramaNiladariExams}">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${sMGramaNiladariExam.UploadedFileName}" th:text="${sMGramaNiladariExam.fileName}"target="_blank"> </a> </li></ul>
                                         </div>
 
                                     </div>
@@ -308,14 +302,14 @@
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <p class="align-center" style="color:black"> <b>You can add Physics Olympiad past papers or relevant model papers to the system</b></p>
-                    <p>If you have relevant Combined maths model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Olympiad_English_Medium_Physics_PartI/II_2022)</b></p>
+                    <p class="align-center" style="color:black"> <b>ඔබ සතුව ග්‍රාම නිලදාරී විභාග ප්‍රශ්න පත්‍ර තිබේ නම් upload කරන්න.</b></p>
+                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Olympiad_English_Medium_Physics_PartI/II_2022)</b></p>
 
                     <form action="upload" method="post" enctype="multipart/form-data">
                         <p>
                             <input type="file" name="file" required accept="application/pdf,application"/>
                             <input  name="userfileupload" type="hidden" value="OlympiadPhysicsEnglishMedium" />
-                            <input  name="fileCategory" type="hidden" value="OlympiadEnglishMedium" />
+                            <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsSinhalamedium" />
                         </p>
 
                         <p>
@@ -331,57 +325,13 @@
 
 
 
-
-
-
-
-
-    <!--   <p align="center">
-
-           <input class="btn btn-warning" onclick="changeCommentSectionButtonText()" type="button" data-bs-toggle="collapse"  id="commentSection"  data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 " value="Show comment sections"></input>
-       </p>
-
-       &lt;!&ndash;Inside the collapse&ndash;&gt;
-
-       <div class="row">
-           <div class="col">
-               <div class="collapse multi-collapse" id="multiCollapse1">
-                   <div class="card card-body"  >
-
-
-                       <div class="card-body p-2 p-sm-3">
-                           <div class="media forum-item"  >
-                               <div style="background-color:yellow;">
-
-                                   <a href="#" data-toggle="collapse" data-target=".forum-content"> </a>
-                               </div><br>
-
-                               <div class="media-body">
-
-                                   <div class="mb-3">
-                                       <p class="align-self-center" style="color:black"> <b>Rate this answer</b></p>
-                                   </div>
-
-                                   <hr style="color:black;border:2px solid black;">
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>-->
-
-
-
-
-
     <!--Footer section-->
     <footer class ="site-footer">
         <div class = "container" >
             <div class = "row mb-5">
                 <div class = "col-md-3 mb-5">
                     <h2>About us</h2>
-                    <p>Our main goal is to improve knowledge of knowledge seekers</p>
+                    <p>Our main goal is to improve the knowledge of knowledge seekers.</p>
 
 
                 </div>
@@ -404,8 +354,8 @@
                     <ul class ="list-unstyled footer-link">
                         <li><a href="#overviews">About us</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+
 
                     </ul>
 

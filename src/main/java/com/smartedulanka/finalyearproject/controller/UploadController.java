@@ -6,6 +6,7 @@ import com.smartedulanka.finalyearproject.service.AmazonClient;
 import com.smartedulanka.finalyearproject.service.FileUploadRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,13 +32,16 @@ public class UploadController {
 
     /* Getting hidden inputs using hidden input fields(requestParam)*/
     @PostMapping("/upload")
-    public String uploadFile(@RequestPart(value = "file") MultipartFile file,@RequestParam(value = "userfileupload",required = true)String subjectAreaSelect,@RequestParam(value = "fileCategory",required = true)String fileCategory) {
+    public String uploadFile(@RequestPart(value = "file") MultipartFile file, @RequestParam(value = "userfileupload",required = true)String subjectAreaSelect, @RequestParam(value = "fileCategory",required = true)String fileCategory, Model model) {
 
         try{
 
             fileuploadrecord.saveUploadRecord(amazonClient.uploadFile(file),subjectAreaSelect,file.getOriginalFilename());
 
-            return fileCategory + "UploadStatus";
+
+            model.addAttribute("htmlPage",fileCategory);
+
+            return "UploadStatus";
 
         }catch(Exception e){
 

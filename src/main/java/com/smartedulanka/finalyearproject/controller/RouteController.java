@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,44 +36,26 @@ public class RouteController {
 
 
     @RequestMapping("/grade5MathematicsSinhalaMedium.html")
-    public String loadgrade5SubjectsSinhalaMedium() {
+    public String loadGrade5SubjectsSinhalaMedium() {
         return  "grade5MathematicsSinhalaMedium.html";
     }
 
    /* @RequestMapping("/grade5MathematicsSinhalaMedium.html")
-    public String loadgrade5SubjectsSinhalaMedium() {
+    public String loadGrade5SubjectsSinhalaMedium() {
         return  "grade5MathematicsSinhalaMedium.html";
     }*/
 
     @RequestMapping("/grade5EnvironmentSinhalaMedium.html")
-    public String loadgrade5ScienceSinhalaMedium() {
+    public String loadGrade5ScienceSinhalaMedium() {
         return  "grade5EnvironmentSinhalaMedium.html";
     }
 
 
-    @RequestMapping("/OlympiadEnglishMediumUploadStatus.html")
-    public String loadOlympiadPhysicsEnglishMediumUploadstatustest() {
-        return  "OlympiadEnglishMediumUploadStatus.html";
-    }
 
-    @RequestMapping("/advancedLevelScienceEnglishMediumUploadStatus.html")
+
+    @RequestMapping("/uploadStatus.html")
     public String loadScienceSectionEnglishMedium() {
-        return  "advancedLevelScienceEnglishMediumUploadStatus.html";
-    }
-
-    @RequestMapping("/OlympiadSinhalaMediumUploadStatus.html")
-    public String loadSmUploadStatus() {
-        return  "OlympiadSinhalaMediumUploadStatus.html";
-    }
-
-    @RequestMapping("/OlympiadTamilMediumUploadStatus.html")
-    public String loadTmUploadStatus() {
-        return  "OlympiadTamilMediumUploadStatus.html";
-    }
-
-    @RequestMapping("/olympiadEmUploadStatus.html")
-    public String loadEmMedium() {
-        return  "olympiadEmUploadStatus.html";
+        return  "uploadStatus.html";
     }
 
 
@@ -80,19 +63,21 @@ public class RouteController {
 
 
 
-    @RequestMapping("/englishmedium.html")
-    public String loadEnglishmedium() {
-        return  "englishmedium";
+
+
+    @RequestMapping("/englishMedium.html")
+    public String loadEnglishMdium() {
+        return  "englishMedium";
     }
 
-    @RequestMapping("/sinhalamedium.html")
+    @RequestMapping("/sinhalaMedium.html")
     public String loadSinhalaMedium() {
-        return  "sinhalamedium";
+        return  "sinhalaMedium";
     }
 
-    @RequestMapping("/tamilmedium.html")
+    @RequestMapping("/tamilMedium.html")
     public String loadTamilMedium() {
-        return  "tamilmedium";
+        return  "tamilMedium";
     }
 
 
@@ -102,19 +87,19 @@ public class RouteController {
 
 
 
-    @RequestMapping("/PrimarySectionEnglishMedium.html")
+    @RequestMapping("/primarySectionEnglishMedium.html")
     public String loadEnglishMediumPrimarySection() {
-        return  "PrimarySectionEnglishMedium.html";
+        return  "primarySectionEnglishMedium.html";
     }
 
-    @RequestMapping("/PrimarySectionSinhalaMedium.html")
+    @RequestMapping("/primarySectionSinhalaMedium.html")
     public String loadSinhalaMediumPrimarySection() {
-        return  "PrimarySectionSinhalaMedium.html";
+        return  "primarySectionSinhalaMedium.html";
     }
 
-    @RequestMapping("/PrimarySectionTamilMedium.html")
+    @RequestMapping("/primarySectionTamilMedium.html")
     public String loadTamilMediumPrimarySection() {
-        return  "PrimarySectionTamilMedium.html";
+        return  "primarySectionTamilMedium.html";
     }
 
     @RequestMapping("/admin.html")
@@ -137,6 +122,8 @@ public class RouteController {
     public String advancedLevelTamilStreams() {
         return  "advancedLevelTamilStreams.html";
     }
+
+
 
 
 
@@ -182,6 +169,8 @@ public class RouteController {
     public String listUploadRecord(Model model) {
 
         List<UploadRecords> pendingFileRecords = uploadRepo.retrieveAllPendingFiles();
+
+        Collections.reverse(pendingFileRecords);
         model.addAttribute("pendingFileRecords", pendingFileRecords);
 
         return "fileReview";
@@ -236,7 +225,6 @@ public class RouteController {
 
     }
 
-
     /*Search  rejected files records*/
     @GetMapping("/searchRejectedFilesRecords")
     public String searchRejectedFilesRecords(Model model,@Param("keyword") String keyword){
@@ -265,8 +253,8 @@ public class RouteController {
 
 
 
-  /* File upload*/
-    @GetMapping("/advancedlevelScienceEnglish.html")
+  /* File upload Approved files Load*/
+    @GetMapping("/advancedLevelScienceEnglishMedium.html")
     public String addFilesSystem(Model model){
 
         /*List<UploadRecord> records = uploadRepo.findAll();
@@ -288,10 +276,10 @@ public class RouteController {
         model.addAttribute("eMInformationTechnologyRecords", eMInformationTechnologyRecords);
 
 
-        return "advancedlevelScienceEnglish.html";
+        return "advancedLevelScienceEnglishMedium.html";
     }
 
-    @RequestMapping("/advancedlevelScienceSinhala.html")
+    @RequestMapping("/advancedLevelScienceSinhalaMedium.html")
     public String addFilesToAdvancedLevelsScienceSinhala(Model model) {
 
         List<UploadRecords> sMCombinedMathsRecords =  fileRetrieve.listSmCombinedMaths("AdvancedLevelCMathsSinhalaMedium");
@@ -306,15 +294,12 @@ public class RouteController {
         List<UploadRecords> sMPhysicsRecords = fileRetrieve.listSmPhysics("AdvancedLevelPhysicsSinhalaMedium");
         model.addAttribute("sMPhysicsRecords", sMPhysicsRecords);
 
-        List<UploadRecords> sMInformationTechnologyRecords = fileRetrieve.listSmInformationTechnology("IT_SinhalaMedium");
-        model.addAttribute("sMInformationTechnologyRecords", sMInformationTechnologyRecords);
 
-
-        return  "advancedlevelScienceSinhala";
+        return  "advancedLevelScienceSinhalaMedium";
     }
 
 
-    @RequestMapping("/advancedlevelScienceTamil.html")
+    @RequestMapping("/advancedLevelScienceTamilMedium.html")
     public String advancedLevelScienceTamil(Model model) {
 
         List<UploadRecords> tMCombinedMathsRecords =  fileRetrieve.listTmCombinedMaths("CombinedMathsTamilMedium");
@@ -329,12 +314,43 @@ public class RouteController {
         List<UploadRecords> tMPhysicsRecords = fileRetrieve.listTmPhysics("PhysicsTamilMedium");
         model.addAttribute("tMPhysicsRecords", tMPhysicsRecords);
 
-        List<UploadRecords> tMInformationTechnologyRecords = fileRetrieve.listTmInformationTechnology("IT_TamilMedium");
+
+        return  "advancedLevelScienceTamilMedium";
+    }
+
+    @GetMapping("/advancedLevelITEnglishMedium.html")
+    public String addAdvancedLevelITEnglishMedium(Model model){
+
+
+        List<UploadRecords> eMInformationTechnologyRecords = fileRetrieve.listEmInformationTechnology("AdvancedLevelITEnglishMedium");
+        model.addAttribute("eMInformationTechnologyRecords", eMInformationTechnologyRecords);
+
+
+        return "advancedLevelITEnglishMedium";
+    }
+
+    @GetMapping("/advancedLevelITSinhalaMedium.html")
+    public String addAdvancedLevelITSinhalaMedium(Model model){
+
+        List<UploadRecords> sMInformationTechnologyRecords = fileRetrieve.listSmInformationTechnology("AdvancedLevelITSinhalaMedium");
+        model.addAttribute("sMInformationTechnologyRecords", sMInformationTechnologyRecords);
+
+
+        return "advancedLevelITSinhalaMedium";
+    }
+
+    @GetMapping("/advancedLevelITTamilMedium.html")
+    public String addAdvancedLevelITTamilMedium(Model model){
+
+        List<UploadRecords> tMInformationTechnologyRecords = fileRetrieve.listTmInformationTechnology("AdvancedLevelITTamilMedium");
         model.addAttribute("tMInformationTechnologyRecords", tMInformationTechnologyRecords);
 
 
-        return  "advancedlevelScienceTamil";
+        return "advancedLevelITSinhalaMedium";
     }
+
+
+
 
     @RequestMapping("/olympiadEnglishMedium.html")
     public String olympiadEnglishMedium(Model model) {
@@ -391,118 +407,173 @@ public class RouteController {
 
 
 
-    @RequestMapping("/advancedlevelCommerceEnglish")
-    public String advancedlevelCommerceEnglish(Model model) {
+    @RequestMapping("/advancedLevelCommerceEnglishMedium")
+    public String advancedLevelCommerceEnglish(Model model) {
 
 
-        List<UploadRecords> eMBStudiesRecords =  fileRetrieve.listEmBStudiesAdvancedLevel("AdvancedLevelBusinessStudiesEnglishMedium");
-        model.addAttribute("eMBStudiesRecords", eMBStudiesRecords);
+        List<UploadRecords> eMAdvancedLevelBStudiesRecords =  fileRetrieve.listEmBStudiesAdvancedLevel("AdvancedLevelBusinessStudiesEnglishMedium");
+        model.addAttribute("eMAdvancedLevelBStudiesRecords", eMAdvancedLevelBStudiesRecords);
 
-        List<UploadRecords> emAccountingRecords =  fileRetrieve.listEmAccountingAdvancedLevel("AdvancedLevelAccountingEnglishMedium");
-        model.addAttribute("emAccountingRecords", emAccountingRecords);
+        List<UploadRecords> eMAdvancedLevelAccountingRecords =  fileRetrieve.listEmAccountingAdvancedLevel("AdvancedLevelAccountingEnglishMedium");
+        model.addAttribute("eMAdvancedLevelAccountingRecords", eMAdvancedLevelAccountingRecords);
 
-        List<UploadRecords> emEconRecords =  fileRetrieve.listEmEconAdvancedLevel("AdvancedLevelEconEnglishMedium");
-        model.addAttribute("emEconRecords", emEconRecords);
-
-
+        List<UploadRecords> eMAdvancedLevelEconRecords =  fileRetrieve.listEmEconAdvancedLevel("AdvancedLevelEconomicsEnglishMedium");
+        model.addAttribute("eMAdvancedLevelEconRecords", eMAdvancedLevelEconRecords);
 
 
-        return "advancedlevelCommerceEnglish.html";
+        return "advancedLevelCommerceEnglishMedium.html";
 
     }
-    @RequestMapping("/advancedlevelCommerceSinhala.html")
-    public String advancedlevelCommerceSinhala(Model model) {
+    @RequestMapping("/advancedLevelCommerceSinhalaMedium.html")
+    public String advancedLevelCommerceSinhala(Model model) {
 
-        List<UploadRecords> smStudiesRecords =  fileRetrieve.listSmBStudiesAdvancedLevel("AdvancedLevelBusinessStudiesEnglishMedium");
-        model.addAttribute("eMBStudiesRecords", smStudiesRecords);
+        List<UploadRecords> sMAdvancedLevelBStudiesRecords =  fileRetrieve.listSmBStudiesAdvancedLevel("AdvancedLevelBStudiesSinhalaMedium");
+        model.addAttribute("sMAdvancedLevelBStudiesRecords", sMAdvancedLevelBStudiesRecords);
 
-        List<UploadRecords> smAccountingRecords =  fileRetrieve.listSmAccountingAdvancedLevel("AdvancedLevelAccountingEnglishMedium");
-        model.addAttribute("smAccountingRecords", smAccountingRecords);
+        List<UploadRecords> sMAdvancedLevelAccountingRecords =  fileRetrieve.listSmAccountingAdvancedLevel("AdvancedLevelAccountingSinhalaMedium");
+        model.addAttribute("sMAdvancedLevelAccountingRecords", sMAdvancedLevelAccountingRecords);
 
-        List<UploadRecords> smEconRecords =  fileRetrieve.listSmEconAdvancedLevel("AdvancedLevelEconEnglishMedium");
-        model.addAttribute("smEconRecords", smEconRecords);
-
-
+        List<UploadRecords> sMAdvancedLevelEconRecords =  fileRetrieve.listSmEconAdvancedLevel("AdvancedLevelEconomicsSinhalaMedium");
+        model.addAttribute("sMAdvancedLevelEconRecords", sMAdvancedLevelEconRecords);
 
 
-        return "advancedlevelCommerceSinhala.html";
+        return "advancedLevelCommerceSinhalaMedium.html";
 
     }
-    @RequestMapping("/advancedlevelCommerceTamil.html")
-    public String advancedlevelCommerceTamil(Model model) {
+    @RequestMapping("/advancedLevelCommerceTamilMedium.html")
+    public String advancedLevelCommerceTamil(Model model) {
 
 
-        List<UploadRecords> tmBStudiesRecords =  fileRetrieve.listEmBStudiesAdvancedLevel("AdvancedLevelBusinessStudiesEnglishMedium");
-        model.addAttribute("tmBStudiesRecords", tmBStudiesRecords);
+        List<UploadRecords> tMAdvancedLevelBStudiesRecords =  fileRetrieve.listTmBStudiesAdvancedLevel("AdvancedLevelBusinessStudiesTamilMedium");
+        model.addAttribute("tMAdvancedLevelBStudiesRecords", tMAdvancedLevelBStudiesRecords);
 
-        List<UploadRecords> tmAccountingRecords =  fileRetrieve.listTmAccountingAdvancedLevel("AdvancedLevelAccountingEnglishMedium");
-        model.addAttribute("tmAccountingRecords", tmAccountingRecords);
+        List<UploadRecords> tMAdvancedLevelAccountingRecords =  fileRetrieve.listTmAccountingAdvancedLevel("AdvancedLevelAccountingTamilMedium");
+        model.addAttribute("tmAdvancedLevelAccountingRecords", tMAdvancedLevelAccountingRecords);
 
-        List<UploadRecords> tmEconRecords =  fileRetrieve.listEmEconAdvancedLevel("AdvancedLevelEconEnglishMedium");
-        model.addAttribute("tmEconRecords", tmEconRecords);
-
-
+        List<UploadRecords> tMAdvancedLevelEconRecords =  fileRetrieve.listTmEconAdvancedLevel("AdvancedLevelEconomicsTamilMedium");
+        model.addAttribute("tMAdvancedLevelEconRecords", tMAdvancedLevelEconRecords);
 
 
-        return "advancedlevelCommerceTamil.html";
+        return "advancedLevelCommerceTamilMedium.html";
 
     }
 
 
+    @RequestMapping("/advancedLevelArtSinhalaMedium.html")
+    public String advancedLevelArtSinhalaMedium(Model model) {
 
-    @RequestMapping("/ordinarylevelsinhalamediam.html")
+        List<UploadRecords> sMAdvancedLevelGeographyRecords =  fileRetrieve.listSmGeographyAdvancedLevel("AdvancedLevelGeographySinhalaMedium");
+        model.addAttribute("sMAdvancedLevelGeographyRecords", sMAdvancedLevelGeographyRecords);
+
+        List<UploadRecords> sMAdvancedLevelHomeScienceRecords =  fileRetrieve.listSmHomeScienceAdvancedLevel("AdvancedLevelHomeScienceSinhalaMedium");
+        model.addAttribute("sMAdvancedLevelHomeScienceRecords", sMAdvancedLevelHomeScienceRecords);
+
+/*        List<UploadRecords> sMAdvancedLevelEconRecords =  fileRetrieve.listSmEconAdvancedLevel("AdvancedLevelEconomicsEnglishMedium");
+        model.addAttribute("sMAdvancedLevelEconRecords", sMAdvancedLevelEconRecords);*/
+
+
+        return "advancedLevelArtSinhalaMedium.html";
+
+    }
+    @RequestMapping("/advancedLevelArtTamilMedium.html")
+    public String advancedLevelArtTamilMedium(Model model) {
+
+        List<UploadRecords> tMAdvancedLevelGeographyRecords =  fileRetrieve.listTmGeographyAdvancedLevel("AdvancedLevelGeographyTamilMedium");
+        model.addAttribute("tMAdvancedLevelGeographyRecords", tMAdvancedLevelGeographyRecords);
+
+        List<UploadRecords> tMAdvancedLevelHomeScienceRecords =  fileRetrieve.listTmHomeScienceAdvancedLevel("AdvancedLevelHomeScienceTamilMedium");
+        model.addAttribute("tMAdvancedLevelHomeScienceRecords", tMAdvancedLevelHomeScienceRecords);
+
+/*        List<UploadRecords> sMAdvancedLevelEconRecords =  fileRetrieve.listSmEconAdvancedLevel("AdvancedLevelEconomicsEnglishMedium");
+        model.addAttribute("sMAdvancedLevelEconRecords", sMAdvancedLevelEconRecords);*/
+
+
+        return "advancedLevelArtTamilMedium.html";
+
+    }
+
+
+
+    @RequestMapping("/ordinaryLevelSinhalaMedium.html")
     public String OLevelEnglishSubjects(Model model) {
 
-        List<UploadRecords> sMOlMathematicsRecords =  fileRetrieve.listSmOrdinaryLevelMaths("OlMathematicsSinhalaMedium");
-        model.addAttribute("sMOlMathematicsRecords", sMOlMathematicsRecords);
+        List<UploadRecords> sMOlMathematicsRecords =  fileRetrieve.listSmOrdinaryLevelMaths("OrdinaryLevelMathematicsSinhalaMedium");
+        model.addAttribute("sMOrdinaryLevelMathematicsRecords", sMOlMathematicsRecords);
 
-        List<UploadRecords> sMOlScienceRecords =  fileRetrieve.listSmOrdinaryLevelScience("OlScienceSinhalaMedium");
-        model.addAttribute("sMOlScienceRecords", sMOlScienceRecords);
+        List<UploadRecords> sMOrdinaryLevelScienceRecords =  fileRetrieve.listSmOrdinaryLevelScience("OrdinaryLevelScienceSinhalaMedium");
+        model.addAttribute("sMOrdinaryLevelScienceRecords", sMOrdinaryLevelScienceRecords);
 
-        return  "ordinarylevelsinhalamediam.html";
+        List<UploadRecords> sMOrdinaryLevelITRecords =  fileRetrieve.listSmOrdinaryLevelIT("OrdinaryLevelITSinhalaMedium");
+        model.addAttribute(" sMOrdinaryLevelITRecords", sMOrdinaryLevelITRecords);
+
+        List<UploadRecords> sMOrdinaryLevelBusinessSRecords =  fileRetrieve.listSmOrdinaryLevelBusinessS("OrdinaryLevelBusinessSSinhalaMedium");
+        model.addAttribute("sMOrdinaryLevelBusinessSRecords", sMOrdinaryLevelBusinessSRecords);
+
+        List<UploadRecords> sMOrdinaryLevelHistoryRecords =  fileRetrieve.listSmOrdinaryLevelHistory("OrdinaryLevelHistorySinhalaMedium");
+        model.addAttribute("sMOrdinaryLevelHistoryRecords", sMOrdinaryLevelHistoryRecords);
+
+        return  "ordinaryLevelSinhalaMedium.html";
     }
 
-    @RequestMapping("/ordinarylevelenglishmediam.html")
+    @RequestMapping("/ordinaryLevelEnglishMedium.html")
     public String OLevelSinhalaSubjects(Model model) {
 
-        List<UploadRecords> eMOlMathematicsRecords =  fileRetrieve.listEmOrdinaryLevelMaths("OlMathematicsEnglishMedium");
-        model.addAttribute("eMOlMathematicsRecords", eMOlMathematicsRecords);
+        List<UploadRecords> eMOrdinaryLevelMathematicsRecords =  fileRetrieve.listEmOrdinaryLevelMaths("OrdinaryLevelMathsEnglishMedium");
+        model.addAttribute("eMOrdinaryLevelMathematicsRecords", eMOrdinaryLevelMathematicsRecords);
 
-        List<UploadRecords> eMOlScienceRecords =  fileRetrieve.listEmOrdinaryLevelScience("OlScienceEnglishMedium");
-        model.addAttribute("eMOlScienceRecords", eMOlScienceRecords);
-        return  "ordinarylevelenglishmediam.html";
+        List<UploadRecords> eMOrdinaryLevelScienceRecords =  fileRetrieve.listEmOrdinaryLevelScience("OrdinaryLevelScienceEnglishMedium");
+        model.addAttribute("eMOrdinaryLevelScienceRecords", eMOrdinaryLevelScienceRecords);
+
+        List<UploadRecords> eMOrdinaryLevelITRecords =  fileRetrieve.listEmOrdinaryLevelIT("OrdinaryLevelITEnglishMedium");
+        model.addAttribute("eMOrdinaryLevelITRecords", eMOrdinaryLevelITRecords);
+
+        List<UploadRecords> eMOrdinaryLevelBusinessSRecords =  fileRetrieve.listEmOrdinaryLevelBusinessS("OrdinaryLevelBusinessSEnglishMedium");
+        model.addAttribute("eMOrdinaryLevelBusinessSRecords", eMOrdinaryLevelBusinessSRecords);
+
+        List<UploadRecords> eMOrdinaryLevelHistoryRecords =  fileRetrieve.listEmOrdinaryLevelHistory("OrdinaryLevelHistoryEnglishMedium");
+        model.addAttribute("eMOrdinaryLevelHistoryRecords", eMOrdinaryLevelHistoryRecords);
+
+
+
+        return  "ordinaryLevelEnglishMedium.html";
     }
 
-    @RequestMapping("/ordinaryleveltamilmediam.html")
+    @RequestMapping("/ordinaryLevelTamilMedium.html")
     public String OLevelTamilSubjects(Model model) {
 
-        List<UploadRecords> tMOlMathematicsRecords =  fileRetrieve.listTmOrdinaryLevelMaths("OlMathematicsTamilMedium");
-        model.addAttribute("tMOlMathematicsRecords", tMOlMathematicsRecords);
+        List<UploadRecords> tMOrdinaryLevelMathematicsRecords =  fileRetrieve.listTmOrdinaryLevelMaths("OrdinaryLevelMathematicsTamilMediumTamilMedium");
+        model.addAttribute("tMOrdinaryLevelMathematicsRecords", tMOrdinaryLevelMathematicsRecords);
 
-        List<UploadRecords> tMOlScienceRecords =  fileRetrieve.listTmOrdinaryLevelScience("OlScienceTamilMedium");
-        model.addAttribute("tMOlScienceRecords", tMOlScienceRecords);
+        List<UploadRecords> tMOrdinaryLevelScienceRecords =  fileRetrieve.listTmOrdinaryLevelScience("OrdinaryLevelScienceTamilMedium");
+        model.addAttribute("tMOrdinaryLevelScienceRecords", tMOrdinaryLevelScienceRecords);
 
-        return  "ordinaryleveltamilmediam.html";
+        return  "ordinaryLevelTamilMedium.html";
     }
 
 
 
-    @RequestMapping("/OtherGovernmentExamsEnglishmedium.html")
+    @RequestMapping("/otherGovernmentExamsEnglishMedium.html")
     public String loadEmOtherGovernmentExams(Model model) {
 
-        return "OtherGovernmentExamsEnglishmedium.html";
+
+
+
+        return "otherGovernmentExamsEnglishMedium.html";
 
     }
-    @RequestMapping("/OtherGovernmentExamsSinhalamedium.html")
+    @RequestMapping("/otherGovernmentExamsSinhalaMedium.html")
     public String loadSmOtherGovernmentExams(Model model) {
 
-        return "OtherGovernmentExamsSinhalamedium.html";
+        List<UploadRecords> sMGramaniladariRecords =  fileRetrieve.listTmOrdinaryLevelScience("OrdinaryLevelScienceTamilMedium");
+        model.addAttribute("sMGramaniladariRecords", sMGramaniladariRecords);
+
+        return "otherGovernmentExamsSinhalaMedium.html";
 
     }
-    @RequestMapping("/OtherGovernmentExamsTamilmedium.html")
+    @RequestMapping("/otherGovernmentExamsTamilMedium.html")
     public String loadTmOtherGovernmentExams(Model model) {
 
-        return "OtherGovernmentExamsTamilmedium.html";
+        return "otherGovernmentExamsTamilMedium.html";
 
     }
 
@@ -540,6 +611,17 @@ public class RouteController {
     @GetMapping("/message")
     public String message() {
         return "message";
+    }
+
+    @GetMapping("/profile.html")
+    public String profile() {
+        return "profile.html";
+    }
+
+    @GetMapping("/editDirect")
+    public String editDirect(){
+
+       return "editRedirect.html";
     }
 
 

@@ -124,9 +124,9 @@ public class AmazonClient {
     }
 
     private String generateImageName(MultipartFile multiPart) {
-       /* return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");*/
+        return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
 
-        return multiPart.getOriginalFilename().replace(" ", "_");
+        /*return multiPart.getOriginalFilename().replace(" ", "_");*/
     }
 
     private void uploadImageTos3bucket(String fileName, File file) {

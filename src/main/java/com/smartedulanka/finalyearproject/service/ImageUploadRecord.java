@@ -6,4 +6,6 @@ import java.io.FileNotFoundException;
 
 public interface ImageUploadRecord {
     public void saveImageUploadRecord(Question question,String uploadedImageNameUrl, String imageName) throws FileNotFoundException;
+
+   void saveWithoutImageUploadRecord(Question question);
 }

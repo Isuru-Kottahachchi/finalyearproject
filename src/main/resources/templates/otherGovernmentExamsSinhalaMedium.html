@@ -51,12 +51,12 @@
                             Courses
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="sinhalamedium.html">Sinhala Medium</a></li>
+                            <li><a class="dropdown-item" href="sinhalaMedium.html">Sinhala Medium</a></li>
 
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="englishmedium.html">English Medium</a></li>
+                            <li><a class="dropdown-item" href="englishMedium.html">English Medium</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="tamilmedium.html">Tamil Medium</a></li>
+                            <li><a class="dropdown-item" href="tamilMedium.html">Tamil Medium</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -208,8 +208,8 @@
                                         <div align="center">
                                             <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> English medium Chemistry Olympiad 2008 Part I/II 2010  </a> </li></ul>
                                         </div>
-                                        <div align="center" th:each="eMOlympiadChemistryRecord: ${eMOlympiadChemistryRecords}">
-                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOlympiadChemistryRecord.UploadedFileName}" th:text="${eMOlympiadChemistryRecord.fileName}"target="_blank"> </a> </li></ul>
+                                        <div align="center" th:each="sMPririvenExamRecord: ${sMPririvenExamRecords}">
+                                            <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${sMPririvenExamRecord.UploadedFileName}" th:text="${sMPririvenExamRecord.fileName}"target="_blank"> </a> </li></ul>
                                         </div>
                                     </div>
 
@@ -228,13 +228,13 @@
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
                     <p class="align-center" style="color:black"> <b>ඔබ සතුව මූලික පිරිවෙන් විභාග ප්‍රශ්න පත්‍ර තිබේ නම් upload කරන්න.</b></p>
-                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: English_Medium_Chemistry Olympiad_PartI/II_2022)</b></p>
+                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Sinhala_Medium_Priven_PartI/II_2022)</b></p>
 
                     <form action="upload" method="post" enctype="multipart/form-data">
                         <p>
                             <input type="file" name="file" required accept="application/pdf,application"/>
-                            <input  name="userfileupload" type="hidden" value="OlympiadChemistryEnglishMedium" />
-                            <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsSinhalamedium" />
+                            <input  name="userfileupload" type="hidden" value="PiriwenExamSinhalaMedium" />
+                            <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsSinhalaMedium" />
                         </p>
                         <p>
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -303,12 +303,12 @@
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
                     <p class="align-center" style="color:black"> <b>ඔබ සතුව ග්‍රාම නිලදාරී විභාග ප්‍රශ්න පත්‍ර තිබේ නම් upload කරන්න.</b></p>
-                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Olympiad_English_Medium_Physics_PartI/II_2022)</b></p>
+                    <p>If you have relevant model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: GramaNiladaariExam_Medium_Physics_PartI/II_2022)</b></p>
 
                     <form action="upload" method="post" enctype="multipart/form-data">
                         <p>
                             <input type="file" name="file" required accept="application/pdf,application"/>
-                            <input  name="userfileupload" type="hidden" value="OlympiadPhysicsEnglishMedium" />
+                            <input  name="userfileupload" type="hidden" value="GramaNiladariExamSinhalaMedium" />
                             <input  name="fileCategory" type="hidden" value="OtherGovernmentExamsSinhalamedium" />
                         </p>
 
@@ -353,9 +353,9 @@
                     <h2>Quick Links</h2>
                     <ul class ="list-unstyled footer-link">
                         <li><a href="#overviews">About us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Forum</a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+
 
                     </ul>
 

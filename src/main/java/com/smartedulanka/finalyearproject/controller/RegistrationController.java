@@ -22,12 +22,12 @@ public class RegistrationController {
                 @Autowired
                 private UserRepository userRepo;
 
-               @RequestMapping("/signupform.html")
+               @RequestMapping("/signUpForm.html")
                public String loadRegistration(Model model) {
 
                    model.addAttribute("user",new User());
 
-                   return "signupform";
+                   return "signUpForm";
                }
 
                 @PostMapping("/register_process")
@@ -35,6 +35,7 @@ public class RegistrationController {
 
                    //EncodePassword
                     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
                     String encodedPassword = passwordEncoder.encode(user.getPassword());
                     user.setPassword(encodedPassword);
 
@@ -70,6 +71,32 @@ public class RegistrationController {
 
                    User user = userRepo.getById(userId);
                    userRepo.delete(user);
+
+                    return "redirect:/users.html";
+                }
+                @GetMapping("/changeRole")
+                public String changeRole(@RequestParam Long userId){
+
+                    User user = userRepo.getById(userId);
+
+
+                    if(user.getRole().equals("USER")){
+
+                        user.setRole("ADMIN");
+
+                        userRepo.save(user);
+
+                    }else if(user.getRole().equals("ADMIN")){
+
+
+                        user.setRole("USER");
+
+                        userRepo.save(user);
+
+
+                    }
+
+
 
                     return "redirect:/users.html";
                 }

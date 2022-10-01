@@ -10,9 +10,9 @@ public class QuestionSuggester {
     @Autowired
     private QuestionAnalyse questionAnalyse;
 
-    public  String analyseQuestion(String questionText){
+    public  String analyseQuestion(String searchBarInput){
 
-        String processedText = questionAnalyse.tag(questionText);
+        String processedText = questionAnalyse.tag(searchBarInput);
 
         //System.out.println("Question suggester " + questionText);
 

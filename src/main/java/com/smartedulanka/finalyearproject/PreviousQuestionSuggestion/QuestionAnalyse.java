@@ -33,7 +33,7 @@ public class QuestionAnalyse {
         }
     }
 
-    public String tag (String questionText){
+    public String tag (String searchBarInput){
 
         initialize("/en-pos-maxent.bin");
 
@@ -48,30 +48,31 @@ public class QuestionAnalyse {
                 if (tagger != null) {
 
                     //Calling detect sentence method
-                    String[] sentences = detectSentences(questionText);
+                    String[] sentencesArray = detectSentences(searchBarInput);
 
-                    for (String sentence : sentences) {
+                    for (String sentence : sentencesArray) {
 
                         //Tokenizing sentences
-                        String tokenizedText[] = WhitespaceTokenizer.INSTANCE
+                        String tokenizedTextArray[] = WhitespaceTokenizer.INSTANCE
                                 .tokenize(sentence);
 
-                        //Converting tokenized words arrays to a Arraylist
-                        ArrayList<String> wordsList = new ArrayList<String>(Arrays.asList(tokenizedText));
+                        //Converting tokenized words arrays to a ArrayList
+                        ArrayList<String> wordsList = new ArrayList<String>(Arrays.asList(tokenizedTextArray));
 
-                        //Get POS tags in tokenizedtext
-                        String[] tags = tagger.tag(tokenizedText);
+                        //Get POS tags in tokenizedText array
+                        String[] tagsArray = tagger.tag(tokenizedTextArray);
 
-                        for (int i = 0; i < tokenizedText.length; i++) {
+                        //Looping tokenized text array
+                        for (int i = 0; i < tokenizedTextArray.length; i++) {
 
-                            //Get words according to the tokenizedText arrayindex
-                            String word = tokenizedText[i].trim();
+                            //Get words according to the tokenizedText arrayIndex
+                            String word = tokenizedTextArray[i].trim();
 
-                            word = word.replace(".", "");
-                            word = word.replace("?", "");
+                            word = word.replace(".", "").replace("?", "");
 
-                            //Get tags according to the tag arrayindex
-                            String tag = tags[i].trim();
+
+                            //Get tags according to the tag arrayIndex
+                            String tag = tagsArray[i].trim();
 
                            //Remove adverbs wh adverbs when, where,why
                             if(tag.equals("WRB")){
@@ -124,6 +125,11 @@ public class QuestionAnalyse {
 
                                 unwantedWordsList.add(word);
                             }
+                            /*Verbs*/
+                            else if(tag.equals("VB")||tag.equals("VBG")||tag.equals("VBD")||tag.equals("VBN")||tag.equals("VBP")||tag.equals("VBZ")){
+
+                                unwantedWordsList.add(word);
+                            }
                             //Adjectives yours hers
                             /*else if(tag.equals("JJ")){
 
@@ -140,7 +146,7 @@ public class QuestionAnalyse {
 
                         StringBuffer sb = new StringBuffer();
 
-                        //save arraylist string to string
+                        //save arrayList's string to string
                         for (String word : wordsList) {
                             sb.append(word);
                             sb.append(" ");

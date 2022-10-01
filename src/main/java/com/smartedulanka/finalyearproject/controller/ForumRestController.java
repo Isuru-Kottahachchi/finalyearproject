@@ -64,7 +64,7 @@ public class ForumRestController {
 
         HashMap<Long,Long> aUsersRatingValueMap = new HashMap<Long,Long>();
 
-        ArrayList<Long> answerIdList = new ArrayList<Long>();
+        ArrayList<Long> loggedInUsersAnswerIdList = new ArrayList<Long>();
 
 
         for (Long answerId: answerIdArray) {
@@ -76,7 +76,12 @@ public class ForumRestController {
 
         RatingValueOfAUser ratingValueOfAUser = new RatingValueOfAUser();
 
+        //Logged in users rating buttons colors display
         ratingValueOfAUser.setSpecificUsersRatingValue(aUsersRatingValueMap);
+
+
+
+
 
 
 
@@ -87,13 +92,13 @@ public class ForumRestController {
             Long answerAuthorId = answerRepository.getAnswerAuthorId(answerId);
 
             if(answerAuthorId.equals(userId)){
-                answerIdList.add(answerId);
+                loggedInUsersAnswerIdList.add(answerId);
             }
         }
 
         /*Convert ArrayList to Array*/
-        Long[] answer_Id_Array = new Long[answerIdList.size()];
-        answer_Id_Array = answerIdList.toArray(answer_Id_Array);
+        Long[] answer_Id_Array = new Long[loggedInUsersAnswerIdList.size()];
+        answer_Id_Array = loggedInUsersAnswerIdList.toArray(answer_Id_Array);
 
         ratingValueOfAUser.setAnswerIds(answer_Id_Array);
         ratingValueOfAUser.setCurrentLoggedInUserId(userId);
@@ -259,6 +264,36 @@ public class ForumRestController {
         return answerAcceptBtn;
     }
 
+    @PostMapping("/loadProfile")
+    public String loadEditProfileBtn(@RequestParam Long viewedUserId){
+
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = customUserDetails.getUserId();
+
+        String status;
+
+        if(viewedUserId.equals(userId)){
+
+            status = "Matched";
+
+        }else{
+
+            status = "NotMatched";
+        }
+
+        return status;
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -352,6 +387,7 @@ public class ForumRestController {
         answerStatusQuestionStatus.put(answerStatus,questionStatus);
 
         AnswerAccept answerAccept = new AnswerAccept();
+
         answerAccept.setAnswerStatusQuestionStatus(answerStatusQuestionStatus);
 
         return answerAccept;

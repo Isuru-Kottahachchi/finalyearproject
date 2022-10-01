@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordinary level Tamil Medium</title>
+
+    <!--Title Icon-->
+    <link rel= "icon" href = "images/elearnerlogo.PNG"/>
+
+    <!--Linking Bootstrap CSS to the project(Linking Boostrap to the project/without this boostrap is not working. boostrap.min.css vs boostrap.css/can use CDN also)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--Linking CSS File-->
+    <link rel ="stylesheet" href="style.css"/>
+
+    <!--Font Awesome plugin--> <!--Social media buttons and other icons-->
+    <script src="https://kit.fontawesome.com/ba34fc4293.js" crossorigin="anonymous"></script>
+
+    <!--Ajax CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+
+</head>
+
+
+
+<body>
+<header class = "header">
+
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/elearnerlogo.PNG"width="50" height="50 "/> SMART EduLanka </a>
+
+
+            <!--Toggle button for mobile versions-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span ></span>
+                <span ></span>
+                <span ></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sinhalaMedium.html">Sinhala Medium</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="englishMedium.html">English Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tamilMedium.html">Tamil Medium</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+
+                </ul>
+                <ul>
+                    <form th:action="@{/logout}" method="post">
+
+                        <input type="submit" class="btn btn-danger btn-lg" value="Sign Out" />
+                    </form>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="section-title">
+        <div class="col-md-8 offset-md-2">
+            <h2 align="center">தமிழ் மீடியம் சாதாரண நிலை அறிவியல்(தரம் 10/11) பிரிவுக்கு வரவேற்கிறோம்!</h2>
+        </div>
+    </div><!-- end title -->
+
+    <hr class="invis">
+    <div class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">சாதாரண நிலை கணிதப் பிரிவு</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+    </div>
+    <hr class="invis">
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/OL_Maths.pdf" download="Export_Lesson_1"> உண்மையான எண்கள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> குறிப்புகள் மற்றும் மடக்கைகள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> திடப்பொருட்களின் மேற்பரப்பு </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> திடப்பொருட்களின் தொகுதிகள்</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1"> அமைக்கிறது </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/Trigonametry.pdf"> முக்கோணவியல் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> மெட்ரிக்குகள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1"> சமன்பாடுகள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> தொடர் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1">நிகழ்தகவு </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> வரைபடங்கள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> சதவீதங்கள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> ஏற்றத்தாழ்வுகள் </a> </li></ul>
+    <br>
+
+
+
+
+    <!--Paper section-->
+    <hr>
+    <h3 align="center">Ordinary level mathematics past papers and model papers section</h3>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <p>
+        <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+    </p>
+
+    <!--Inside the collapse-->
+
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse1">
+                <div class="card card-body">
+
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary Level  Mathematics Part I/II 2017  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary Level  Mathematics Part I/II 2018  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary Level  Mathematics Part I/II 2019  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary Level  Mathematics Part I/II 2020  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary Level  Mathematics Part I/II 2021  </a> </li></ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse2">
+                <div class="card card-body" >
+
+                    <div th:each="tMOrdinaryLevelMathematicsRecord: ${tMOrdinaryLevelMathematicsRecords}">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${tMOrdinaryLevelMathematicsRecord.UploadedFileName}" th:text="${tMOrdinaryLevelMathematicsRecord.fileName}"target="_blank"> </a> </li></ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+
+        <div align="center">
+            <div><p>If you have relevant Ordinary level mathematics model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Ordinary_Level_Mathematics_PartI/II_2022)</b></p></div>
+            <div>
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input name="userfileupload" type="hidden" value="OrdinaryLevelMathsTamilMedium" />
+                        <input name="fileCategory" type="hidden" value="ordinaryLevelTamilMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+
+    <div  class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">சாதாரண தர விஞ்ஞானப் பிரிவு</h3>
+                </div>
+            </div><!-- end title -->
+        </div>
+
+
+    </div>
+    <hr class="invis">
+
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> வாழும் திசுக்கள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> ஒளிச்சேர்க்கை </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> கலவை </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> அலைகள் மற்றும் அவற்றின் பயன்பாடுகள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1">வடிவியல் ஒளியியல் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> மனித உடலில் உயிரியல் செயல்முறை </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> அமிலங்கள், அடிப்படைகள் மற்றும் உப்புகள்</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1">வெப்பம் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1">மின்னணுவியல் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> மின் வேதியியல் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> ஹைட்ரோகார்பன்கள் மற்றும் அவற்றின் வழித்தோன்றல்கள் </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1">மின்சார சாதனங்களின் சக்தி மற்றும் ஆற்றல் </a> </li></ul>
+
+    <br>
+    <!--Paper section-->
+    <hr>
+    <h3 align="center">Ordinary level Science past papers and model papers section</h3>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <p>
+        <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse3" role="button" aria-expanded="false" aria-controls="multiCollapse3">Past Papers</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse4" aria-expanded="false" aria-controls="multiCollapse4">Model Papers</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse3 multiCollapse4">Show both sections</button>
+    </p>
+
+    <!--Inside the collapse-->
+
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse3">
+                <div class="card card-body">
+
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary level Science Part I/II 2018  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary level Science Part I/II 2019  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary level Science Part I/II 2020  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Ordinary level Science Part I/II 2021  </a> </li></ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse4">
+                <div class="card card-body" >
+
+
+                    <div th:each="tMOrdinaryLevelScienceRecord: ${tMOrdinaryLevelScienceRecords}">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${tMOrdinaryLevelScienceRecord.UploadedFileName}" th:text="${tMOrdinaryLevelScienceRecord.fileName}"target="_blank"> </a> </li></ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <br>
+    <div class="container">
+
+
+        <div align="center">
+            <div><p>If you have relevant Science model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Ordinary_Level_Science_PartI/II_2022)</b></p></div>
+            <div>
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application" />
+                        <input  name="userfileupload" type="hidden" value="OrdinaryLevelScienceTamilMedium" />
+                        <input  name="fileCategory" type="hidden" value="ordinaryLevelTamilMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success" >Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!--<div  class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center">Ordinary level Information technology section</h3>
+                </div>
+            </div>&lt;!&ndash; end title &ndash;&gt;
+        </div>
+
+
+    </div>
+    <hr>
+
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> Trigonometry </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Straight Line </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> Differentiation </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Integration</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1"> limits </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Probability </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> Matrices</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1"> Complex Numbers </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Series </a> </li></ul>
+    &lt;!&ndash;Paper section&ndash;&gt;
+    <hr>
+    <h3 align="center">Information & Communication Technology past papers and model papers section</h3>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <p>
+        <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+    </p>
+
+    &lt;!&ndash;Inside the collapse&ndash;&gt;
+
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse1">
+                <div class="card card-body">
+
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2018  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2019  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2020  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Chemistry Part I/II 2021  </a> </li></ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse2">
+                <div class="card card-body" >
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Royal college colombo Chemistry Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Ananda college colombo Chemistry Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Visaka college colombo Chemistry Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Mahanama college colombo Chemistry Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> DS Senanankaye college colombo Chemistry Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Devi Balika colombo ChemistryPart I/II 2021 March  </a> </li></ul>
+
+
+                    <div th:each="eMOrdinaryLevelITRecord: ${eMOrdinaryLevelITRecords}">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOrdinaryLevelITRecord.UploadedFileName}" th:text="${eMOrdinaryLevelITRecord.fileName}"target="_blank"> </a> </li></ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+    <div class="container">
+
+
+        <div align="center">
+            <div><p>If you have relevant Information & Communication Technology model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Chemistry_PartI/II_2022)</b></p></div>
+            <div>
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="OrdinaryLevelITEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="ordinaryLevelEnglishMedium" />
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success" >Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div  class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+                    <h3 align="center"> Ordinary level Business & Accounting Studies section</h3>
+
+                </div>
+            </div>&lt;!&ndash; end title &ndash;&gt;
+        </div>
+
+
+    </div>
+    <hr >
+
+
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> Trigonometry </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Straight Line </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> Differentiation </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Integration</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1"> limits </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Probability </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> Matrices</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1"> Complex Numbers </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Series </a> </li></ul>
+    <br>
+    &lt;!&ndash;Paper section&ndash;&gt;
+    <hr>
+    <h3 align="center">Business & Accounting Studies papers and model papers section</h3>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <p>
+        <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+    </p>
+
+    &lt;!&ndash;Inside the collapse&ndash;&gt;
+
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse1">
+                <div class="card card-body">
+
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Business & Accounting Studies Part I/II 2018  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Business & Accounting Studies Part I/II 2019  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Business & Accounting Studies Part I/II 2020  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> GCE Advanced Level Business & Accounting Studies Part I/II 2021  </a> </li></ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse2">
+                <div class="card card-body" >
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Royal college colombo >Business & Accounting Studies Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Ananda college colombo >Business & Accounting Studies Part I/II 2021 March  </a> </li></ul>
+
+
+
+                    <div th:each="eMOrdinaryLevelBusinessSRecord: ${eMOrdinaryLevelBusinessSRecords}">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${eMOrdinaryLevelBusinessSRecord.UploadedFileName}" th:text="${eMOrdinaryLevelBusinessSRecord.fileName}"target="_blank"> </a> </li></ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br>
+    <div class="container">
+
+
+        <div align="center">
+            <div><p>If you have relevant >Business & Accounting Studies model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: Physics_PartI/II_2022)</b></p></div>
+            <div>
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application"/>
+                        <input  name="userfileupload" type="hidden" value="OrdinaryLevelBusinessSEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="ordinaryLevelEnglishMedium"/>
+                    </p>
+
+                    <p>
+                        <button type="submit"  class="btn btn-success">Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div  class="section wb">
+        <div class="container">
+            <div class="section-title">
+                <div class="col-md-8 offset-md-2">
+
+                    <h3 align="center"> Ordinary level History section</h3>
+                </div>
+            </div>&lt;!&ndash; end title &ndash;&gt;
+        </div>
+
+
+    </div>
+    <hr>
+
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%AD%E0%B7%8A_%E0%B6%BB%E0%B7%92%E0%B6%9A%E0%B7%9D%E0%B6%AB%E0%B6%B8%E0%B7%92%E0%B6%AD%E0%B7%92%E0%B6%BA)+Trigonometry.pdf" download="Export_Lesson_1"> Trigonometry </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Straight Line </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%85%E0%B7%80%E0%B6%9A%E0%B6%BD%E0%B6%B1%E0%B6%BA)+Differential+Calculus.pdf" download="Export_Lesson_1"> Differentiation </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Integration</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B7%93%E0%B6%B8%E0%B7%8F%E0%B7%80)+Limit.pdf" download="Export_Lesson_1"> limits </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Probability </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B6%B1%E0%B7%8A_%E0%B6%BA%E0%B7%8F%E0%B7%83+%E0%B7%84%E0%B7%8F+%E0%B6%B1%E0%B7%92%E0%B7%81%E0%B7%8A%E0%B6%A0%E0%B7%8F%E0%B6%BA%E0%B6%9A)+Matrices+Determinants.pdf" download="Export_Lesson_1"> Matrices</a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/Lessons/PUR+-+(%E0%B7%83%E0%B6%82%E0%B6%9A%E0%B7%93%E0%B6%BB%E0%B7%8A%E0%B6%AB+%E0%B7%83%E0%B6%82%E0%B6%9B%E0%B7%8A_%E0%B6%BA%E0%B7%8F)+Complex+Numbers.pdf" download="Export_Lesson_1"> Complex Numbers </a> </li></ul>
+    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%B8%E0%B6%B1%E0%B6%BA.pdf" download="Export_Lesson_1"> Series </a> </li></ul>
+    <br>
+    &lt;!&ndash;Paper section&ndash;&gt;
+    <hr>
+    <h3 align="center">History past papers and model papers section</h3>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+
+    <p>
+        <a class="btn btn-warning" data-bs-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">Past Papers</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapse2" aria-expanded="false" aria-controls="multiCollapse2">Model Papers</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapse1 multiCollapse2">Show both sections</button>
+    </p>
+
+    &lt;!&ndash;Inside the collapse&ndash;&gt;
+
+    <div class="row">
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse1">
+                <div class="card card-body">
+
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> History Part I/II 2018  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> History Part I/II 2019  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> History Part I/II 2020  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> History Part I/II 2021  </a> </li></ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapse2">
+                <div class="card card-body" >
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Royal college colombo History Part I/II 2021 March  </a> </li></ul>
+                    <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank"></i><a    href="https://mbitfyproject.s3.ap-southeast-1.amazonaws.com/1647691652114-E1846061_Project_Proposal_.pdf" download="Export_Lesson_1"> Ananda college colombo Physics Part I/II 2021 March  </a> </li></ul>
+
+                    <div th:each="InformationTechnologyRecords: ${InformationTechnologyRecords}">
+                        <ul><li><i class="fas fa-download " aria-hidden="true" target="_blank" ></i> <a th:href="${InformationTechnologyRecords.UploadedFileName}" th:text="${InformationTechnologyRecords.fileName}"target="_blank"> </a> </li></ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br>
+    <div class="container">
+
+
+        <div align="center">
+            <div><p>If you have relevant History model papers/past papers with answers in PDF version upload here OR send to our email <a href = "mailto: smarteduinfo@gmail.com">smarteduinfo@gmail.com</b></a><b>(Please rename your files with suitable name Example: History_PartI/II_2022)</b></p></div>
+            <div>
+                <form action="upload" method="post" enctype="multipart/form-data">
+
+
+                    <p>
+                        <input type="file" name="file" required accept="application/pdf,application" />
+                        <input  name="userfileupload" type="hidden" value="OrdinaryLevelHistoryEnglishMedium" />
+                        <input  name="fileCategory" type="hidden" value="ordinaryLevelEnglishMedium"/>
+                    </p>
+
+                    <p>
+                        <button type="submit" class="btn btn-success" >Submit</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>-->
+
+
+
+
+</div><!--Main div of container/-->
+
+
+
+<!--Footer section-->
+<footer class ="site-footer">
+    <div class = "container" >
+        <div class = "row mb-5">
+            <div class = "col-md-3 mb-5">
+                <h2>About us</h2>
+                <p>Our main goal is to improve knowledge of knowledge seekers</p>
+                <a href="#overviews">Click here for more details</a>
+
+            </div>
+            <div class = "col-md-3 mb-5">
+                <h2>Contact &amp; Address</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li class ="d-flex">
+                        <span class="fa fa-map-marker"> :<span class="text-white" > Horalage watta,Kommala,Bentota,Sri Lanka</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-phone"> :<span class="text-white"> +94 077 89 39 339</span></span>
+                    </li><br>
+                    <li class ="d-flex">
+                        <span class="fa fa-envelope"> :<span class="text-white"> <a href ="">info@smartedulanka.com</a></span></span>
+                    </li>
+                </ul>
+            </div>
+            <div class = "col-md-3 mb-5">
+                <h2>Quick Links</h2>
+                <ul class ="list-unstyled footer-link">
+                    <li><a href="#overviews">About us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="forum.html">Forum</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2>Our social media</h2>
+                <ul class ="list-unstyled footer-link d-flex footer-social">
+                    <li><a href=""><span class="fa fa-facebook"></span></a></li>
+                    <li><a href=""><span class="fa fa-instagram"></span></a></li>
+                    <li><a href=""><span class="fa fa-twitter"></span></a></li>
+                    <li><a href=""><span class="fa fa-youtube"></span></a></li>
+                    <li><a href=""><span class="fa fa-github"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!--Copyrights-->
+        <div class="copyrights">
+            <div class="container">
+                <div class="footer-distributed">
+                    <div class="footer-center">
+                        <p class="footer-company-name">All Rights Reserved. &copy; 2022 <a href="#"><Span class="copyright">SmartEduLanka
+
+                            </Span></a> Developed By : <a href="#/"><Span class="copyright">Isuru Kottahachchi
+
+                            </Span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+
+<!--Bootstrap JavaScript file linking-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

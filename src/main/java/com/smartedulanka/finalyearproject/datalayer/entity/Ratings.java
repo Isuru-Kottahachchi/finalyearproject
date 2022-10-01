@@ -15,10 +15,10 @@ public class Ratings {
     @Column(nullable = false, unique = false, length = 45)
     private Short ratingValue;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private String rater_name;
 
-    @Column(nullable = true, unique = false, length = 45)
+    @Column(nullable = false, unique = false, length = 45)
     private Long answer_Author_id;
 
 

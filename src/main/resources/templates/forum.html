@@ -405,13 +405,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/questionSave}" method="post"th:object="${question}" enctype="multipart/form-data">
+                        <form th:action="@{/saveQuestion}" method="post"th:object="${question}" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label required">Enter your subject area</label>
                                 <input type="text" th:field="*{question_subjectArea}" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label required">Give a brief note about question</label>
+                                <label class="form-label">Give a brief note about question</label>
                                 <input type="text" th:field="*{questionNote}"class="form-control">
                             </div>
 
@@ -467,6 +467,18 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sinhalaMedium.html">Sinhala Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="englishMedium.html">English Medium</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tamilMedium.html">Tamil Medium</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="forum.html">Forum</a>
@@ -536,7 +548,7 @@
                                             <input type="email" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Type ypur message here</label>
+                                            <label class="form-label required">Type yuur message here</label>
                                             <textarea class="form-control"></textarea>
                                         </div>
                                     </form>
@@ -661,9 +673,9 @@
                     <div class="card text-white bg-dark mb-3" th:each="question: ${questionsList}">
                         <div class="card-body p-2 p-sm-3">
                             <div class="media forum-item">
-                                <a href="#" style="color: #2ecc71" data-toggle="collapse" data-target=".forum-content"><img  src="images/person.png"class="mr-3 rounded-circle" width="50" alt="User" /> <span style="font-weight: bold" th:text="${question.questionAuthorName}"></span>  </a>
+                                <a th:href="@{/viewProfile(questionId=${question.question_id})}" style="color: #2ecc71" data-toggle="collapse" data-target=".forum-content"><img  src="images/person.png"class="mr-3 rounded-circle" width="50" alt="User" /> <span style="font-weight: bold"  th:text="${question.questionAuthorName}"></span>  </a>
 
-                                <span class="question_header" th:id= "${question.question_id}" th:text="${question.questionSubmittedTime}"></span> <a href="#" style="color:yellow;font-weight: bold;"><span th:attr="onclick=|showContribution('${question.questionAuthorName}')|"> Show Contribution</span> <button type="button" class="btn btn-primary"  th:id= "${question.question_id}  + 'question_editBtn' " data-bs-toggle="modal" data-bs-target="#questionEdit" th:attr="onclick=|editQuestions('${question.question_id}')|">Edit Question</button></a>
+                                <span class="question_header" th:id= "${question.question_id}" th:text="${question.questionSubmittedTime}"></span> <a href="#" th:id= "${question.question_id}  + 'questionidload'" style="color:yellow;font-weight: bold;"><span th:attr="onclick=|showContribution('${question.questionAuthorName}')|"> Show Contribution</span> <button type="button" class="btn btn-primary"  th:id= "${question.question_id}  + 'question_editBtn' " data-bs-toggle="modal" data-bs-target="#questionEdit" th:attr="onclick=|editQuestions('${question.question_id}')|">Edit Question</button></a>
 
 
 
@@ -713,13 +725,13 @@
                                 <div class="text-muted small text-center align-self-center">
 
                                     <h6 style="color:red;font-weight: bold;">If you know the correct answer write down</h6>
-                                    <form th:action="@{/answerSave}" method="post"th:object="${answer}">
+                                    <form th:action="@{/saveAnswer}" method="post"th:object="${answer}" >
 
                                         <textarea th:id="commentanswer" name="comment" placeholder="Write a Comment..." rows="4" cols="80" th:field="*{fullAnswer}" ></textarea><br>
 
                                         <input type="hidden" th:value="${question.question_id}" th:attr="name='questionId'"/>
 
-                                        <button id="submitAnswers" class="btn btn-success" >Submit Answer</button>
+                                        <button id="submitAnswers"  class="btn btn-success" >Submit Answer</button>
                                     </form>
 
                                     <br>
@@ -755,7 +767,7 @@
                                                                        <h5 class="answer_header" style="color:black; text-indent: 20px;"  th:id="${answer.answer_id}" th:utext="${answer.fullAnswer}"></h5>
                                                             </div>
 
-                                                            <p style="color:black"><b th:id= "${answer.answer_id} + 'answer_countId'" > </b> People voted for this answer,out of them, <b class="answer_rating" th:id= "${answer.answer_id} + 'answer_positiveCountId' "></b> people rated as this as <span style="color:green; font-weight: bold;">  correct answer</span>  and  <b th:id= "${answer.answer_id} + 'answer_negativeCountId' " ></b> people <span style="color:red; font-weight: bold;">rated as incorrect answer</span> </p>
+                                                            <p style="color:black"><b th:id= "${answer.answer_id} + 'answer_countId'" > </b> people voted for this answer,Out of them, <b class="answer_rating" th:id= "${answer.answer_id} + 'answer_positiveCountId' "></b> people rated this as the <span style="color:green; font-weight: bold;">  correct answer</span>  and  <b th:id= "${answer.answer_id} + 'answer_negativeCountId' " ></b> people <span style="color:red; font-weight: bold;">rated this as an incorrect answer</span> </p>
                                                             <p class="align-self-center" style="color:black"> <b th:id= "${answer.answer_id} + 'answer_rateParaId'" >Rate this answer</b></p>
 
 

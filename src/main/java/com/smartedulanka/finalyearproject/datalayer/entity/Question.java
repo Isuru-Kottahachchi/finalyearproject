@@ -20,10 +20,10 @@ public class Question {
     @Column(nullable = false, unique = false, length = 1000)
     private String  fullQuestion;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String questionStatus;
 
-    @Column(nullable = true, unique = false, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String questionSubmittedTime;
 
     @Column(nullable = true, unique = false, length = 1000)

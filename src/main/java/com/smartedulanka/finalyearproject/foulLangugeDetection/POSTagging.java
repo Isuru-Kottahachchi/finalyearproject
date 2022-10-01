@@ -61,7 +61,6 @@ public class POSTagging {
             String[] vbgArray = vbgFileBufferedReader.lines().collect(Collectors.joining()).split(",");
 
 
-
             Resource offensiveLangResource = new ClassPathResource("offensivelang.txt");
             File offensiveLangResourceFile = offensiveLangResource.getFile();
             BufferedReader offensiveLangBufferedReader = new BufferedReader(new FileReader(offensiveLangResourceFile));
@@ -77,25 +76,32 @@ public class POSTagging {
                 if (tagger != null) {
 
                     //Detect sentences using en-sent OpenNLP model
-                    String[] sentences = detectSentences(text);
-                    for (String sentence : sentences) {
-                        String tokenizedText[] = WhitespaceTokenizer.INSTANCE
+                    String[] sentencesArray = detectSentences(text);
+
+                    for (String sentence : sentencesArray) {
+
+                        String tokenizedTextArray[] = WhitespaceTokenizer.INSTANCE
                                 .tokenize(sentence);
 
                         //Getting tags of words
-                        String[] tagsArray = tagger.tag(tokenizedText);
+                        String[] tagsArray = tagger.tag(tokenizedTextArray);
 
-                        for (int i = 0; i < tokenizedText.length; i++) {
+                        for (int i = 0; i < tokenizedTextArray.length; i++) {
 
-                            String word = tokenizedText[i].trim();
+                            //Getting the word using arrayIndex
+                            String word = tokenizedTextArray[i].trim();
 
                             word = word.replace(".", "");
                             word = word.replace(",", "");
                             word = word.replace("?", "");
 
+                            //Getting the tags using arrayIndex
                             String tag = tagsArray[i].trim();
 
+
+                            //Adding every word to fullTextList
                             fullTextList.add(word);
+
 
                             if(tag.equals("NN")||(tag.equals("NNS"))){
 
